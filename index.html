@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>JOURYVEL Skincare Program</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-serif;background:linear-gradient(180deg,#faf6ed 0%,#f5e6c8 100%);min-height:100vh;overflow-x:hidden;padding:0}
+.app{max-width:480px;margin:0 auto;padding:8px;min-height:100vh}
+
+.hdr{background:linear-gradient(135deg,#0d1b2a 0%,#1b263b 50%,#2e4035 100%);color:#f4cf57;padding:20px 16px;border-radius:20px;text-align:center;margin-bottom:10px;box-shadow:0 8px 25px rgba(13,27,42,.4);border:2px solid #d4af37;position:relative;overflow:hidden}
+.hdr::before{content:'👑';position:absolute;top:6px;right:50%;transform:translateX(50%);font-size:18px;opacity:.3}
+.hdr h1{font-size:28px;font-weight:900;letter-spacing:3px;text-shadow:0 2px 4px rgba(212,175,55,.4);margin-bottom:4px;position:relative;z-index:1}
+.hdr p{font-size:10px;color:#f5e6c8;letter-spacing:2px;opacity:.9;position:relative;z-index:1}
+.hdr .or{color:#d4af37;margin-top:6px;font-size:10px;letter-spacing:2px;position:relative;z-index:1}
+
+.nav{display:flex;align-items:center;background:#fff;border-radius:14px;padding:6px;margin-bottom:10px;box-shadow:0 4px 15px rgba(0,0,0,.06);border:1px solid #d4af37}
+.nb{background:linear-gradient(135deg,#d4af37,#8b6914);color:#fff;border:none;width:38px;height:38px;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(212,175,55,.4)}
+.nb:active{transform:scale(.9)}
+.di{flex:1;text-align:center;padding:0 8px;min-width:0}
+.dn1{font-size:9px;color:#8b6914;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.dn2{font-size:17px;font-weight:800;color:#0d1b2a;margin:2px 0;letter-spacing:.3px}
+.dn3{font-size:9px;color:#2e4035;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+
+.crd{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.1);margin-bottom:10px;border:1px solid rgba(212,175,55,.2);transition:transform .3s ease,opacity .3s ease;position:relative}
+.crd.sw{transition:none}
+.crd.sl{transform:translateX(-110%);opacity:0}
+.crd.sr{transform:translateX(110%);opacity:0}
+
+.ch{padding:20px;color:#fff;text-align:center;border-bottom:3px solid #d4af37;position:relative;overflow:hidden}
+.ch::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at top,rgba(255,255,255,.15) 0%,transparent 60%);pointer-events:none}
+.ch.g{background:linear-gradient(135deg,#c2410c 0%,#f59e0b 100%)}
+.ch.r{background:linear-gradient(135deg,#6d28d9 0%,#a855f7 100%)}
+.ch.rec{background:linear-gradient(135deg,#166534 0%,#22c55e 100%)}
+.ch.p{background:linear-gradient(135deg,#991b1b 0%,#dc2626 100%)}
+.ch .ic{font-size:36px;margin-bottom:4px;position:relative;z-index:1}
+.ch .dn{font-size:24px;font-weight:800;letter-spacing:.5px;position:relative;z-index:1}
+.ch .dt{display:inline-block;background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:4px 14px;border-radius:14px;font-size:10px;font-weight:700;letter-spacing:1.5px;margin-top:6px;position:relative;z-index:1;text-transform:uppercase}
+
+.tbs{display:flex;background:linear-gradient(to bottom,#faf6ed 0%,#fff 100%);border-bottom:1px solid rgba(212,175,55,.2)}
+.tb{flex:1;padding:14px 8px;background:transparent;border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;color:#999;position:relative;transition:color .3s}
+.tb.a{color:#0d1b2a}
+.tb.a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,#d4af37,#8b6914)}
+.tb .ti{margin-left:4px;font-size:16px}
+.tb .tc{background:rgba(212,175,55,.2);color:#8b6914;padding:1px 7px;border-radius:6px;font-size:9px;font-weight:700;margin-right:4px}
+.tb.a .tc{background:#d4af37;color:#fff}
+
+.tc2{display:none;padding:14px}
+.tc2.a{display:block;animation:fi .4s ease}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.gd{display:flex;align-items:center;margin:10px 0}
+.gd::before,.gd::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent)}
+.gd span{margin:0 6px;color:#d4af37;font-size:11px}
+
+.st{list-style:none;counter-reset:st}
+.st li{padding:10px 12px;margin-bottom:8px;background:linear-gradient(135deg,#faf6ed 0%,#fffbf0 100%);border-radius:10px;font-size:12px;line-height:1.5;border-right:3px solid #d4af37;box-shadow:0 2px 6px rgba(0,0,0,.04);position:relative;counter-increment:st;padding-left:30px}
+.st li::before{content:counter(st);position:absolute;left:8px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,#d4af37,#8b6914);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;box-shadow:0 2px 4px rgba(212,175,55,.3)}
+.sp{font-weight:800;color:#0d1b2a;font-size:13px;display:block;margin-bottom:2px}
+.su{font-size:11px;color:#555;display:block;line-height:1.5}
+.su b{color:#8b6914;font-weight:800}
+.sm{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap}
+.mt{padding:2px 6px;border-radius:5px;font-size:9px;font-weight:700;display:inline-block}
+.mt.a{background:#fce7f3;color:#9f1239}
+.mt.t{background:#dbeafe;color:#1e40af}
+.mt.w{background:#d1fae5;color:#065f46}
+.mt.n{background:#fef3c7;color:#92400e}
+
+.wrn{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fecaca;border-right:3px solid #dc2626;padding:10px 12px;border-radius:10px;margin-top:10px;font-size:11px;color:#7f1d1d;line-height:1.6}
+.wrn b{color:#991b1b}
+
+.ind{display:flex;justify-content:center;gap:5px;margin-top:12px}
+.ii{width:7px;height:7px;border-radius:50%;background:rgba(212,175,55,.3);cursor:pointer;transition:all .3s}
+.ii.a{background:#d4af37;width:24px;border-radius:4px;box-shadow:0 0 8px rgba(212,175,55,.5)}
+
+.sh{text-align:center;margin-top:10px;font-size:9px;color:#8b6914;letter-spacing:1px;font-weight:600}
+
+.ft{text-align:center;margin-top:14px;padding:12px;background:linear-gradient(135deg,#0d1b2a 0%,#1b263b 100%);color:#f5e6c8;border-radius:14px;font-size:9px;line-height:1.6;border:1px solid #d4af37}
+.ft .fb{color:#f4cf57;font-weight:700;letter-spacing:2px;margin-top:4px;font-size:11px}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="hdr">
+<h1>JOURYVEL</h1>
+<p>TIMELESS SCENTS · MODERN LUXURY</p>
+<div class="or">✦ ✦ ✦</div>
+</div>
+<div class="nav">
+<button class="nb" id="pb" onclick="prev()">→</button>
+<div class="di">
+<div class="dn1" id="d1">اليوم 1 من 7</div>
+<div class="dn2" id="d2">السبت</div>
+<div class="dn3" id="d3">GLYCOLIC</div>
+</div>
+<button class="nb" id="nb" onclick="next()">←</button>
+</div>
+<div class="crd" id="crd">
+<div class="ch g" id="ch">
+<div class="ic" id="ic">🍊</div>
+<div class="dn" id="dn">السبت</div>
+<div class="dt" id="dt">GLYCOLIC</div>
+</div>
+<div class="tbs">
+<button class="tb a" data-t="am" onclick="tab('am')"><span class="ti">☀️</span>صباحاً<span class="tc" id="ac">4</span></button>
+<button class="tb" data-t="pm" onclick="tab('pm')"><span class="ti">🌙</span>مساءً<span class="tc" id="pc">3</span></button>
+</div>
+<div class="tc2 a" id="am">
+<div class="gd"><span>✦</span></div>
+<ol class="st" id="als"></ol>
+</div>
+<div class="tc2" id="pm">
+<div class="gd"><span>✦</span></div>
+<ol class="st" id="pls"></ol>
+<div class="wrn" id="pw" style="display:none"></div>
+</div>
+</div>
+<div class="ind" id="ind"></div>
+<div class="sh">← اسحبي يميناً أو يساراً · اضغطي على التابات →</div>
+<div class="ft">
+<div>المصادر الرسمية 2026</div>
+<div class="fb">CRAFTED IN MOROCCO</div>
+</div>
+</div>
+<script>
+var D=[
+{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",
+am:[
+{p:"CeraVe Hydrating Cleanser",u:"بللي وجهك · دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["مرة/يوم","n"]]},
+{p:"Aurelia Vitamin C 15% Serum",u:"<b>1 بخة</b> على جلد رطب · ربتي · انتظري 30-60 ث",m:[["1 بخة","a"],["صباحاً","n"],["pH 2.5-3.5","t"]]},
+{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة · دلكي بحركات دائرية",m:[["رقيقة","a"]]},
+{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين للوجه + إصبع للرقبة · قبل الخروج 5-10 د",m:[["إصبعين","a"],["SPF 50+","t"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي 30-60 ث · اشطري · جففي",m:[["حبة البازلاء","a"]]},
+{p:"The Ordinary Glycolic 7%",u:"قطنة · <b>15-20 د</b> · جلد جاف · اشطري",m:[["قطنة","a"],["15-20 د","t"],["تجنبي العينين","w"]]},
+{p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
+]},
+{n:"الأحد",t:"RETINOL",c:"r",i:"✨",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي 30-60 ث · اشطري · جففي",m:[["حبة البازلاء","a"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · ربتي · 30-60 ث",m:[["1 بخة","a"],["صباحاً","n"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين · قبل الخروج",m:[["إصبعين","a"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["جففي 5 د","t"]]},
+{p:"Some By Mi Retinol Eye",u:"<b>نصف حبة أرز</b> · ربتي على عظمة الحجاج · ابتعدي 1 سم عن خط الرموش",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"]]},
+{p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
+],
+w:"Retinol (0.1%) على عظمة الحجاج <b>فقط</b>. ابتعدي عن خط الرموش. مساءً فقط."},
+{n:"الإثنين",t:"RECOVERY",c:"rec",i:"🌿",
+am:[
+{p:"Bioderma Pigmentbio",u:"دلكي <b>30 ث</b> على جلد مبلل · اشطري",m:[["حبة البازلاء","a"],["30 ث","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"]]},
+{p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · استعادة الحاجز",m:[["سميكة","a"]]}
+]},
+{n:"الثلاثاء",t:"GLYCOLIC #2",c:"g",i:"🍊",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · ربتي",m:[["1 بخة","a"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["جففي 5 د","t"]]},
+{p:"The Ordinary Glycolic 7%",u:"قطنة · <b>15-20 د</b> · اشطري",m:[["قطنة","a"],["15-20 د","t"]]},
+{p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
+]},
+{n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · ربتي",m:[["1 بخة","a"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"]]},
+{p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · إصلاح",m:[["سميكة","a"]]}
+]},
+{n:"الخميس",t:"RETINOL #2",c:"r",i:"✨",
+am:[
+{p:"Bioderma Pigmentbio",u:"دلكي 30 ث · اشطري",m:[["حبة البازلاء","a"],["30 ث","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["جففي 5 د","t"]]},
+{p:"Some By Mi Retinol",u:"<b>نصف حبة أرز</b> · عظمة الحجاج",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"]]},
+{p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
+]},
+{n:"الجمعة",t:"PANOXYL 10%",c:"p",i:"🔥",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"]]},
+{p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · تحضير PanOxyl",m:[["سميكة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"]]}
+],
+pm:[
+{p:"⚠️ اختبار الرقبة",u:"مرة واحدة فقط لأول استخدام",m:[["اختبار حساسية","t"]]},
+{p:"PanOxyl 10% Foaming Wash",u:"بللي الوجه · <b>دلكي 1-2 د</b> فقط · اشطري فوراً",m:[["حبة البازلاء","a"],["1-2 د","t"],["1× أسبوع","n"]]},
+{p:"CeraVe Cream",u:"<b>طبقة سميكة جداً</b> · لإصلاح الجفاف",m:[["سميكة جداً","a"]]}
+],
+w:"PanOxyl 10% عالي التركيز. <b>آخر يوم في الأسبوع</b>."}
+];
+var c=0,ct='am';
+function tab(t){
+ct=t;
+var bs=document.querySelectorAll('.tb');
+for(var i=0;i<bs.length;i++){if(bs[i].dataset.t===t){bs[i].className='tb a';}else{bs[i].className='tb';}}
+document.getElementById('am').className=t==='am'?'tc2 a':'tc2';
+document.getElementById('pm').className=t==='pm'?'tc2 a':'tc2';
+}
+function render(){
+var d=D[c];
+document.getElementById('ch').className='ch '+d.c;
+document.getElementById('ic').textContent=d.i;
+document.getElementById('dn').textContent=d.n;
+document.getElementById('dt').textContent=d.t;
+document.getElementById('d1').textContent='اليوم '+(c+1)+' من 7';
+document.getElementById('d2').textContent=d.n;
+document.getElementById('d3').textContent=d.t;
+document.getElementById('ac').textContent=d.am.length;
+document.getElementById('pc').textContent=d.pm.length;
+document.getElementById('als').innerHTML=d.am.map(function(s){
+return '<li><span class="sp">'+s.p+'</span><span class="su">'+s.u+'</span><div class="sm">'+s.m.map(function(m){return '<span class="mt '+m[1]+'">'+m[0]+'</span>';}).join('')+'</div></li>';
+}).join('');
+document.getElementById('pls').innerHTML=d.pm.map(function(s){
+return '<li><span class="sp">'+s.p+'</span><span class="su">'+s.u+'</span><div class="sm">'+s.m.map(function(m){return '<span class="mt '+m[1]+'">'+m[0]+'</span>';}).join('')+'</div></li>';
+}).join('');
+var pw=document.getElementById('pw');
+if(d.w){pw.innerHTML='⚠️ '+d.w;pw.style.display='block';}else{pw.style.display='none';}
+var ih='';
+for(var i=0;i<D.length;i++){ih+='<div class="ii '+(i===c?'a':'')+'" onclick="go('+i+')"></div>';}
+document.getElementById('ind').innerHTML=ih;
+}
+function prev(){
+var c2=document.getElementById('crd');c2.className='crd sw sr';
+setTimeout(function(){c=(c-1+D.length)%D.length;render();tab('am');c2.className='crd';},280);
+}
+function next(){
+var c2=document.getElementById('crd');c2.className='crd sw sl';
+setTimeout(function(){c=(c+1)%D.length;render();tab('am');c2.className='crd';},280);
+}
+function go(i){
+var dir=i>c?'l':'r';
+var c2=document.getElementById('crd');c2.className='crd sw '+(dir==='l'?'sl':'sr');
+setTimeout(function(){c=i;render();tab('am');c2.className='crd';},280);
+}
+var sx=0;
+var cc=document.getElementById('crd');
+cc.addEventListener('touchstart',function(e){sx=e.changedTouches[0].screenX;},{passive:true});
+cc.addEventListener('touchend',function(e){var d=e.changedTouches[0].screenX-sx;if(Math.abs(d)>50){d>0?prev():next();}},{passive:true});
+var mx=0,dr=false;
+cc.addEventListener('mousedown',function(e){mx=e.clientX;dr=true;});
+cc.addEventListener('mouseup',function(e){if(!dr)return;dr=false;var d=e.clientX-mx;if(Math.abs(d)>50){d>0?prev():next();}});
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')prev();if(e.key==='ArrowLeft')next();});
+render();
+</script>
+</body>
+</html>

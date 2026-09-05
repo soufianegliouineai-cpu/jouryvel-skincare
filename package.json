@@ -1,0 +1,19 @@
+{
+  "name": "jouryvel-skincare",
+  "version": "1.0.0",
+  "description": "JOURYVEL 7-Day Luxury Skincare Program - Interactive swipeable day cards",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -s .",
+    "dev": "npx serve -s ."
+  },
+  "keywords": [
+    "skincare",
+    "jouryvel",
+    "luxury",
+    "beauty",
+    "spa"
+  ],
+  "author": "JOURYVEL",
+  "license": "MIT"
+}
