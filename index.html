@@ -222,6 +222,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 .cal .c.d{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-color:var(--green)}
 .cal .c.p{background:linear-gradient(135deg,var(--orange),#fbbf24);color:#fff;border-color:var(--orange)}
 
+.bm{background:linear-gradient(135deg,var(--ink),var(--ink2));color:var(--gold3);border-radius:10px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.bm .ic{font-size:20px}
+.bm .info{flex:1}
+.bm .info b{font-size:11px;display:block;margin-bottom:1px}
+.bm .info span{font-size:9px;color:var(--gold4);opacity:.8}
+.bm .act{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;padding:6px 10px;border-radius:7px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit}
+
+.notes{background:var(--bg);border-radius:8px;padding:8px;margin-top:6px;font-size:10px;color:var(--text);line-height:1.4;border-right:3px solid var(--accent);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.notes span{flex:1}
+.notes button{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;padding:4px 8px;border-radius:6px;font-size:9px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0}
+
+textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:11px;color:var(--ink);min-height:70px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--accent)}
+
+.share-card{background:linear-gradient(135deg,var(--ink),var(--ink2));border-radius:12px;padding:14px;color:var(--gold3);text-align:center;margin-bottom:8px;border:2px solid var(--gold)}
+.share-card h4{color:var(--gold3);font-size:13px;margin-bottom:6px}
+.share-card .sc{font-size:10px;color:var(--gold4);margin:3px 0;line-height:1.4}
+.share-card .em{font-size:30px;margin:6px 0}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:8px 0}
+.gallery div{aspect-ratio:1;background:var(--bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:24px;border:1px solid var(--line);cursor:pointer}
+.gallery div.plus{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:20px}
+
 @media(max-width:380px){.hdr h1{font-size:20px}.ch .dn{font-size:18px}.st li{padding:7px 9px 7px 32px;font-size:10px}}
 </style>
 </head>
@@ -274,6 +297,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 <div class="wrn" id="pw" style="display:none"></div>
 </div>
 </div>
+<div id="notePrev" style="display:none"></div>
 <div class="ind" id="ind"></div>
 </div>
 <button class="fab" onclick="openWhy()" title="لماذا">💡</button>
@@ -281,6 +305,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 <button class="fab3" onclick="toggleTheme()" title="الوضع الليلي">🌙</button>
 <button class="fab4" onclick="openCompare()" title="مقارنة">👫</button>
 <button class="fab5" onclick="openStats()" title="الإحصائيات">📊</button>
+<button class="fab" onclick="openBookmarks()" title="محفوظات" style="bottom:calc(20px + env(safe-area-inset-bottom));left:74px;width:44px;height:44px;font-size:17px;background:linear-gradient(135deg,var(--ink),var(--ink2));color:var(--gold3);border:1px solid var(--gold)">🔖</button>
+<button class="fab" onclick="openNotes()" title="ملاحظات" style="bottom:calc(20px + env(safe-area-inset-bottom));left:124px;width:44px;height:44px;font-size:17px;background:linear-gradient(135deg,var(--gold),var(--gold2))">📝</button>
+<button class="fab" onclick="openShare()" title="مشاركة" style="bottom:calc(20px + env(safe-area-inset-bottom));left:174px;width:44px;height:44px;font-size:17px;background:linear-gradient(135deg,#ec4899,#9d174d)">📤</button>
+<button class="fab" onclick="openGallery()" title="معرض" style="bottom:calc(20px + env(safe-area-inset-bottom));left:224px;width:44px;height:44px;font-size:17px;background:linear-gradient(135deg,#0ea5e9,#0c4a6e)">📸</button>
 <div class="conf" id="conf">✓ تم الحفظ</div>
 <div class="modal" id="whyM"><div class="mbox" id="whyB"></div></div>
 <div class="modal" id="instM"><div class="mbox" id="instB"></div></div>
@@ -289,6 +317,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 <div class="modal" id="compM"><div class="mbox" id="compB"></div></div>
 <div class="modal" id="timerM"><div class="mbox" id="timerB"></div></div>
 <div class="modal" id="editM"><div class="mbox" id="editB"></div></div>
+<div class="modal" id="bmM"><div class="mbox" id="bmB"></div></div>
+<div class="modal" id="noteM"><div class="mbox" id="noteB"></div></div>
+<div class="modal" id="shareM"><div class="mbox" id="shareB"></div></div>
+<div class="modal" id="galM"><div class="mbox" id="galB"></div></div>
 <div class="celeb" id="celeb"><div class="cb" id="cb"><div class="emo" id="cEmo">✨</div><div class="tx" id="ctx"></div><div class="sx" id="csx"></div></div></div>
 <script>
 var PROFILES={
@@ -469,7 +501,7 @@ pm:[
 w:"PanOxyl 10% للرجال - مثالي بعد الحلاقة. <b>آخر يوم في الأسبوع</b>."}
 ]
 };
-var currentProfile='her',c=0,ct='am',prog={},ach={},streak=0,lastDay=-1,deferredPrompt=null,timerInt=null;
+var currentProfile='her',c=0,ct='am',prog={},ach={},streak=0,lastDay=-1,deferredPrompt=null,timerInt=null,bookmarks={},notes={},photos={},reminderTime='';
 function D(){return PROGRAMS[currentProfile]}
 function getKey(d,s,i){return d+'-'+s+'-'+i}
 function load(){
@@ -480,12 +512,16 @@ var all=JSON.parse(localStorage.getItem('jouryvel-all')||'{}');
 prog=all[p]&&all[p].prog?all[p].prog:{};
 ach=all[p]&&all[p].ach?all[p].ach:{};
 streak=all[p]&&all[p].streak?all[p].streak:0;
-}catch(e){prog={};ach={};streak=0}
+bookmarks=all[p]&&all[p].bm?all[p].bm:{};
+notes=all[p]&&all[p].notes?all[p].notes:{};
+photos=all[p]&&all[p].photos?all[p].photos:[];
+reminderTime=all[p]&&all[p].reminder?all[p].reminder:'';
+}catch(e){prog={};ach={};streak=0;bookmarks={};notes={};photos=[];reminderTime=''}
 }
 function save(){
 try{
 var all=JSON.parse(localStorage.getItem('jouryvel-all')||'{}');
-all[currentProfile]={prog:prog,ach:ach,streak:streak};
+all[currentProfile]={prog:prog,ach:ach,streak:streak,bm:bookmarks,notes:notes,photos:photos,reminder:reminderTime};
 localStorage.setItem('jouryvel-all',JSON.stringify(all));
 localStorage.setItem('jouryvel-cur',currentProfile);
 }catch(e){}
@@ -511,14 +547,134 @@ document.getElementById('pm').className=t==='pm'?'tc2 a':'tc2';
 function makeLi(d,s,i,st){
 var k=getKey(d,s,i);
 var isDone=!!prog[k];
-var html='<li class="'+(isDone?'done':'')+'" data-k="'+k+'" onclick="toggleStep(this,event)">';
-html+='<span class="sp">'+st.p+'</span>';
+var isBm=bookmarks[k];
+var html='<li class="'+(isDone?'done':'')+(isBm?' bm-step':'')+'" data-k="'+k+'" onclick="toggleStep(this,event)">';
+html+='<span class="sp">'+st.p+(isBm?' 🔖':'')+'</span>';
 html+='<span class="su">'+st.u+'</span>';
 html+='<div class="sm">'+st.m.map(function(m){
 if(m[1]==='c')return '<span class="mt c" onclick="openTimer(event,\''+st.p.replace(/'/g,"\\'")+'\','+(m[0].indexOf('15')>=0?15:2)+')">'+m[0]+'</span>';
 return '<span class="mt '+m[1]+'">'+m[0]+'</span>';
-}).join('')+'</div></li>';
+}).join('')+'<span class="mt c" onclick="toggleBm(event,\''+k+'\')" style="background:linear-gradient(135deg,'+(isBm?'var(--gold),var(--gold2)':'var(--muted),#666')+')">'+(isBm?'★ مفضل':'🔖 حفظ')+'</span></div></li>';
 return html;
+}
+function toggleBm(e,k){
+if(e)e.stopPropagation();
+if(bookmarks[k]){delete bookmarks[k];showConf('↩ تمت الإزالة من المفضلة')}
+else{bookmarks[k]=1;showConf('⭐ تمت الإضافة للمفضلة')}
+save();render();
+}
+function openBookmarks(){
+var keys=Object.keys(bookmarks);
+var h='<h3>🔖 الخطوات المفضلة</h3>';
+if(keys.length===0){h+='<p style="text-align:center;color:var(--muted)">لا توجد خطوات محفوظة بعد<br><br>اضغطي على 🔖 في أي خطوة لحفظها</p>'}
+else{
+h+='<p style="text-align:center;color:var(--text);font-size:11px">'+keys.length+' خطوة محفوظة</p>';
+for(var i=0;i<keys.length;i++){
+var k=keys[i].split('-');
+var d=parseInt(k[0]),s=k[1],idx=parseInt(k[2]);
+var st=D()[d][s][idx];
+h+='<div class="bm"><div class="ic">⭐</div><div class="info"><b>'+st.p+'</b><span>📅 '+D()[d].n+' · '+(s==='am'?'صباحاً':'مساءً')+'</span></div><button class="act" onclick="goToStep('+d+',\''+s+'\')">فتح</button></div>';
+}
+}
+h+='<button class="mbtn s" onclick="closeM(\'bmM\')">إغلاق</button>';
+document.getElementById('bmB').innerHTML=h;
+document.getElementById('bmM').classList.add('show');
+}
+function goToStep(d,s){
+c=d;tab(s);closeM('bmM');render();
+}
+function openNotes(){
+var k=currentProfile+'-'+c+'-'+ct;
+var cur=notes[k]||'';
+var h='<h3>📝 ملاحظات '+D()[c].n+'</h3>';
+h+='<p style="font-size:11px;color:var(--text)">اكتبي ملاحظاتك عن اليوم (تظهر فقط لك)</p>';
+h+='<textarea id="noteTxt" placeholder="مثال: البشرة كانت جافة اليوم، أو ممتازة...">'+cur+'</textarea>';
+h+='<button class="mbtn" onclick="saveNote(\''+k+'\')">💾 حفظ</button>';
+h+='<button class="mbtn s" onclick="closeM(\'noteM\')">إغلاق</button>';
+document.getElementById('noteB').innerHTML=h;
+document.getElementById('noteM').classList.add('show');
+}
+function saveNote(k){
+notes[k]=document.getElementById('noteTxt').value;
+save();closeM('noteM');showConf('✓ تم حفظ الملاحظة');render();
+}
+function addNotePreview(){
+var k=currentProfile+'-'+c+'-'+ct;
+var n=notes[k];
+var el=document.getElementById('notePrev');
+if(n&&n.trim()){el.innerHTML='<div class="notes"><span>📝 '+n+'</span><button onclick="openNotes()">تعديل</button></div>';el.style.display='block'}
+else{el.innerHTML='<div class="notes"><span>📝 لا توجد ملاحظات</span><button onclick="openNotes()">إضافة</button></div>';el.style.display='block'}
+}
+function openShare(){
+var done=doneSteps(),total=totalSteps();
+var pct=total>0?Math.round((done/total)*100):0;
+var lvl=calcLevel();
+var h='<h3>📤 مشاركة الإنجاز</h3>';
+h+='<div class="share-card">';
+h+='<div class="em">'+(pct===100?'🏆':pct>=75?'💎':pct>=50?'⭐':pct>=25?'🌱':'✨')+'</div>';
+h+='<h4>'+PROFILES[currentProfile].name+' · Lv.'+lvl+'</h4>';
+h+='<div class="sc">'+pct+'% من الأسبوع المكتمل</div>';
+h+='<div class="sc">🔥 '+streak+' يوم متتالي</div>';
+h+='<div class="sc">'+done+' / '+total+' خطوة منجزة</div>';
+h+='<div class="sc" style="margin-top:8px;font-style:italic">JOURYVEL Skincare Program</div>';
+h+='</div>';
+h+='<button class="mbtn" onclick="shareText()">📱 نسخ النص</button>';
+h+='<button class="mbtn gold" onclick="shareImg()">🖼️ حفظ كصورة</button>';
+h+='<button class="mbtn s" onclick="closeM(\'shareM\')">إغلاق</button>';
+document.getElementById('shareB').innerHTML=h;
+document.getElementById('shareM').classList.add('show');
+}
+function shareText(){
+var done=doneSteps(),total=totalSteps();
+var pct=total>0?Math.round((done/total)*100):0;
+var txt='✨ '+PROFILES[currentProfile].name+' في JOURYVEL Skincare ✨\n\n';
+txt+='📊 الإنجاز: '+pct+'%\n';
+txt+='⭐ المستوى: Lv.'+calcLevel()+'\n';
+txt+='🔥 السلسلة: '+streak+' يوم\n';
+txt+='✅ '+done+' / '+total+' خطوة\n\n';
+txt+='JOURYVEL — Timeless Scents · Modern Luxury';
+if(navigator.share){navigator.share({title:'JOURYVEL Skincare',text:txt}).catch(function(){})}
+else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){showConf('✓ تم النسخ!')})}
+else{showConf('✓ '+txt.substring(0,30))}
+}
+function shareImg(){
+showConf('📸 التقط screenshot للتطبيق!');
+}
+function openGallery(){
+var h='<h3>📸 معرض الصور</h3>';
+h+='<p style="font-size:11px;color:var(--text);text-align:center">تتبعي تطور بشرتك ('+photos.length+' صورة)</p>';
+h+='<div class="gallery">';
+for(var i=0;i<photos.length;i++){
+h+='<div onclick="viewPhoto('+i+')">'+photos[i].e+'</div>';
+}
+h+='<div class="plus" onclick="addPhoto()">+</div>';
+h+='</div>';
+h+='<button class="mbtn s" onclick="closeM(\'galM\')">إغلاق</button>';
+document.getElementById('galB').innerHTML=h;
+document.getElementById('galM').classList.add('show');
+}
+function addPhoto(){
+var emojis=['😊','😄','😍','🤩','✨','🌟','💫','🌸','🌺','🌷','💐'];
+var e=emojis[Math.floor(Math.random()*emojis.length)];
+photos.push({e:e,d:new Date().toLocaleDateString('ar-MA')});
+save();closeM('galM');openGallery();showConf('✓ تمت الإضافة');
+}
+function viewPhoto(i){showConf('📅 '+photos[i].d)}
+function setReminder(){
+var t=prompt('وقت التذكير (HH:MM) — مثل 22:00',reminderTime||'22:00');
+if(t&&/^\d{2}:\d{2}$/.test(t)){reminderTime=t;save();showConf('⏰ تم ضبط التذكير '+t);requestNotifPerm()}
+}
+function requestNotifPerm(){
+if('Notification' in window&&Notification.permission==='default'){Notification.requestPermission()}
+}
+function checkReminder(){
+if(!reminderTime)return;
+var now=new Date();
+var hh=String(now.getHours()).padStart(2,'0');
+var mm=String(now.getMinutes()).padStart(2,'0');
+if(hh+':'+mm===reminderTime&&'Notification' in window&&Notification.permission==='granted'){
+new Notification('JOURYVEL ⏰',{body:'حان وقت '+PROFILES[currentProfile].name+' للعناية بالبشرة!',icon:'data:image/svg+xml;base64,'+btoa('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="80" font-size="80">✨</text></svg>')})
+}
 }
 function toggleStep(el,e){
 if(e)e.stopPropagation();
@@ -608,6 +764,7 @@ document.getElementById('pls').innerHTML=d.pm.map(function(s,i){return makeLi(c,
 var pw=document.getElementById('pw');
 if(d.w){pw.innerHTML='⚠️ '+d.w;pw.style.display='block'}else{pw.style.display='none'}
 updateAll();
+addNotePreview();
 }
 function prev(){var c2=document.getElementById('crd');c2.className='crd sw sr';setTimeout(function(){c=(c-1+D().length)%D().length;render();tab('am');c2.className='crd'},280)}
 function next(){var c2=document.getElementById('crd');c2.className='crd sw sl';setTimeout(function(){c=(c+1)%D().length;render();tab('am');c2.className='crd'},280)}
@@ -680,6 +837,8 @@ h+='<div class="stats">';
 h+='<div class="row"><span>👩 '+PROFILES.her.name+'</span><b>'+hS.pct+'% ('+hS.done+'/'+hS.total+') 🔥 '+hS.streak+'</b></div>';
 h+='<div class="row"><span>👨 '+PROFILES.him.name+'</span><b>'+mS.pct+'% ('+mS.done+'/'+mS.total+') 🔥 '+mS.streak+'</b></div>';
 h+='</div>';
+h+='<button class="mbtn gold" onclick="openShare()">📤 مشاركة الإنجاز</button>';
+h+='<button class="mbtn s" onclick="setReminder()">⏰ ضبط تذكير يومي</button>';
 h+='<h4>🏆 الفائز</h4>';
 if(hS.pct>mS.pct)h+='<div class="ach"><div class="ic">👩</div><div class="info"><b>'+PROFILES.her.name+' تتقدم!</b><span>بفارق '+(hS.pct-mS.pct)+'%</span></div></div>';
 else if(mS.pct>hS.pct)h+='<div class="ach"><div class="ic">👨</div><div class="info"><b>'+PROFILES.him.name+' يتقدم!</b><span>بفارق '+(mS.pct-hS.pct)+'%</span></div></div>';
@@ -805,7 +964,7 @@ else banner.textContent=d.why;
 banner.textContent='😴 وقت النوم — روتين PM مثالي';
 }
 }
-load();updateProfileUI();render();updateAll();checkTime();setInterval(checkTime,60000);
+load();updateProfileUI();render();updateAll();checkTime();setInterval(checkTime,60000);setInterval(checkReminder,60000);requestNotifPerm();
 </script>
 </body>
 </html>
