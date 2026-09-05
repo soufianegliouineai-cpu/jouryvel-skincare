@@ -8,8 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="JOURYVEL">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="description" content="JOURYVEL Luxury 7-Day Skincare Program">
-<title>JOURYVEL Skincare Program</title>
+<title>JOURYVEL — Couple's Skincare</title>
 <style>
 :root{
   --bg:#faf6ed;
@@ -27,12 +26,24 @@
   --orange2:#c2410c;
   --purple:#a855f7;
   --purple2:#6d28d9;
+  --pink:#ec4899;
+  --pink2:#9d174d;
   --red:#dc2626;
   --red2:#991b1b;
   --muted:#999;
   --text:#555;
   --line:rgba(212,175,55,.2);
   --shadow:0 8px 25px rgba(0,0,0,.1);
+  --accent:var(--gold);
+  --accent2:var(--gold2);
+}
+[data-profile="him"]{
+  --accent:#3b82f6;
+  --accent2:#1e40af;
+}
+[data-profile="her"]{
+  --accent:#ec4899;
+  --accent2:#9d174d;
 }
 [data-theme="dark"]{
   --bg:#0a0f1a;
@@ -54,27 +65,35 @@ html,body{height:100%;overflow:hidden}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);transition:background .4s,color .4s}
 .app{max-width:480px;margin:0 auto;padding:8px;height:100vh;display:flex;flex-direction:column;overflow:hidden;position:relative}
 
+.prof{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:14px;padding:8px 10px;margin-bottom:8px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 18px rgba(0,0,0,.2);border:2px solid #fff;flex-shrink:0}
+.prof-av{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 3px 8px rgba(0,0,0,.2);flex-shrink:0}
+.prof-info{flex:1;color:#fff;min-width:0}
+.prof-info b{font-size:13px;display:block;font-weight:800}
+.prof-info span{font-size:9px;opacity:.95}
+.prof-sw{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);padding:5px 10px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit}
+.prof-sw:active{transform:scale(.95)}
+
 .hdr{background:linear-gradient(135deg,#0d1b2a 0%,#1b263b 50%,#2e4035 100%);color:#f4cf57;padding:14px 16px;border-radius:18px;text-align:center;margin-bottom:8px;box-shadow:0 8px 25px rgba(13,27,42,.4);border:2px solid #d4af37;position:relative;flex-shrink:0}
 .hdr h1{font-size:24px;font-weight:900;letter-spacing:3px;text-shadow:0 2px 4px rgba(212,175,55,.4);margin-bottom:2px}
 .hdr p{font-size:9px;color:#f5e6c8;letter-spacing:2px;opacity:.9}
 .hdr .or{color:#d4af37;margin-top:4px;font-size:10px;letter-spacing:2px}
 .hdr .streak{position:absolute;top:8px;left:10px;background:linear-gradient(135deg,#dc2626,#f59e0b);color:#fff;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:700;display:flex;align-items:center;gap:3px;box-shadow:0 3px 10px rgba(220,38,38,.4)}
-.hdr .lvl{position:absolute;top:8px;right:10px;background:linear-gradient(135deg,#a855f7,#6d28d9);color:#fff;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:700;display:flex;align-items:center;gap:3px;box-shadow:0 3px 10px rgba(168,85,247,.4)}
+.hdr .lvl{position:absolute;top:8px;right:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:700;display:flex;align-items:center;gap:3px;box-shadow:0 3px 10px rgba(0,0,0,.3)}
 
-.nav{display:flex;align-items:center;background:var(--card);border-radius:12px;padding:5px;margin-bottom:6px;box-shadow:var(--shadow);border:1px solid var(--gold);flex-shrink:0}
-.nb{background:linear-gradient(135deg,#d4af37,#8b6914);color:#fff;border:none;width:36px;height:36px;border-radius:9px;font-size:16px;font-weight:700;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(212,175,55,.4)}
+.nav{display:flex;align-items:center;background:var(--card);border-radius:12px;padding:5px;margin-bottom:6px;box-shadow:var(--shadow);border:1px solid var(--accent);flex-shrink:0}
+.nb{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;width:36px;height:36px;border-radius:9px;font-size:16px;font-weight:700;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.3)}
 .nb:active{transform:scale(.9)}
 .di{flex:1;text-align:center;padding:0 8px;min-width:0}
-.dn1{font-size:8px;color:var(--gold2);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.dn1{font-size:8px;color:var(--accent2);font-weight:700;letter-spacing:2px;text-transform:uppercase}
 .dn2{font-size:16px;font-weight:800;color:var(--ink);margin:1px 0;letter-spacing:.3px}
 .dn3{font-size:9px;color:var(--green2);font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
 [data-theme="dark"] .dn3{color:#22c55e}
 
 .prog{height:4px;background:rgba(212,175,55,.15);border-radius:2px;margin-bottom:4px;overflow:hidden;flex-shrink:0;position:relative}
-.progF{height:100%;background:linear-gradient(to right,var(--gold),var(--gold2));border-radius:2px;transition:width .5s ease;box-shadow:0 0 8px rgba(212,175,55,.5);position:relative}
+.progF{height:100%;background:linear-gradient(to right,var(--accent),var(--accent2));border-radius:2px;transition:width .5s ease;box-shadow:0 0 8px rgba(0,0,0,.3);position:relative}
 .progF::after{content:'';position:absolute;top:0;right:0;bottom:0;width:20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4));animation:shine 2s linear infinite}
 @keyframes shine{0%{transform:translateX(-20px)}100%{transform:translateX(300px)}}
-.progT{text-align:center;font-size:9px;color:var(--gold2);font-weight:700;margin-bottom:6px}
+.progT{text-align:center;font-size:9px;color:var(--accent2);font-weight:700;margin-bottom:6px}
 
 .crd{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:8px;border:1px solid var(--line);transition:transform .3s ease,opacity .3s ease;position:relative;flex:1;display:flex;flex-direction:column;min-height:0}
 .crd.sw{transition:none}
@@ -87,6 +106,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 .ch.r{background:linear-gradient(135deg,#6d28d9 0%,#a855f7 100%)}
 .ch.rec{background:linear-gradient(135deg,#166534 0%,#22c55e 100%)}
 .ch.p{background:linear-gradient(135deg,#991b1b 0%,#dc2626 100%)}
+.ch.b{background:linear-gradient(135deg,#0c4a6e 0%,#0ea5e9 100%)}
 .ch .ic{font-size:32px;margin-bottom:2px;position:relative;z-index:1}
 .ch .dn{font-size:22px;font-weight:800;letter-spacing:.5px;position:relative;z-index:1}
 .ch .dt{display:inline-block;background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:3px 12px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:1.5px;margin-top:5px;position:relative;z-index:1;text-transform:uppercase}
@@ -95,72 +115,79 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 .tbs{display:flex;background:linear-gradient(to bottom,var(--bg) 0%,var(--card) 100%);border-bottom:1px solid var(--line);flex-shrink:0}
 .tb{flex:1;padding:12px 6px;background:transparent;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);position:relative;transition:color .3s}
 .tb.a{color:var(--ink)}
-.tb.a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--gold2))}
+.tb.a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--accent),var(--accent2))}
 .tb .ti{margin-left:3px;font-size:14px}
-.tb .tc{background:rgba(212,175,55,.2);color:var(--gold2);padding:1px 6px;border-radius:6px;font-size:8px;font-weight:700;margin-right:3px}
-.tb.a .tc{background:var(--gold);color:#fff}
+.tb .tc{background:rgba(212,175,55,.2);color:var(--accent2);padding:1px 6px;border-radius:6px;font-size:8px;font-weight:700;margin-right:3px}
+.tb.a .tc{background:var(--accent);color:#fff}
 
 .tc2{display:none;padding:12px;overflow-y:auto;flex:1;min-height:0;-webkit-overflow-scrolling:touch}
 .tc2.a{display:block;animation:fi .4s ease}
 .tc2::-webkit-scrollbar{width:4px}
-.tc2::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+.tc2::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 .gd{display:flex;align-items:center;margin:8px 0}
-.gd::before,.gd::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
-.gd span{margin:0 5px;color:var(--gold);font-size:10px}
+.gd::before,.gd::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--accent),transparent)}
+.gd span{margin:0 5px;color:var(--accent);font-size:10px}
 
 .st{list-style:none;counter-reset:st}
-.st li{padding:8px 10px 8px 36px;margin-bottom:6px;background:linear-gradient(135deg,var(--bg) 0%,var(--bg2) 100%);border-radius:10px;font-size:11px;line-height:1.4;border-right:3px solid var(--gold);box-shadow:0 2px 6px rgba(0,0,0,.04);position:relative;counter-increment:st;transition:all .3s;cursor:pointer}
+.st li{padding:8px 10px 8px 36px;margin-bottom:6px;background:linear-gradient(135deg,var(--bg) 0%,var(--bg2) 100%);border-radius:10px;font-size:11px;line-height:1.4;border-right:3px solid var(--accent);box-shadow:0 2px 6px rgba(0,0,0,.04);position:relative;counter-increment:st;transition:all .3s;cursor:pointer}
 .st li.done{opacity:.55;text-decoration:line-through;background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(34,197,94,.05));border-right-color:var(--green)}
 .st li:active{transform:scale(.98)}
 .sp{font-weight:800;color:var(--ink);font-size:12px;display:block;margin-bottom:2px}
 .su{font-size:10px;color:var(--text);display:block;line-height:1.4}
-.su b{color:var(--gold2);font-weight:800}
-[data-theme="dark"] .su b{color:var(--gold3)}
+.su b{color:var(--accent2);font-weight:800}
+[data-theme="dark"] .su b{color:var(--accent)}
 .sm{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
 .mt{padding:2px 5px;border-radius:5px;font-size:8px;font-weight:700;display:inline-block}
 .mt.a{background:#fce7f3;color:#9f1239}
 .mt.t{background:#dbeafe;color:#1e40af}
 .mt.w{background:#d1fae5;color:#065f46}
 .mt.n{background:#fef3c7;color:#92400e}
-.mt.c{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;padding:2px 7px;cursor:pointer}
-[data-theme="dark"] .mt.c{background:linear-gradient(135deg,var(--gold),var(--orange))}
+.mt.c{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:2px 7px;cursor:pointer}
 
 .wrn{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fecaca;border-right:3px solid var(--red);padding:8px 10px;border-radius:8px;margin-top:8px;font-size:10px;color:#7f1d1d;line-height:1.5}
 .wrn b{color:var(--red2)}
 
 .ind{display:flex;justify-content:center;gap:4px;margin:8px 0;flex-shrink:0}
 .ii{width:6px;height:6px;border-radius:50%;background:rgba(212,175,55,.3);cursor:pointer;transition:all .3s}
-.ii.a{background:var(--gold);width:20px;border-radius:3px;box-shadow:0 0 6px rgba(212,175,55,.5)}
+.ii.a{background:var(--accent);width:20px;border-radius:3px;box-shadow:0 0 6px rgba(0,0,0,.3)}
 .ii.done{background:var(--green)}
 .ii.partial{background:var(--orange)}
 
-.fab{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(212,175,55,.5);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center;transition:transform .3s}
-.fab:active{transform:scale(.9)}
-.fab2{position:fixed;bottom:calc(76px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1b263b,#0d1b2a);color:var(--gold3);border:2px solid var(--gold);box-shadow:0 6px 18px rgba(0,0,0,.3);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
+.fab{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.4);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
+.fab2{position:fixed;bottom:calc(76px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1b263b,#0d1b2a);color:var(--accent);border:2px solid var(--accent);box-shadow:0 6px 18px rgba(0,0,0,.3);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
 .fab3{position:fixed;bottom:calc(132px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#166534);color:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(34,197,94,.5);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
-.fab4{position:fixed;bottom:calc(188px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#a855f7,#6d28d9);color:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(168,85,247,.5);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
+.fab4{position:fixed;bottom:calc(188px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0d1b2a,#1b263b);color:var(--gold3);border:2px solid var(--gold);box-shadow:0 6px 18px rgba(0,0,0,.3);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
+.fab5{position:fixed;bottom:calc(244px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#a855f7,#6d28d9);color:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(168,85,247,.5);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center}
 
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;animation:fi2 .3s}
 .modal.show{display:flex}
 @keyframes fi2{from{opacity:0}to{opacity:1}}
-.mbox{background:var(--card);border-radius:18px;padding:20px;max-width:400px;width:100%;max-height:80vh;overflow-y:auto;border:2px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.5);animation:pop2 .4s}
+.mbox{background:var(--card);border-radius:18px;padding:20px;max-width:400px;width:100%;max-height:80vh;overflow-y:auto;border:2px solid var(--accent);box-shadow:0 20px 60px rgba(0,0,0,.5);animation:pop2 .4s}
 @keyframes pop2{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1)}}
 .mbox h3{color:var(--ink);font-size:18px;margin-bottom:12px;text-align:center;font-weight:800}
-.mbox h4{color:var(--gold2);font-size:13px;margin:10px 0 6px;font-weight:700}
-[data-theme="dark"] .mbox h4{color:var(--gold)}
+.mbox h4{color:var(--accent2);font-size:13px;margin:10px 0 6px;font-weight:700}
 .mbox p{font-size:12px;line-height:1.6;color:var(--text);margin-bottom:10px}
-.mbox .item{padding:10px;background:var(--bg);border-radius:8px;margin-bottom:6px;border-right:3px solid var(--gold)}
+.mbox .item{padding:10px;background:var(--bg);border-radius:8px;margin-bottom:6px;border-right:3px solid var(--accent)}
 .mbox .item b{color:var(--ink);font-size:12px;display:block;margin-bottom:2px}
 .mbox .item span{font-size:10px;color:var(--text);line-height:1.4;display:block}
-.mbtn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:none;border-radius:10px;font-family:inherit;font-size:13px;font-weight:700;margin-top:8px;cursor:pointer;box-shadow:0 4px 12px rgba(212,175,55,.4)}
+.mbtn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;font-family:inherit;font-size:13px;font-weight:700;margin-top:8px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .mbtn:active{transform:scale(.97)}
 .mbtn.s{border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.mbtn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2))}
 
-.tabs2{display:flex;gap:4px;margin-bottom:12px;background:var(--bg);padding:4px;border-radius:10px}
-.tabs2 button{flex:1;padding:8px;background:transparent;border:none;border-radius:8px;font-family:inherit;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer}
-.tabs2 button.a{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff}
+.profile-card{padding:14px;border-radius:12px;margin-bottom:10px;cursor:pointer;border:2px solid var(--line);display:flex;align-items:center;gap:10px;transition:all .3s}
+.profile-card.a{border-color:var(--accent);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.profile-card:active{transform:scale(.98)}
+.profile-card .av{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;background:linear-gradient(135deg,var(--bg),var(--bg2));border:2px solid var(--accent);flex-shrink:0}
+.profile-card .info{flex:1}
+.profile-card .info b{color:var(--ink);font-size:14px;display:block;margin-bottom:2px}
+.profile-card .info span{font-size:10px;color:var(--text);line-height:1.4;display:block}
+.profile-card.him{background:linear-gradient(135deg,rgba(59,130,246,.05),rgba(59,130,246,.1))}
+.profile-card.him.a{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(59,130,246,.2))}
+.profile-card.her{background:linear-gradient(135deg,rgba(236,72,153,.05),rgba(236,72,153,.1))}
+.profile-card.her.a{background:linear-gradient(135deg,rgba(236,72,153,.15),rgba(236,72,153,.2))}
 
 .celeb{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);pointer-events:none}
 .celeb.show{display:flex;animation:fi2 .3s}
@@ -179,8 +206,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 .stats h4{color:var(--ink);font-size:12px;margin-bottom:8px;text-align:center}
 .stats .row{display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid var(--line)}
 .stats .row:last-child{border:none}
-.stats .row b{color:var(--gold2)}
-[data-theme="dark"] .stats .row b{color:var(--gold)}
+.stats .row b{color:var(--accent2)}
+[data-theme="dark"] .stats .row b{color:var(--accent)}
 
 .ach{background:linear-gradient(135deg,var(--ink),var(--ink2));color:var(--gold3);border-radius:10px;padding:8px 10px;margin-bottom:6px;display:flex;align-items:center;gap:8px;font-size:11px}
 .ach.un{opacity:.4;filter:grayscale(1)}
@@ -191,7 +218,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin:8px 0}
 .cal .c{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
-.cal .c.t{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border-color:var(--gold)}
+.cal .c.t{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:var(--accent)}
 .cal .c.d{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-color:var(--green)}
 .cal .c.p{background:linear-gradient(135deg,var(--orange),#fbbf24);color:#fff;border-color:var(--orange)}
 
@@ -200,8 +227,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 </head>
 <body>
 <div class="app">
+<div class="prof">
+<div class="prof-av" id="pAv">👩</div>
+<div class="prof-info">
+<b id="pName">الزوجة</b>
+<span id="pProg">0% — ابدئي رحلتك ✨</span>
+</div>
+<button class="prof-sw" onclick="openProfile()">👥 تبديل</button>
+</div>
 <div class="hdr">
-<div class="streak" id="streak">🔥 <span id="streakN">0</span></div>
+<div class="streak">🔥 <span id="streakN">0</span></div>
 <div class="lvl" id="lvl">⭐ Lv.<span id="lvlN">1</span></div>
 <h1>JOURYVEL</h1>
 <p>TIMELESS SCENTS · MODERN LUXURY</p>
@@ -217,7 +252,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 <button class="nb" onclick="next()">←</button>
 </div>
 <div class="prog"><div class="progF" id="progF"></div></div>
-<div class="progT" id="progT">0% — ابدئي رحلتك ✨</div>
+<div class="progT" id="progT">0%</div>
 <div class="crd" id="crd">
 <div class="ch g" id="ch">
 <div class="ic" id="ic">🍊</div>
@@ -241,21 +276,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 </div>
 <div class="ind" id="ind"></div>
 </div>
-<button class="fab" onclick="openWhy()" title="لماذا هذه المنتجات؟">💡</button>
+<button class="fab" onclick="openWhy()" title="لماذا">💡</button>
 <button class="fab2" onclick="openInstall()" id="iFab" style="display:none" title="ثبت التطبيق">📲</button>
-<button class="fab3" onclick="toggleTheme()" title="تبديل الوضع">🌙</button>
-<button class="fab4" onclick="openStats()" title="الإحصائيات">📊</button>
+<button class="fab3" onclick="toggleTheme()" title="الوضع الليلي">🌙</button>
+<button class="fab4" onclick="openCompare()" title="مقارنة">👫</button>
+<button class="fab5" onclick="openStats()" title="الإحصائيات">📊</button>
 <div class="conf" id="conf">✓ تم الحفظ</div>
 <div class="modal" id="whyM"><div class="mbox" id="whyB"></div></div>
 <div class="modal" id="instM"><div class="mbox" id="instB"></div></div>
 <div class="modal" id="statsM"><div class="mbox" id="statsB"></div></div>
+<div class="modal" id="profM"><div class="mbox" id="profB"></div></div>
+<div class="modal" id="compM"><div class="mbox" id="compB"></div></div>
 <div class="modal" id="timerM"><div class="mbox" id="timerB"></div></div>
+<div class="modal" id="editM"><div class="mbox" id="editB"></div></div>
 <div class="celeb" id="celeb"><div class="cb" id="cb"><div class="emo" id="cEmo">✨</div><div class="tx" id="ctx"></div><div class="sx" id="csx"></div></div></div>
 <script>
-var D=[
-{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",why:"Glycolic Acid يقشّر الطبقة العليا ويفتح البشرة. مرتين أسبوعياً كافية لنتائج واضحة دون تهييج.",
+var PROFILES={
+her:{id:'her',name:'الزوجة',av:'👩',theme:'her'},
+him:{id:'him',name:'الزوج',av:'👨',theme:'him'}
+};
+var PROGRAMS={
+her:[
+{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",why:"Glycolic Acid يقشّر الطبقة العليا ويفتح البشرة.",
 am:[
-{p:"CeraVe Hydrating Cleanser",u:"بللي وجهك · دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["مرة/يوم","n"],["⏱ 60s","t"]]},
+{p:"CeraVe Hydrating Cleanser",u:"بللي وجهك · دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["مرة/يوم","n"],["▶ 60s","t"]]},
 {p:"Aurelia Vitamin C 15% Serum",u:"<b>1 بخة</b> على جلد رطب · ربتي · انتظري 30-60 ث",m:[["1 بخة","a"],["صباحاً","n"],["pH 2.5-3.5","t"],["▶ 60s","t"]]},
 {p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة · دلكي بحركات دائرية",m:[["رقيقة","a"],["▶ 30s","t"]]},
 {p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين للوجه + إصبع للرقبة · قبل الخروج 5-10 د",m:[["إصبعين","a"],["SPF 50+","t"],["▶ 5-10د","t"]]}
@@ -265,20 +309,20 @@ pm:[
 {p:"The Ordinary Glycolic 7%",u:"قطنة · <b>15-20 د</b> · جلد جاف · اشطري",m:[["قطنة","a"],["15-20 د","t"],["تجنبي العينين","w"],["⏱ مؤقت","c"]]},
 {p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
 ]},
-{n:"الأحد",t:"RETINOL",c:"r",i:"✨",why:"Retinol يعزز تجدد الخلايا ويقلل التجاعيد. مرتين أسبوعياً بداية آمنة.",
+{n:"الأحد",t:"RETINOL",c:"r",i:"✨",why:"Retinol يعزز تجدد الخلايا ويقلل التجاعيد.",
 am:[
-{p:"CeraVe Cleanser",u:"دلكي 30-60 ث · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia Vitamin C",u:"1 بخة · ربتي · 30-60 ث",m:[["1 بخة","a"],["صباحاً","n"],["▶ 60s","t"]]},
+{p:"CeraVe Cleanser",u:"دلكي 30-60 ث · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · ربتي · 30-60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
 {p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
 {p:"Eucerin SPF 50+",u:"إصبعين · قبل الخروج",m:[["إصبعين","a"],["▶ 5د","t"]]}
 ],
 pm:[
-{p:"CeraVe Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["جففي 5 د","t"]]},
-{p:"Some By Mi Retinol Eye",u:"<b>نصف حبة أرز</b> · ربتي على عظمة الحجاج · ابتعدي 1 سم عن خط الرموش",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"]]},
+{p:"Some By Mi Retinol Eye",u:"<b>نصف حبة أرز</b> · عظمة الحجاج · ابتعدي 1 سم عن خط الرموش",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
 {p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
 ],
-w:"Retinol (0.1%) على عظمة الحجاج <b>فقط</b>. ابتعدي عن خط الرموش. مساءً فقط."},
-{n:"الإثنين",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة للسماح للبشرة بإصلاح نفسها بعد Glycolic.",
+w:"Retinol على عظمة الحجاج <b>فقط</b>. ابتعدي عن خط الرموش."},
+{n:"الإثنين",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة لإصلاح البشرة بعد Glycolic.",
 am:[
 {p:"Bioderma Pigmentbio",u:"دلكي <b>30 ث</b> على جلد مبلل · اشطري",m:[["حبة البازلاء","a"],["30 ث","t"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
@@ -289,7 +333,7 @@ pm:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · استعادة الحاجز",m:[["سميكة","a"]]}
 ]},
-{n:"الثلاثاء",t:"GLYCOLIC #2",c:"g",i:"🍊",why:"الجلسة الثانية من Glycolic. البشرة أصبحت متحملة الآن.",
+{n:"الثلاثاء",t:"GLYCOLIC #2",c:"g",i:"🍊",why:"الجلسة الثانية من Glycolic.",
 am:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · ربتي",m:[["1 بخة","a"],["▶ 60s","t"]]},
@@ -301,7 +345,7 @@ pm:[
 {p:"The Ordinary Glycolic 7%",u:"قطنة · <b>15-20 د</b> · اشطري",m:[["قطنة","a"],["15-20 د","t"],["⏱ مؤقت","c"]]},
 {p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
 ]},
-{n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة بين جلستي Glycolic والثانية Retinol.",
+{n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة.",
 am:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · ربتي",m:[["1 بخة","a"],["▶ 60s","t"]]},
@@ -312,7 +356,7 @@ pm:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · إصلاح",m:[["سميكة","a"]]}
 ]},
-{n:"الخميس",t:"RETINOL #2",c:"r",i:"✨",why:"الجلسة الثانية من Retinol. نلاحظ فرقاً في النعومة.",
+{n:"الخميس",t:"RETINOL #2",c:"r",i:"✨",why:"الجلسة الثانية من Retinol.",
 am:[
 {p:"Bioderma Pigmentbio",u:"دلكي 30 ث · اشطري",m:[["حبة البازلاء","a"],["30 ث","t"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
@@ -324,53 +368,139 @@ pm:[
 {p:"Some By Mi Retinol",u:"<b>نصف حبة أرز</b> · عظمة الحجاج",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
 {p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
 ]},
-{n:"الجمعة",t:"PANOXYL 10%",c:"p",i:"🔥",why:"Benzoyl Peroxide 10% يحارب البكتيريا بعمق. مرة أسبوعياً للوجه كحد أقصى.",
+{n:"الجمعة",t:"PANOXYL 10%",c:"p",i:"🔥",why:"Benzoyl Peroxide 10% يحارب البكتيريا. مرة أسبوعياً.",
 am:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
 {p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · تحضير PanOxyl",m:[["سميكة","a"]]},
-{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصعبن","a"],["▶ 5د","t"]]}
 ],
 pm:[
 {p:"⚠️ اختبار الرقبة",u:"مرة واحدة فقط لأول استخدام",m:[["اختبار حساسية","t"]]},
 {p:"PanOxyl 10% Foaming Wash",u:"بللي الوجه · <b>دلكي 1-2 د</b> فقط · اشطري فوراً",m:[["حبة البازلاء","a"],["1-2 د","t"],["1× أسبوع","n"],["⏱ مؤقت","c"]]},
-{p:"CeraVe Cream",u:"<b>طبقة سميكة جداً</b> · لإصلاح الجفاف",m:[["سميكة جداً","a"]]}
+{p:"CeraVe Cream",u:"<b>طبقة سميكة جداً</b> · إصلاح الجفاف",m:[["سميكة جداً","a"]]}
 ],
 w:"PanOxyl 10% عالي التركيز. <b>آخر يوم في الأسبوع</b>."}
-];
-var ACHIEVEMENTS=[
-{id:'first_step',n:'البداية',d:'أول خطوة تنجزينها',ic:'🌱'},
-{id:'first_day',n:'يوم كامل',d:'أكملتِ يوماً كاملاً',ic:'🎯'},
-{id:'half_week',n:'نصف الطريق',d:'أكملتِ 3 أيام',ic:'⭐'},
-{id:'full_week',n:'الأسبوع الذهبي',d:'أكملتِ الأسبوع كله!',ic:'🏆'},
-{id:'streak3',n:'سلسلة 3',d:'3 أيام متتالية',ic:'🔥'},
-{id:'streak7',n:'الأسبوع المثالي',d:'7 أيام متتالية',ic:'💎'}
-];
-var c=0,ct='am',prog={},ach={},streak=0,lastDay=-1,deferredPrompt=null,timerInt=null;
+],
+him:[
+{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",why:"Glycolic Acid للرجال - يحلاقة أنعم وبشرة أنقى.",
+am:[
+{p:"CeraVe Hydrating Cleanser",u:"بللي وجهك · دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"Aurelia Vitamin C 15% Serum",u:"<b>1 بخة</b> على جلد رطب · ربتي · انتظري 30-60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
+{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة · دلكي",m:[["رقيقة","a"],["▶ 30s","t"]]},
+{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين للوجه · قبل الخروج",m:[["إصبعين","a"],["SPF 50+","t"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"The Ordinary Glycolic 7%",u:"قطنة · <b>15-20 د</b> · اشطري",m:[["قطنة","a"],["15-20 د","t"],["تجنبي اللحية","w"],["⏱ مؤقت","c"]]},
+{p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
+]},
+{n:"الأحد",t:"RETINOL",c:"r",i:"✨",why:"Retinol يقلل تجاعيد ما حول العين.",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · ربتي",m:[["1 بخة","a"],["▶ 60s","t"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"]]},
+{p:"Some By Mi Retinol Eye",u:"<b>نصف حبة أرز</b> · عظمة الحجاج · ابتعدي 1 سم عن خط الرموش",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
+{p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
+],
+w:"Retinol على عظمة الحجاج <b>فقط</b>. ابتعدي عن خط الرموش."},
+{n:"الإثنين",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة.",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · استعادة",m:[["سميكة","a"]]}
+]},
+{n:"الثلاثاء",t:"GLYCOLIC #2",c:"g",i:"🍊",why:"الجلسة الثانية.",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة",m:[["1 بخة","a"],["▶ 60s","t"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["جففي 5 د","t"]]},
+{p:"The Ordinary Glycolic 7%",u:"قطنة · <b>15-20 د</b>",m:[["قطنة","a"],["15-20 د","t"],["⏱ مؤقت","c"]]},
+{p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
+]},
+{n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة.",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة",m:[["1 بخة","a"],["▶ 60s","t"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"CeraVe Cream",u:"<b>طبقة سميكة</b>",m:[["سميكة","a"]]}
+]},
+{n:"الخميس",t:"RETINOL #2",c:"r",i:"✨",why:"الجلسة الثانية من Retinol.",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة",m:[["1 بخة","a"],["▶ 60s","t"]]},
+{p:"CeraVe Cream",u:"طبقة رقيقة",m:[["رقيقة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
+],
+pm:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["جففي 5 د","t"]]},
+{p:"Some By Mi Retinol",u:"<b>نصف حبة أرز</b> · عظمة الحجاج",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
+{p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
+]},
+{n:"الجمعة",t:"PANOXYL 10%",c:"b",i:"🔥",why:"Benzoyl Peroxide 10% لمكافحة حبوب ما بعد الحلاقة.",
+am:[
+{p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
+{p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
+{p:"CeraVe Cream",u:"<b>طبقة سميكة</b>",m:[["سميكة","a"]]},
+{p:"Eucerin SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
+],
+pm:[
+{p:"⚠️ اختبار الرقبة",u:"مرة واحدة فقط لأول استخدام",m:[["اختبار حساسية","t"]]},
+{p:"PanOxyl 10% Foaming Wash",u:"بللي الوجه · <b>دلكي 1-2 د</b> · اشطري فوراً",m:[["حبة البازلاء","a"],["1-2 د","t"],["1× أسبوع","n"],["⏱ مؤقت","c"]]},
+{p:"CeraVe Cream",u:"<b>طبقة سميكة جداً</b>",m:[["سميكة جداً","a"]]}
+],
+w:"PanOxyl 10% للرجال - مثالي بعد الحلاقة. <b>آخر يوم في الأسبوع</b>."}
+]
+};
+var currentProfile='her',c=0,ct='am',prog={},ach={},streak=0,lastDay=-1,deferredPrompt=null,timerInt=null;
+function D(){return PROGRAMS[currentProfile]}
 function getKey(d,s,i){return d+'-'+s+'-'+i}
 function load(){
 try{
-prog=JSON.parse(localStorage.getItem('jouryvel-prog')||'{}');
-ach=JSON.parse(localStorage.getItem('jouryvel-ach')||'{}');
-streak=parseInt(localStorage.getItem('jouryvel-streak')||'0');
-lastDay=parseInt(localStorage.getItem('jouryvel-lastday')||'-1');
-}catch(e){prog={};ach={};streak=0;lastDay=-1}
+var p=localStorage.getItem('jouryvel-cur')||'her';
+currentProfile=p;
+var all=JSON.parse(localStorage.getItem('jouryvel-all')||'{}');
+prog=all[p]&&all[p].prog?all[p].prog:{};
+ach=all[p]&&all[p].ach?all[p].ach:{};
+streak=all[p]&&all[p].streak?all[p].streak:0;
+}catch(e){prog={};ach={};streak=0}
 }
 function save(){
 try{
-localStorage.setItem('jouryvel-prog',JSON.stringify(prog));
-localStorage.setItem('jouryvel-ach',JSON.stringify(ach));
-localStorage.setItem('jouryvel-streak',streak);
-localStorage.setItem('jouryvel-lastday',lastDay);
+var all=JSON.parse(localStorage.getItem('jouryvel-all')||'{}');
+all[currentProfile]={prog:prog,ach:ach,streak:streak};
+localStorage.setItem('jouryvel-all',JSON.stringify(all));
+localStorage.setItem('jouryvel-cur',currentProfile);
 }catch(e){}
 }
-function totalSteps(){var t=0;for(var i=0;i<D.length;i++){t+=D[i].am.length+D[i].pm.length}return t}
+function totalSteps(){var d=D();var t=0;for(var i=0;i<d.length;i++){t+=d[i].am.length+d[i].pm.length}return t}
 function doneSteps(){var t=0;for(var k in prog){if(prog[k])t++}return t}
-function isDayDone(d){var day=D[d];for(var i=0;i<day.am.length;i++){if(!prog[getKey(d,'am',i)])return false}for(var i=0;i<day.pm.length;i++){if(!prog[getKey(d,'pm',i)])return false}return true}
-function isDayPartial(d){var day=D[d];for(var i=0;i<day.am.length;i++){if(prog[getKey(d,'am',i)])return true}for(var i=0;i<day.pm.length;i++){if(prog[getKey(d,'pm',i)])return true}return false}
+function isDayDone(d){var day=D()[d];for(var i=0;i<day.am.length;i++){if(!prog[getKey(d,'am',i)])return false}for(var i=0;i<day.pm.length;i++){if(!prog[getKey(d,'pm',i)])return false}return true}
+function isDayPartial(d){var day=D()[d];for(var i=0;i<day.am.length;i++){if(prog[getKey(d,'am',i)])return true}for(var i=0;i<day.pm.length;i++){if(prog[getKey(d,'pm',i)])return true}return false}
 function calcLevel(){var lvl=1;var xp=doneSteps();while(xp>=lvl*7)lvl++;return lvl}
-function calcStreak(){var s=0;for(var i=0;i<D.length;i++){if(isDayDone(i))s++;else break}streak=s;save()}
-function unlock(id){if(ach[id])return;ach[id]=Date.now();save();var a=null;for(var i=0;i<ACHIEVEMENTS.length;i++)if(ACHIEVEMENTS[i].id===id){a=ACHIEVEMENTS[i];break}if(a)celebrate(a.ic,a.n,a.d)}
+function updateProfileUI(){
+var p=PROFILES[currentProfile];
+document.getElementById('pAv').textContent=p.av;
+document.getElementById('pName').textContent=p.name;
+document.body.dataset.profile=p.theme;
+}
 function tab(t){
 ct=t;
 var bs=document.querySelectorAll('.tb');
@@ -385,7 +515,7 @@ var html='<li class="'+(isDone?'done':'')+'" data-k="'+k+'" onclick="toggleStep(
 html+='<span class="sp">'+st.p+'</span>';
 html+='<span class="su">'+st.u+'</span>';
 html+='<div class="sm">'+st.m.map(function(m){
-if(m[1]==='c')return '<span class="mt c" onclick="openTimer(event,\''+st.p+'\','+(m[0].indexOf('15')>=0?15:2)+')">'+m[0]+'</span>';
+if(m[1]==='c')return '<span class="mt c" onclick="openTimer(event,\''+st.p.replace(/'/g,"\\'")+'\','+(m[0].indexOf('15')>=0?15:2)+')">'+m[0]+'</span>';
 return '<span class="mt '+m[1]+'">'+m[0]+'</span>';
 }).join('')+'</div></li>';
 return html;
@@ -394,17 +524,12 @@ function toggleStep(el,e){
 if(e)e.stopPropagation();
 var k=el.dataset.k;
 if(prog[k]){delete prog[k];el.classList.remove('done');showConf('↩ تم التراجع')}
-else{prog[k]=1;el.classList.add('done');var nm=(el.querySelector('.sp').textContent).substring(0,18);showConf('✓ '+nm);unlock('first_step');if(doneSteps()>=10)unlock('first_day')}
+else{prog[k]=1;el.classList.add('done');var nm=(el.querySelector('.sp').textContent).substring(0,18);showConf('✓ '+nm);if(doneSteps()===1)unlock('first_step');if(doneSteps()>=10)unlock('first_day')}
 save();updateAll();checkDayComplete();
 }
 function showConf(t){var c=document.getElementById('conf');c.textContent=t;c.classList.add('show');setTimeout(function(){c.classList.remove('show')},1500)}
 function checkDayComplete(){
-if(isDayDone(c)){
-calcStreak();
-if(c===D.length-1)unlock('full_week');
-else if(c>=2)unlock('half_week');
-celebrate('🎉','أحسنتِ!','أكملتِ روتين '+D[c].n);
-}
+if(isDayDone(c)){celebrate('🎉','أحسنتِ!','أكملتِ روتين '+D()[c].n+' ('+PROFILES[currentProfile].name+')');if(c===D().length-1)unlock('full_week');else if(c>=2)unlock('half_week')}
 }
 function celebrate(emo,tx,sx){
 var c2=document.getElementById('celeb');
@@ -417,7 +542,7 @@ setTimeout(function(){c2.classList.remove('show')},3000);
 }
 function spawnConfetti(){
 var c2=document.getElementById('celeb');
-var colors=['#d4af37','#f4cf57','#22c55e','#a855f7','#dc2626','#f59e0b'];
+var colors=['#d4af37','#f4cf57','#22c55e','#a855f7','#dc2626','#f59e0b','#ec4899','#3b82f6'];
 for(var i=0;i<30;i++){
 var p=document.createElement('div');
 p.className='confetti';
@@ -430,6 +555,7 @@ c2.appendChild(p);
 setTimeout(function(el){if(el&&el.parentNode)el.parentNode.removeChild(el)},3500,p);
 }
 }
+function unlock(id){if(ach[id])return;ach[id]=Date.now();save()}
 function updateProg(){
 var done=doneSteps(),total=totalSteps();
 var pct=total>0?Math.round((done/total)*100):0;
@@ -442,12 +568,13 @@ else if(pct<75)msg+=' — نصف الطريق! ⭐';
 else if(pct<100)msg+=' — قريباً جداً 🏆';
 else msg+=' — مثالية! 💎';
 document.getElementById('progT').textContent=msg;
+document.getElementById('pProg').textContent=msg;
 document.getElementById('streakN').textContent=streak;
 document.getElementById('lvlN').textContent=calcLevel();
 }
 function updateIndicators(){
 var ih='';
-for(var i=0;i<D.length;i++){
+for(var i=0;i<D().length;i++){
 var cls='ii';
 if(i===c)cls+=' a';
 else if(isDayDone(i))cls+=' done';
@@ -457,7 +584,7 @@ ih+='<div class="'+cls+'" onclick="go('+i+')"></div>';
 document.getElementById('ind').innerHTML=ih;
 }
 function updateTabCounts(){
-var d=D[c];
+var d=D()[c];
 var amDone=0,pmDone=0;
 for(var i=0;i<d.am.length;i++){if(prog[getKey(c,'am',i)])amDone++}
 for(var i=0;i<d.pm.length;i++){if(prog[getKey(c,'pm',i)])pmDone++}
@@ -467,7 +594,7 @@ pc.textContent=pmDone+'/'+d.pm.length;
 }
 function updateAll(){updateProg();updateIndicators();updateTabCounts()}
 function render(){
-var d=D[c];
+var d=D()[c];
 document.getElementById('ch').className='ch '+d.c;
 document.getElementById('ic').textContent=d.i;
 document.getElementById('dn').textContent=d.n;
@@ -482,8 +609,8 @@ var pw=document.getElementById('pw');
 if(d.w){pw.innerHTML='⚠️ '+d.w;pw.style.display='block'}else{pw.style.display='none'}
 updateAll();
 }
-function prev(){var c2=document.getElementById('crd');c2.className='crd sw sr';setTimeout(function(){c=(c-1+D.length)%D.length;render();tab('am');c2.className='crd'},280)}
-function next(){var c2=document.getElementById('crd');c2.className='crd sw sl';setTimeout(function(){c=(c+1)%D.length;render();tab('am');c2.className='crd'},280)}
+function prev(){var c2=document.getElementById('crd');c2.className='crd sw sr';setTimeout(function(){c=(c-1+D().length)%D().length;render();tab('am');c2.className='crd'},280)}
+function next(){var c2=document.getElementById('crd');c2.className='crd sw sl';setTimeout(function(){c=(c+1)%D().length;render();tab('am');c2.className='crd'},280)}
 function go(i){var dir=i>c?'l':'r';var c2=document.getElementById('crd');c2.className='crd sw '+(dir==='l'?'sl':'sr');setTimeout(function(){c=i;render();tab('am');c2.className='crd'},280)}
 var sx=0,cc=document.getElementById('crd');
 cc.addEventListener('touchstart',function(e){sx=e.changedTouches[0].screenX},{passive:true});
@@ -498,29 +625,86 @@ if(b.dataset.theme==='dark'){b.dataset.theme='';try{localStorage.setItem('jouryv
 else{b.dataset.theme='dark';try{localStorage.setItem('jouryvel-theme','dark')}catch(e){}}
 }
 function openWhy(){
-var d=D[c];
+var d=D()[c];
 var h='<h3>💡 لماذا '+d.t+'؟</h3>';
 h+='<p>'+d.why+'</p>';
 var prods=[].concat(d.am.map(function(s){return s.p}),d.pm.map(function(s){return s.p})).filter(function(v,i,a){return a.indexOf(v)===i});
 h+='<div class="item"><b>🧴 المنتجات</b><span>'+prods.join(' · ')+'</span></div>';
-h+='<div class="item"><b>🎯 الهدف</b><span>'+(d.c==='g'?'تقشير + تفتيح':d.c==='r'?'تجديد خلوي + Anti-aging':d.c==='rec'?'إصلاح حاجز البشرة':'مكافحة حبوب عميقة')+'</span></div>';
-h+='<div class="item"><b>⏱ المدة الإجمالية</b><span>~ '+(d.c==='rec'?'5 دقائق':d.c==='p'?'7 دقائق':'10 دقائق')+'</span></div>';
+h+='<div class="item"><b>🎯 لـ '+PROFILES[currentProfile].name+'</b><span>'+(d.c==='g'?'تقشير + تفتيح':d.c==='r'?'تجديد خلوي + Anti-aging':d.c==='rec'?'إصلاح حاجز البشرة':d.c==='b'?'مكافحة بكتيريا اللحية':'مكافحة حبوب')+'</span></div>';
 h+='<button class="mbtn" onclick="closeM(\'whyM\')">إغلاق</button>';
 document.getElementById('whyB').innerHTML=h;
 document.getElementById('whyM').classList.add('show');
+}
+function openProfile(){
+var h='<h3>👥 اختيار الملف الشخصي</h3>';
+h+='<p style="text-align:center">كل ملف له تقدم منفصل</p>';
+for(var id in PROFILES){
+var p=PROFILES[id];
+var cls='profile-card '+id;
+if(id===currentProfile)cls+=' a';
+h+='<div class="'+cls+'" onclick="switchProfile(\''+id+'\')">';
+h+='<div class="av">'+p.av+'</div>';
+h+='<div class="info"><b>'+p.name+'</b><span>المستوى '+calcLevel()+' · '+doneSteps()+' خطوة منجزة</span></div>';
+if(id===currentProfile)h+='<div style="color:var(--accent);font-size:18px">✓</div>';
+h+='</div>';
+}
+h+='<button class="mbtn s" onclick="closeM(\'profM\')">إغلاق</button>';
+document.getElementById('profB').innerHTML=h;
+document.getElementById('profM').classList.add('show');
+}
+function switchProfile(id){
+if(id===currentProfile)return;
+save();
+currentProfile=id;
+load();
+c=0;
+updateProfileUI();
+render();
+tab('am');
+closeM('profM');
+showConf('✓ مرحباً '+PROFILES[currentProfile].name);
+}
+function openCompare(){
+function statsFor(id){
+var data=JSON.parse(localStorage.getItem('jouryvel-all')||'{}');
+var p=data[id]||{prog:{},streak:0};
+var d=PROGRAMS[id];
+var total=0;var done=0;
+for(var i=0;i<d.length;i++){total+=d[i].am.length+d[i].pm.length}
+for(var k in p.prog){if(p.prog[k])done++}
+return {done:done,total:total,pct:total>0?Math.round(done/total*100):0,streak:p.streak||0}
+}
+var hS=statsFor('her'),mS=statsFor('him');
+var h='<h3>👫 مقارنة التقدم</h3>';
+h+='<div class="stats">';
+h+='<div class="row"><span>👩 '+PROFILES.her.name+'</span><b>'+hS.pct+'% ('+hS.done+'/'+hS.total+') 🔥 '+hS.streak+'</b></div>';
+h+='<div class="row"><span>👨 '+PROFILES.him.name+'</span><b>'+mS.pct+'% ('+mS.done+'/'+mS.total+') 🔥 '+mS.streak+'</b></div>';
+h+='</div>';
+h+='<h4>🏆 الفائز</h4>';
+if(hS.pct>mS.pct)h+='<div class="ach"><div class="ic">👩</div><div class="info"><b>'+PROFILES.her.name+' تتقدم!</b><span>بفارق '+(hS.pct-mS.pct)+'%</span></div></div>';
+else if(mS.pct>hS.pct)h+='<div class="ach"><div class="ic">👨</div><div class="info"><b>'+PROFILES.him.name+' يتقدم!</b><span>بفارق '+(mS.pct-hS.pct)+'%</span></div></div>';
+else h+='<div class="ach"><div class="ic">🤝</div><div class="info"><b>تعادل!</b><span>كلاكما بنفس التقدم</span></div></div>';
+h+='<button class="mbtn" onclick="closeM(\'compM\')">إغلاق</button>';
+document.getElementById('compB').innerHTML=h;
+document.getElementById('compM').classList.add('show');
 }
 function openStats(){
 var done=doneSteps(),total=totalSteps();
 var pct=total>0?Math.round((done/total)*100):0;
 var lvl=calcLevel();
 var xp=doneSteps()-(lvl-1)*7;
-var xpNext=7;
-var h='<h3>📊 إحصائياتك</h3>';
-h+='<div class="stats"><h4>الإنجاز</h4>';
+var ACHIEVEMENTS=[
+{id:'first_step',n:'البداية',d:'أول خطوة',ic:'🌱'},
+{id:'first_day',n:'يوم كامل',d:'10 خطوات',ic:'🎯'},
+{id:'half_week',n:'نصف الطريق',d:'3 أيام',ic:'⭐'},
+{id:'full_week',n:'الأسبوع الذهبي',d:'7 أيام!',ic:'🏆'}
+];
+var h='<h3>📊 '+PROFILES[currentProfile].name+'</h3>';
+h+='<div class="stats">';
 h+='<div class="row"><span>المستوى</span><b>Lv. '+lvl+'</b></div>';
-h+='<div class="row"><span>الخبرة (XP)</span><b>'+xp+'/'+xpNext+'</b></div>';
-h+='<div class="row"><span>الخطوات المنجزة</span><b>'+done+'/'+total+'</b></div>';
-h+='<div class="row"><span>نسبة الإنجاز</span><b>'+pct+'%</b></div>';
+h+='<div class="row"><span>الخبرة</span><b>'+xp+'/7 XP</b></div>';
+h+='<div class="row"><span>الخطوات</span><b>'+done+'/'+total+'</b></div>';
+h+='<div class="row"><span>الإنجاز</span><b>'+pct+'%</b></div>';
 h+='<div class="row"><span>🔥 السلسلة</span><b>'+streak+' يوم</b></div>';
 h+='</div>';
 h+='<h4>🏆 الإنجازات</h4>';
@@ -529,7 +713,7 @@ var a=ACHIEVEMENTS[i];
 var got=!!ach[a.id];
 h+='<div class="ach '+(got?'':'un')+'"><div class="ic">'+a.ic+'</div><div class="info"><b>'+a.n+'</b><span>'+a.d+'</span></div>'+(got?'<div style="color:#22c55e;font-size:18px">✓</div>':'<div style="color:#666;font-size:11px">🔒</div>')+'</div>';
 }
-h+='<h4>📅 تقويم الأسبوع</h4>';
+h+='<h4>📅 تقويم '+PROFILES[currentProfile].name+'</h4>';
 h+='<div class="cal">';
 var days=['س','ح','ن','ث','ر','خ','ج'];
 for(var i=0;i<7;i++){
@@ -540,14 +724,14 @@ else if(isDayPartial(i))cls+=' p';
 h+='<div class="'+cls+'">'+days[i]+'</div>';
 }
 h+='</div>';
-h+='<button class="mbtn s" onclick="resetProg()">🔄 إعادة تعيين التقدم</button>';
+h+='<button class="mbtn s" onclick="resetProg()">🔄 إعادة تعيين '+PROFILES[currentProfile].name+'</button>';
 h+='<button class="mbtn" onclick="closeM(\'statsM\')">إغلاق</button>';
 document.getElementById('statsB').innerHTML=h;
 document.getElementById('statsM').classList.add('show');
 }
 function resetProg(){
-if(confirm('هل أنتِ متأكدة من إعادة تعيين كل التقدم؟')){
-prog={};ach={};streak=0;lastDay=-1;save();
+if(confirm('إعادة تعيين تقدم '+PROFILES[currentProfile].name+' فقط؟')){
+prog={};ach={};streak=0;save();
 closeM('statsM');render();showConf('✓ تم إعادة التعيين');
 }
 }
@@ -557,8 +741,8 @@ deferredPrompt.prompt();
 deferredPrompt.userChoice.then(function(r){if(r.outcome==='accepted')showConf('✓ تم التثبيت!');deferredPrompt=null;document.getElementById('iFab').style.display='none'});
 }else{
 var h='<h3>📲 ثبتي التطبيق</h3>';
-h+='<p><b>iPhone (Safari):</b><br>1. مشاركة ⬆<br>2. "إضافة إلى الشاشة الرئيسية"</p>';
-h+='<p><b>Android (Chrome):</b><br>1. القائمة ⋮<br>2. "إضافة إلى الشاشة الرئيسية"</p>';
+h+='<p><b>iPhone (Safari):</b> مشاركة ⬆ → "إضافة إلى الشاشة الرئيسية"</p>';
+h+='<p><b>Android (Chrome):</b> القائمة ⋮ → "إضافة إلى الشاشة الرئيسية"</p>';
 h+='<button class="mbtn" onclick="closeM(\'instM\')">فهمت</button>';
 document.getElementById('instB').innerHTML=h;
 document.getElementById('instM').classList.add('show');
@@ -568,7 +752,7 @@ function openTimer(e,name,minutes){
 if(e)e.stopPropagation();
 var sec=minutes*60;
 var h='<h3>⏱ '+name+'</h3>';
-h+='<div style="text-align:center;font-size:48px;font-weight:800;color:var(--gold2);margin:20px 0" id="tDsp">'+minutes+':00</div>';
+h+='<div style="text-align:center;font-size:48px;font-weight:800;color:var(--accent2);margin:20px 0" id="tDsp">'+minutes+':00</div>';
 h+='<div style="text-align:center;color:var(--muted);font-size:12px;margin-bottom:16px" id="tMsg">جاري التشغيل...</div>';
 h+='<button class="mbtn" id="tBtn" onclick="stopTimer()">⏸ إيقاف</button>';
 h+='<button class="mbtn s" onclick="closeM(\'timerM\')">إغلاق</button>';
@@ -583,7 +767,7 @@ var msg=document.getElementById('tMsg');
 if(dsp)dsp.textContent=m+':'+(s<10?'0':'')+s;
 if(msg){
 if(sec>0)msg.textContent='⏳ باقي '+m+' دقيقة و'+s+' ثانية';
-else msg.textContent='✓ انتهى الوقت! اشطري وجهك الآن';
+else msg.textContent='✓ انتهى! اشطري وجهك الآن';
 }
 if(sec<=0){clearInterval(timerInt);timerInt=null;if(navigator.vibrate)navigator.vibrate([200,100,200])}
 },1000);
@@ -608,7 +792,7 @@ document.head.appendChild(m);
 function checkTime(){
 var h=new Date().getHours();
 var banner=document.getElementById('ct');
-var d=D[c];
+var d=D()[c];
 if(h>=5&&h<12){
 if(ct==='am')banner.textContent='🌅 الآن وقت الصباح — طبقي روتين AM';
 else banner.textContent=d.why;
@@ -618,10 +802,10 @@ banner.textContent='☀️ بعد الظهر — حافظي على SPF 50+';
 if(ct==='pm')banner.textContent='🌙 الآن وقت المساء — طبقي روتين PM';
 else banner.textContent=d.why;
 }else{
-banner.textContent='😴 وقت النوم — روتين PM مثالي الآن';
+banner.textContent='😴 وقت النوم — روتين PM مثالي';
 }
 }
-load();render();updateAll();checkTime();setInterval(checkTime,60000);
+load();updateProfileUI();render();updateAll();checkTime();setInterval(checkTime,60000);
 </script>
 </body>
 </html>
