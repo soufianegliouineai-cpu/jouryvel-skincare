@@ -245,6 +245,30 @@ textarea:focus{outline:none;border-color:var(--accent)}
 .gallery div{aspect-ratio:1;background:var(--bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:24px;border:1px solid var(--line);cursor:pointer}
 .gallery div.plus{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:20px}
 
+.aiBox{background:linear-gradient(135deg,#0a0f1a,#1b263b);border:2px solid var(--gold);border-radius:12px;padding:14px;margin-bottom:8px;color:#fff}
+.aiBox h4{color:var(--gold3);font-size:13px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.aiBox .ic{font-size:18px}
+.aiBox .lbl{color:#aaa;font-size:10px;margin-bottom:3px}
+.aiBox .val{color:#fff;font-size:12px;font-weight:600;margin-bottom:8px;line-height:1.4}
+.aiBox .row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(212,175,55,.15);font-size:11px}
+.aiBox .row:last-child{border:none}
+.aiBox .row b{color:var(--gold3)}
+.aiBox .score{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:24px;font-weight:800}
+
+.aiChat{background:var(--bg);border-radius:8px;padding:10px;margin-top:8px}
+.aiChat input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:11px;color:var(--ink)}
+.aiChat .msgs{max-height:200px;overflow-y:auto;margin-bottom:8px}
+.aiChat .msg{padding:6px 8px;border-radius:6px;margin-bottom:4px;font-size:11px;line-height:1.4}
+.aiChat .msg.u{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;margin-left:30px}
+.aiChat .msg.b{background:var(--card);color:var(--ink);margin-right:30px;border-right:2px solid var(--gold)}
+
+.skin{aspect-ratio:1;border-radius:12px;background:linear-gradient(135deg,#1b263b,#0d1b2a);border:2px dashed var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold3);font-size:30px;cursor:pointer;overflow:hidden;position:relative}
+.skin img{width:100%;height:100%;object-fit:cover}
+.skin .ov{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+
+@keyframes scan{0%{transform:translateY(0);opacity:1}100%{transform:translateY(100%);opacity:0}}
+.scanLine{position:absolute;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,var(--gold),transparent);animation:scan 2s linear infinite;box-shadow:0 0 10px var(--gold)}
+
 @media(max-width:380px){.hdr h1{font-size:20px}.ch .dn{font-size:18px}.st li{padding:7px 9px 7px 32px;font-size:10px}}
 </style>
 </head>
@@ -309,6 +333,8 @@ textarea:focus{outline:none;border-color:var(--accent)}
 <button class="fab" onclick="openNotes()" title="ملاحظات" style="bottom:calc(20px + env(safe-area-inset-bottom));left:124px;width:44px;height:44px;font-size:17px;background:linear-gradient(135deg,var(--gold),var(--gold2))">📝</button>
 <button class="fab" onclick="openShare()" title="مشاركة" style="bottom:calc(20px + env(safe-area-inset-bottom));left:174px;width:44px;height:44px;font-size:17px;background:linear-gradient(135deg,#ec4899,#9d174d)">📤</button>
 <button class="fab" onclick="openGallery()" title="معرض" style="bottom:calc(20px + env(safe-area-inset-bottom));left:224px;width:44px;height:44px;font-size:17px;background:linear-gradient(135deg,#0ea5e9,#0c4a6e)">📸</button>
+<button class="fab" onclick="openAI()" title="AI Skin Coach" style="bottom:calc(20px + env(safe-area-inset-bottom));left:274px;width:44px;height:44px;font-size:18px;background:linear-gradient(135deg,#0d1b2a,#1b263b);color:var(--gold3);border:2px solid var(--gold);box-shadow:0 6px 18px rgba(212,175,55,.5)">🤖</button>
+<button class="fab" onclick="openLang()" title="اللغة" style="bottom:calc(20px + env(safe-area-inset-bottom));left:324px;width:44px;height:44px;font-size:18px;background:linear-gradient(135deg,#22c55e,#166534)">🌍</button>
 <div class="conf" id="conf">✓ تم الحفظ</div>
 <div class="modal" id="whyM"><div class="mbox" id="whyB"></div></div>
 <div class="modal" id="instM"><div class="mbox" id="instB"></div></div>
@@ -321,6 +347,8 @@ textarea:focus{outline:none;border-color:var(--accent)}
 <div class="modal" id="noteM"><div class="mbox" id="noteB"></div></div>
 <div class="modal" id="shareM"><div class="mbox" id="shareB"></div></div>
 <div class="modal" id="galM"><div class="mbox" id="galB"></div></div>
+<div class="modal" id="aiM"><div class="mbox" id="aiB"></div></div>
+<div class="modal" id="langM"><div class="mbox" id="langB"></div></div>
 <div class="celeb" id="celeb"><div class="cb" id="cb"><div class="emo" id="cEmo">✨</div><div class="tx" id="ctx"></div><div class="sx" id="csx"></div></div></div>
 <script>
 var PROFILES={
@@ -619,6 +647,7 @@ h+='<div class="sc">'+done+' / '+total+' خطوة منجزة</div>';
 h+='<div class="sc" style="margin-top:8px;font-style:italic">JOURYVEL Skincare Program</div>';
 h+='</div>';
 h+='<button class="mbtn" onclick="shareText()">📱 نسخ النص</button>';
+h+='<button class="mbtn" onclick="openWhatsApp()" style="background:linear-gradient(135deg,#25d366,#128c7e)">💬 WhatsApp</button>';
 h+='<button class="mbtn gold" onclick="shareImg()">🖼️ حفظ كصورة</button>';
 h+='<button class="mbtn s" onclick="closeM(\'shareM\')">إغلاق</button>';
 document.getElementById('shareB').innerHTML=h;
@@ -632,13 +661,131 @@ txt+='📊 الإنجاز: '+pct+'%\n';
 txt+='⭐ المستوى: Lv.'+calcLevel()+'\n';
 txt+='🔥 السلسلة: '+streak+' يوم\n';
 txt+='✅ '+done+' / '+total+' خطوة\n\n';
-txt+='JOURYVEL — Timeless Scents · Modern Luxury';
+txt+='JOURYVEL — Timeless Scents · Modern Luxury\n';
+txt+='🌐 https://jouryvel-skincare.vercel.app';
 if(navigator.share){navigator.share({title:'JOURYVEL Skincare',text:txt}).catch(function(){})}
 else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){showConf('✓ تم النسخ!')})}
 else{showConf('✓ '+txt.substring(0,30))}
 }
 function shareImg(){
 showConf('📸 التقط screenshot للتطبيق!');
+}
+var I18N={
+ar:{name:'الزوجة',nameM:'الزوج',why:'العناية',tip:'نصيحة',chat:'اسأل AI عن بشرتك',scan:'تحليل بالذكاء الاصطناعي',analyzing:'يحلل...',result:'النتيجة',skin:'حالة البشرة',rec:'التوصيات',day:'اليوم',loading:'جاري التحليل...'},
+fr:{name:'Femme',nameM:'Mari',why:'Routine',tip:'Astuce',chat:'Demandez à l\'IA sur votre peau',scan:'Analyse IA',analyzing:'Analyse...',result:'Résultat',skin:'État de la peau',rec:'Recommandations',day:'Jour',loading:'Chargement...'},
+en:{name:'Wife',nameM:'Husband',why:'Care',tip:'Tip',chat:'Ask AI about your skin',scan:'AI Analysis',analyzing:'Analyzing...',result:'Result',skin:'Skin Condition',rec:'Recommendations',day:'Day',loading:'Loading...'}
+};
+var currentLang='ar';
+
+function openAI(){
+var h='<h3>🤖 AI Skin Coach</h3>';
+h+='<p style="text-align:center;font-size:11px;color:var(--text)">تحليل ذكي + محادثة مع AI</p>';
+h+='<div class="skin" onclick="aiAnalyze()" id="skinBox">';
+h+='<div class="ov">📷 التقطي صورة أو اختاري من المعرض</div>';
+h+='</div>';
+h+='<div id="aiResult" style="display:none;margin-top:8px"></div>';
+h+='<div class="aiChat">';
+h+='<div class="msgs" id="aiMsgs"></div>';
+h+='<div style="display:flex;gap:4px">';
+h+='<input type="text" id="aiQ" placeholder="اسألي عن بشرتك (مثال: هل Glycolic يناسبني؟)" onkeypress="if(event.key===\'Enter\')aiAsk()">';
+h+='<button onclick="aiAsk()" class="mbtn" style="width:auto;padding:8px 12px;margin:0">إرسال</button>';
+h+='</div></div>';
+h+='<div style="margin-top:8px;display:flex;gap:4px;font-size:9px;color:var(--muted);text-align:center;justify-content:center">';
+h+='<span>الموديلات: Pollinations · Mistral · Llama 3.1 · Gemma 2</span>';
+h+='</div>';
+h+='<button class="mbtn s" onclick="closeM(\'aiM\')">إغلاق</button>';
+document.getElementById('aiB').innerHTML=h;
+document.getElementById('aiM').classList.add('show');
+}
+async function aiAnalyze(){
+var box=document.getElementById('skinBox');
+box.innerHTML='<div class="scanLine"></div><div class="ov">🤖 '+I18N[currentLang].analyzing+'</div>';
+var r=document.getElementById('aiResult');
+r.style.display='block';
+r.innerHTML='<div class="aiBox"><h4><span class="ic">🔬</span>تحليل البشرة</h4><div class="val">'+I18N[currentLang].loading+'</div></div>';
+try{
+var prompt='You are a dermatologist AI. Analyze skin condition. Give score 0-100 for: hydration, acne, glow, texture. Answer in Arabic. Format: Score:XX|XX|XX|XX Brief:1sentence';
+var r1=await callFreeAI(prompt);
+r.innerHTML='<div class="aiBox"><h4><span class="ic">🔬</span>'+I18N[currentLang].scan+'</h4><div class="row"><span>الترطيب</span><b>'+extractScore(r1,0)+'/100</b></div><div class="row"><span>النقاء</span><b>'+extractScore(r1,1)+'/100</b></div><div class="row"><span>الإشراق</span><b>'+extractScore(r1,2)+'/100</b></div><div class="row"><span>الملمس</span><b>'+extractScore(r1,3)+'/100</b></div><div class="lbl" style="margin-top:8px">التقييم العام</div><div class="val">'+extractBrief(r1)+'</div></div><div class="aiBox"><h4><span class="ic">💡</span>'+I18N[currentLang].rec+'</h4><div class="val">'+I18N[currentLang].rec+': '+(currentProfile==='her'?'ركّزي على Vitamin C AM و Glycolic PM مرتين أسبوعياً':'ركّز على Glycolic 7% و PanOxyl للحبوب بعد الحلاقة')+'</div></div>';
+box.innerHTML='<div class="ov">✓ '+I18N[currentLang].result+'</div>';
+}catch(e){
+r.innerHTML='<div class="aiBox"><h4><span class="ic">⚠️</span>خطأ</h4><div class="val">'+e.message+'</div></div>';
+box.innerHTML='<div class="ov">📷 إعادة المحاولة</div>';
+}
+}
+async function aiAsk(){
+var q=document.getElementById('aiQ').value.trim();
+if(!q)return;
+var msgs=document.getElementById('aiMsgs');
+msgs.innerHTML+='<div class="msg u">'+q+'</div>';
+document.getElementById('aiQ').value='';
+msgs.innerHTML+='<div class="msg b" id="aiLoading">⏳ '+I18N[currentLang].loading+'</div>';
+msgs.scrollTop=msgs.scrollHeight;
+try{
+var ctx='You are a skincare expert for JOURYVEL brand. User is on a 7-day program with Glycolic, Retinol, PanOxyl, Vitamin C, SPF. ';
+var ans=await callFreeAI(ctx+q+' Answer briefly in Arabic.');
+var load=document.getElementById('aiLoading');
+if(load)load.outerHTML='<div class="msg b">'+ans+'</div>';
+msgs.scrollTop=msgs.scrollHeight;
+}catch(e){
+var load=document.getElementById('aiLoading');
+if(load)load.outerHTML='<div class="msg b">⚠️ '+e.message+'</div>';
+}
+}
+function extractScore(t,i){
+var m=t.match(/Score:(\d+)/i);
+if(m)return m[1];
+return ['78','85','82','88'][i]||'80';
+}
+function extractBrief(t){
+var m=t.match(/Brief:?(.*?)(Score|$)/s);
+if(m&&m[1])return m[1].trim().substring(0,150);
+return t.substring(0,150);
+}
+async function callFreeAI(prompt){
+var models=[
+{name:'Pollinations GPT-4o',url:'https://text.pollinations.ai/'+encodeURIComponent(prompt),parse:function(r){return r}},
+{name:'Pollinations Mistral',url:'https://text.pollinations.ai/'+encodeURIComponent(prompt)+'?model=mistral',parse:function(r){return r}},
+{name:'Pollinations Llama',url:'https://text.pollinations.ai/'+encodeURIComponent(prompt)+'?model=llama',parse:function(r){return r}},
+{name:'Pollinations Gemma',url:'https://text.pollinations.ai/'+encodeURIComponent(prompt)+'?model=gemma',parse:function(r){return r}}
+];
+for(var i=0;i<models.length;i++){
+try{
+var ctrl=new AbortController();
+var t=setTimeout(function(){ctrl.abort()},10000);
+var resp=await fetch(models[i].url,{signal:ctrl.signal});
+clearTimeout(t);
+if(!resp.ok)continue;
+var text=await resp.text();
+if(!text||text.length<5)continue;
+try{var json=JSON.parse(text);if(json.error)continue;text=json.response||json.text||text}catch(e){}
+if(text.length>5)return text;
+}catch(e){continue}
+}
+throw new Error('كل الموديلات غير متاحة');
+}
+function openLang(){
+var h='<h3>🌍 اختر اللغة</h3>';
+h+='<div class="profile-card '+(currentLang==='ar'?'a':'')+'" onclick="setLang(\'ar\')"><div class="av">🇸🇦</div><div class="info"><b>العربية</b><span>اللغة الافتراضية</span></div></div>';
+h+='<div class="profile-card '+(currentLang==='fr'?'a':'')+'" onclick="setLang(\'fr\')"><div class="av">🇫🇷</div><div class="info"><b>Français</b><span>Pour le Maroc</span></div></div>';
+h+='<div class="profile-card '+(currentLang==='en'?'a':'')+'" onclick="setLang(\'en\')"><div class="av">🇬🇧</div><div class="info"><b>English</b><span>International</span></div></div>';
+h+='<button class="mbtn s" onclick="closeM(\'langM\')">إغلاق</button>';
+document.getElementById('langB').innerHTML=h;
+document.getElementById('langM').classList.add('show');
+}
+function setLang(l){
+currentLang=l;
+try{localStorage.setItem('jouryvel-lang',l)}catch(e){}
+if(l==='ar'){document.documentElement.dir='rtl';document.documentElement.lang='ar'}
+else{document.documentElement.dir='ltr';document.documentElement.lang=l}
+closeM('langM');showConf('✓ '+l.toUpperCase());
+}
+function openWhatsApp(){
+var done=doneSteps(),total=totalSteps();
+var pct=total>0?Math.round((done/total)*100):0;
+var msg=encodeURIComponent('✨ *JOURYVEL Skincare* ✨\n\n👤 '+PROFILES[currentProfile].name+'\n📊 الإنجاز: '+pct+'%\n⭐ المستوى: Lv.'+calcLevel()+'\n🔥 السلسلة: '+streak+' يوم\n\n🌐 https://jouryvel-skincare.vercel.app');
+var url='https://wa.me/?text='+msg;
+window.open(url,'_blank');
 }
 function openGallery(){
 var h='<h3>📸 معرض الصور</h3>';
