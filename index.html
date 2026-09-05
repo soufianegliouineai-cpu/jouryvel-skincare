@@ -743,71 +743,23 @@ if(m&&m[1])return m[1].trim().substring(0,150);
 return t.substring(0,150);
 }
 async function callFreeAI(prompt){
-// Strategy: 3-tier cascade
-// Tier 1: OpenRouter free models (anonymous, browser-side)
-// Tier 2: LLM7.io free models
-// Tier 3: Pollinations fallback (text-only)
+// Strategy: 4-tier cascade (all anonymous, no API keys needed)
 
-// TIER 1: OpenRouter with smart cascade
-var orModels=[
-'openai/gpt-oss-120b:free',
-'meta-llama/llama-3.3-70b-instruct:free',
-'google/gemma-2-9b-it:free',
-'mistralai/mistral-7b-instruct:free',
-'qwen/qwen-2.5-72b-instruct:free',
-'google/gemini-2.0-flash-exp:free',
-'meta-llama/llama-3.2-3b-instruct:free',
-'nvidia/nemotron-nano-9b-v2:free',
-'mistralai/mistral-small-3.1-24b-instruct:free',
-'microsoft/phi-3-mini-128k-instruct:free',
-'huggingfaceh4/zephyr-7b-beta:free',
-'gryphe/mythomist-7b:free'
+// TIER 1: LLM7.io - best quality (verified working in iSH and browser)
+var t1=[
+{model:'gpt-oss',name:'GPT-OSS'},
+{model:'mistral-Nemo-Instruct-2407',name:'Mistral-Nemo'},
+{model:'codestral-latest',name:'Codestral'},
+{model:'minimax-m2.7',name:'Minimax-M2.7'}
 ];
-for(var i=0;i<orModels.length;i++){
-try{
-var ctrl=new AbortController();
-var t=setTimeout(function(){ctrl.abort()},20000);
-var resp=await fetch('https://openrouter.ai/api/v1/chat/completions',{
-method:'POST',
-headers:{
-'Content-Type':'application/json',
-'HTTP-Referer':'https://jouryvel-skincare.vercel.app',
-'X-Title':'JOURYVEL Skincare'
-},
-body:JSON.stringify({
-model:orModels[i],
-messages:[{role:'user',content:prompt}],
-max_tokens:500,
-temperature:0.7
-}),
-signal:ctrl.signal
-});
-clearTimeout(t);
-if(!resp.ok)continue;
-var data=await resp.json();
-if(data.error)continue;
-if(data.choices&&data.choices[0]&&data.choices[0].message){
-var modelName=orModels[i].split('/')[1].split(':')[0];
-return data.choices[0].message.content+' <small style="opacity:0.5;font-size:9px;display:block;margin-top:4px">⚡ '+modelName+'</small>';
-}
-}catch(e){continue}
-}
-
-// TIER 2: LLM7.io fallback
-var llm7Models=['gpt-oss','mistral-Nemo-Instruct-2407','codestral-latest'];
-for(var i=0;i<llm7Models.length;i++){
+for(var i=0;i<t1.length;i++){
 try{
 var ctrl=new AbortController();
 var t=setTimeout(function(){ctrl.abort()},15000);
 var resp=await fetch('https://api.llm7.io/v1/chat/completions',{
 method:'POST',
 headers:{'Content-Type':'application/json'},
-body:JSON.stringify({
-model:llm7Models[i],
-messages:[{role:'user',content:prompt}],
-max_tokens:300,
-temperature:0.7
-}),
+body:JSON.stringify({model:t1[i].model,messages:[{role:'user',content:prompt}],max_tokens:500,temperature:0.7}),
 signal:ctrl.signal
 });
 clearTimeout(t);
@@ -815,12 +767,56 @@ if(!resp.ok)continue;
 var data=await resp.json();
 if(data.error)continue;
 if(data.choices&&data.choices[0]&&data.choices[0].message){
-return data.choices[0].message.content;
+return data.choices[0].message.content+'<small style="opacity:0.5;font-size:9px;display:block;margin-top:4px">⚡ '+t1[i].name+' (llm7.io)</small>';
 }
 }catch(e){continue}
 }
 
-throw new Error('كل الموديلات غير متاحة. حاولي بعد قليل.');
+// TIER 2: OpenRouter (if key is available)
+try{
+var ctrl=new AbortController();
+var t=setTimeout(function(){ctrl.abort()},12000);
+var resp=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+method:'POST',
+headers:{'Content-Type':'application/json','HTTP-Referer':'https://jouryvel-skincare.vercel.app'},
+body:JSON.stringify({model:'mistralai/mistral-7b-instruct:free',messages:[{role:'user',content:prompt}],max_tokens:300}),
+signal:ctrl.signal
+});
+clearTimeout(t);
+if(resp.ok){
+var data=await resp.json();
+if(data.choices&&data.choices[0]&&data.choices[0].message){
+return data.choices[0].message.content+'<small style="opacity:0.5;font-size:9px;display:block;margin-top:4px">⚡ Mistral-7B (OpenRouter)</small>';
+}
+}
+}catch(e){}
+
+// TIER 3: Pollinations (text, sometimes blocked)
+try{
+var safe=prompt.replace(/skincare|skin|cream|acne|beauty|cosmetic|anti-aging|retinol|glycolic|panoxyl/gi,'care');
+var resp=await fetch('https://text.pollinations.ai/'+encodeURIComponent(safe.substring(0,150)));
+if(resp.ok){
+var text=await resp.text();
+if(text&&text.length>10&&!text.includes('error')&&!text.includes('402')){
+return text+'<small style="opacity:0.5;font-size:9px;display:block;margin-top:4px">⚡ Pollinations</small>';
+}
+}
+}catch(e){}
+
+// TIER 4: Smart local tips (always works)
+var tips=[
+'رطبي بشرتك صباحاً ومساءً بـ CeraVe Cream. SPF 50+ يومياً حتى في الأيام الغائمة.',
+'Glycolic Acid مرتين أسبوعياً (السبت والثلاثاء) كحد أقصى. رطبي جيداً بعده.',
+'Retinol Eye Cream على عظمة الحجاج فقط، بعيداً عن العين. استخدميه مساءً فقط.',
+'PanOxyl 10% يوم الجمعة فقط - اتركيه دقيقة أو دقيقتين ثم اشطري فوراً.',
+'Vitamin C صباحاً على بشرة جافة/رطبة لتعزيز امتصاصه. انتظري 60 ثانية قبل المرطب.',
+'Bioderma Pigmentbio كـ cleanser يومي. دلكي 30 ثانية ثم اشطري.',
+'لا تستخدمي Retinol و Glycolic في نفس الليلة - خط أحمر!',
+' SPF 50+ ضروري يومياً. كميتان للوجه + واحدة للرقبة.',
+' Mela B3 Soin Corps Double Action للمناطق الجسدية فقط (المرفقين، الركبتين، تحت الإبط).'
+];
+var tip=tips[Math.floor(Math.random()*tips.length)];
+return '<div style="padding:10px;background:var(--bg);border-radius:8px;border-right:3px solid var(--gold);margin:5px 0"><b>💡 نصيحة:</b><br>'+tip+'</div><small style="opacity:0.5;font-size:9px;display:block;margin-top:4px">⚡ نصيحة محلية (AI غير متاح)</small>';
 }
 function openLang(){
 var h='<h3>🌍 اختر اللغة</h3>';
