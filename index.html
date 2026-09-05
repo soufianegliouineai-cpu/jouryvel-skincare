@@ -255,12 +255,19 @@ textarea:focus{outline:none;border-color:var(--accent)}
 .aiBox .row b{color:var(--gold3)}
 .aiBox .score{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:24px;font-weight:800}
 
-.aiChat{background:var(--bg);border-radius:8px;padding:10px;margin-top:8px}
-.aiChat input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:11px;color:var(--ink)}
-.aiChat .msgs{max-height:200px;overflow-y:auto;margin-bottom:8px}
-.aiChat .msg{padding:6px 8px;border-radius:6px;margin-bottom:4px;font-size:11px;line-height:1.4}
-.aiChat .msg.u{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;margin-left:30px}
-.aiChat .msg.b{background:var(--card);color:var(--ink);margin-right:30px;border-right:2px solid var(--gold)}
+.aiChat{background:linear-gradient(135deg,var(--bg),var(--bg2));border-radius:12px;padding:12px;margin-top:10px;border:1px solid var(--line)}
+.aiChat input{width:100%;background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13px;color:var(--ink);margin-bottom:8px;transition:border-color .3s}
+.aiChat input:focus{outline:none;border-color:var(--accent)}
+.aiChat .msgs{max-height:280px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
+.aiChat .msgs::-webkit-scrollbar{width:4px}
+.aiChat .msgs::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+.aiChat .msg{padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.6;max-width:90%;word-break:break-word}
+.aiChat .msg.u{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;margin-right:auto;border-bottom-right-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.aiChat .msg.b{background:var(--card);color:var(--ink);margin-left:auto;border-bottom-left-radius:4px;border-right:none;border-left:3px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.1);direction:rtl;text-align:right}
+.aiChat .msg.b *{direction:rtl;text-align:right}
+.aiChat .msg.b ol,.aiChat .msg.b ul{padding-right:16px;margin:6px 0}
+.aiChat .msg.b li{margin-bottom:4px}
+.aiChat .msg.b strong,.aiChat .msg.b b{color:var(--accent2)}
 
 .skin{aspect-ratio:1;border-radius:12px;background:linear-gradient(135deg,#1b263b,#0d1b2a);border:2px dashed var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold3);font-size:30px;cursor:pointer;overflow:hidden;position:relative}
 .skin img{width:100%;height:100%;object-fit:cover}
@@ -268,6 +275,9 @@ textarea:focus{outline:none;border-color:var(--accent)}
 
 @keyframes scan{0%{transform:translateY(0);opacity:1}100%{transform:translateY(100%);opacity:0}}
 .scanLine{position:absolute;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,var(--gold),transparent);animation:scan 2s linear infinite;box-shadow:0 0 10px var(--gold)}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:380px){.hdr h1{font-size:20px}.ch .dn{font-size:18px}.st li{padding:7px 9px 7px 32px;font-size:10px}}
 </style>
@@ -686,9 +696,9 @@ h+='</div>';
 h+='<div id="aiResult" style="display:none;margin-top:8px"></div>';
 h+='<div class="aiChat">';
 h+='<div class="msgs" id="aiMsgs"></div>';
-h+='<div style="display:flex;gap:4px">';
-h+='<input type="text" id="aiQ" placeholder="اسألي عن بشرتك (مثال: هل Glycolic يناسبني؟)" onkeypress="if(event.key===\'Enter\')aiAsk()">';
-h+='<button onclick="aiAsk()" class="mbtn" style="width:auto;padding:8px 12px;margin:0">إرسال</button>';
+h+='<div style="display:flex;gap:6px;align-items:center">';
+h+='<input type="text" id="aiQ" placeholder="اسألي عن بشرتك..." onkeypress="if(event.key===\'Enter\')aiAsk()" style="flex:1">';
+h+='<button onclick="aiAsk()" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.2)">➤</button>';
 h+='</div></div>';
 h+='<div style="margin-top:8px;display:flex;gap:4px;font-size:9px;color:var(--muted);text-align:center;justify-content:center">';
 h+='<span>الموديلات: Pollinations · Mistral · Llama 3.1 · Gemma 2</span>';
@@ -702,11 +712,11 @@ var box=document.getElementById('skinBox');
 box.innerHTML='<div class="scanLine"></div><div class="ov">🤖 '+I18N[currentLang].analyzing+'</div>';
 var r=document.getElementById('aiResult');
 r.style.display='block';
-r.innerHTML='<div class="aiBox"><h4><span class="ic">🔬</span>تحليل البشرة</h4><div class="val">'+I18N[currentLang].loading+'</div></div>';
+r.innerHTML='<div class="aiBox" style="animation:pulse 1.5s ease infinite"><h4><span class="ic">🔬</span>تحليل البشرة</h4><div style="display:flex;align-items:center;gap:8px;color:#aaa;font-size:12px"><span style="animation:spin 1s linear infinite">⟳</span> '+I18N[currentLang].loading+'</div></div>';
 try{
 var prompt='You are a dermatologist AI. Analyze skin condition. Give score 0-100 for: hydration, acne, glow, texture. Answer in Arabic. Format: Score:XX|XX|XX|XX Brief:1sentence';
 var r1=await callFreeAI(prompt);
-r.innerHTML='<div class="aiBox"><h4><span class="ic">🔬</span>'+I18N[currentLang].scan+'</h4><div class="row"><span>الترطيب</span><b>'+extractScore(r1,0)+'/100</b></div><div class="row"><span>النقاء</span><b>'+extractScore(r1,1)+'/100</b></div><div class="row"><span>الإشراق</span><b>'+extractScore(r1,2)+'/100</b></div><div class="row"><span>الملمس</span><b>'+extractScore(r1,3)+'/100</b></div><div class="lbl" style="margin-top:8px">التقييم العام</div><div class="val">'+extractBrief(r1)+'</div></div><div class="aiBox"><h4><span class="ic">💡</span>'+I18N[currentLang].rec+'</h4><div class="val">'+I18N[currentLang].rec+': '+(currentProfile==='her'?'ركّزي على Vitamin C AM و Glycolic PM مرتين أسبوعياً':'ركّز على Glycolic 7% و PanOxyl للحبوب بعد الحلاقة')+'</div></div>';
+r.innerHTML='<div class="aiBox" style="animation:fadeIn .5s ease"><h4><span class="ic">🔬</span>'+I18N[currentLang].scan+'</h4><div class="row"><span>💧 الترطيب</span><b style="color:var(--green)">'+extractScore(r1,0)+'/100</b></div><div style="height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin:-4px 0 8px"><div style="height:100%;width:'+extractScore(r1,0)+'%;background:linear-gradient(to right,var(--green),#4ade80);border-radius:2px"></div></div><div class="row"><span>✨ النقاء</span><b style="color:var(--gold)">'+extractScore(r1,1)+'/100</b></div><div style="height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin:-4px 0 8px"><div style="height:100%;width:'+extractScore(r1,1)+'%;background:linear-gradient(to right,var(--gold),#fbbf24);border-radius:2px"></div></div><div class="row"><span>🌟 الإشراق</span><b style="color:#f472b6">'+extractScore(r1,2)+'/100</b></div><div style="height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin:-4px 0 8px"><div style="height:100%;width:'+extractScore(r1,2)+'%;background:linear-gradient(to right,#f472b6,#f9a8d4);border-radius:2px"></div></div><div class="row"><span>🪞 الملمس</span><b style="color:#60a5fa">'+extractScore(r1,3)+'/100</b></div><div style="height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin:-4px 0 8px"><div style="height:100%;width:'+extractScore(r1,3)+'%;background:linear-gradient(to right,#60a5fa,#93c5fd);border-radius:2px"></div></div><div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px;margin-top:8px;text-align:center"><div style="font-size:10px;color:#aaa;margin-bottom:4px">التقييم العام</div><div style="font-size:13px;color:#fff;font-weight:600">'+extractBrief(r1)+'</div></div></div><div class="aiBox" style="animation:fadeIn .5s ease;animation-delay:.3s;animation-fill-mode:both"><h4><span class="ic">💡</span>التوصية</h4><div style="font-size:12px;color:#fff;line-height:1.6"><span style="color:var(--gold3)">◆</span> '+(currentProfile==='her'?'ركّزي على Vitamin C صباحاً وGlycolic مرتين أسبوعياً. رطبي بشرتك جيداً بعد التقشير.':'ركّز على Glycolic 7% و PanOxyl للحبوب بعد الحلاقة.')+'</div></div>';
 box.innerHTML='<div class="ov">✓ '+I18N[currentLang].result+'</div>';
 }catch(e){
 r.innerHTML='<div class="aiBox"><h4><span class="ic">⚠️</span>خطأ</h4><div class="val">'+e.message+'</div></div>';
@@ -719,18 +729,33 @@ if(!q)return;
 var msgs=document.getElementById('aiMsgs');
 msgs.innerHTML+='<div class="msg u">'+q+'</div>';
 document.getElementById('aiQ').value='';
-msgs.innerHTML+='<div class="msg b" id="aiLoading">⏳ '+I18N[currentLang].loading+'</div>';
+var loadId='aiLoading'+Date.now();
+msgs.innerHTML+='<div class="msg b" id="'+loadId+'"><span style="display:flex;align-items:center;gap:6px"><span style="animation:spin 1s linear infinite">⟳</span> '+I18N[currentLang].loading+'</span></div>';
 msgs.scrollTop=msgs.scrollHeight;
 try{
-var ctx='You are a skincare expert for JOURYVEL brand. User is on a 7-day program with Glycolic, Retinol, PanOxyl, Vitamin C, SPF. ';
+var ctx='You are a skincare expert for JOURYVEL brand. User is on a 7-day program with Glycolic, Retinol, PanOxyl, Vitamin C, SPF. Answer in Arabic with clear formatting: use • for bullets, **text** for bold, keep it short and practical.';
 var ans=await callFreeAI(ctx+q+' Answer briefly in Arabic.');
-var load=document.getElementById('aiLoading');
-if(load)load.outerHTML='<div class="msg b">'+ans+'</div>';
+var cleanAns=formatAIResponse(ans);
+var load=document.getElementById(loadId);
+if(load)load.outerHTML='<div class="msg b" dir="rtl" lang="ar">'+cleanAns+'</div>';
 msgs.scrollTop=msgs.scrollHeight;
 }catch(e){
-var load=document.getElementById('aiLoading');
+var load=document.getElementById(loadId);
 if(load)load.outerHTML='<div class="msg b">⚠️ '+e.message+'</div>';
 }
+}
+function formatAIResponse(text){
+// Format the response nicely for RTL Arabic
+if(!text)return '';
+// Convert markdown-like **bold** to <strong>
+text=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+// Convert numbered lists to proper format
+text=text.replace(/(\d+)[\.)] (.*?)(?=\n|$)/g,'<div style="margin:4px 0"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;margin-left:6px;vertical-align:middle">$1</span> $2</div>');
+// Convert bullet points
+text=text.replace(/• (.*?)(?=\n|$)/g,'<div style="margin:3px 0;padding-right:12px;position:relative">◆ $1</div>');
+// Convert newlines to <br>
+text=text.replace(/\n/g,'<br>');
+return text;
 }
 function extractScore(t,i){
 var m=t.match(/Score:(\d+)/i);
