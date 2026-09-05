@@ -2,82 +2,172 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0d1b2a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JOURYVEL">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="JOURYVEL Luxury 7-Day Skincare Program - Interactive swipeable day cards with progress tracking">
+<link rel="manifest" data-inline="manifest">
 <title>JOURYVEL Skincare Program</title>
 <style>
+:root{
+  --bg:#faf6ed;
+  --bg2:#f5e6c8;
+  --card:#fff;
+  --ink:#0d1b2a;
+  --ink2:#1b263b;
+  --gold:#d4af37;
+  --gold2:#8b6914;
+  --gold3:#f4cf57;
+  --gold4:#f5e6c8;
+  --green:#22c55e;
+  --green2:#166534;
+  --orange:#f59e0b;
+  --orange2:#c2410c;
+  --purple:#a855f7;
+  --purple2:#6d28d9;
+  --red:#dc2626;
+  --red2:#991b1b;
+  --muted:#999;
+  --text:#555;
+  --line:rgba(212,175,55,.2);
+}
+[data-theme="dark"]{
+  --bg:#0a0f1a;
+  --bg2:#0d1b2a;
+  --card:#1b263b;
+  --ink:#f4cf57;
+  --ink2:#fff;
+  --gold:#f4cf57;
+  --gold2:#d4af37;
+  --gold3:#f4cf57;
+  --gold4:#2e4035;
+  --muted:#888;
+  --text:#ccc;
+  --line:rgba(212,175,55,.3);
+}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-serif;background:linear-gradient(180deg,#faf6ed 0%,#f5e6c8 100%);min-height:100vh;overflow-x:hidden;padding:0}
-.app{max-width:480px;margin:0 auto;padding:8px;min-height:100vh}
+html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);transition:background .4s,color .4s}
+.app{max-width:480px;margin:0 auto;padding:8px;height:100vh;display:flex;flex-direction:column;overflow:hidden}
 
-.hdr{background:linear-gradient(135deg,#0d1b2a 0%,#1b263b 50%,#2e4035 100%);color:#f4cf57;padding:20px 16px;border-radius:20px;text-align:center;margin-bottom:10px;box-shadow:0 8px 25px rgba(13,27,42,.4);border:2px solid #d4af37;position:relative;overflow:hidden}
-.hdr::before{content:'👑';position:absolute;top:6px;right:50%;transform:translateX(50%);font-size:18px;opacity:.3}
-.hdr h1{font-size:28px;font-weight:900;letter-spacing:3px;text-shadow:0 2px 4px rgba(212,175,55,.4);margin-bottom:4px;position:relative;z-index:1}
-.hdr p{font-size:10px;color:#f5e6c8;letter-spacing:2px;opacity:.9;position:relative;z-index:1}
-.hdr .or{color:#d4af37;margin-top:6px;font-size:10px;letter-spacing:2px;position:relative;z-index:1}
+.hdr{background:linear-gradient(135deg,#0d1b2a 0%,#1b263b 50%,#2e4035 100%);color:#f4cf57;padding:14px 16px;border-radius:18px;text-align:center;margin-bottom:8px;box-shadow:0 8px 25px rgba(13,27,42,.4);border:2px solid #d4af37;position:relative;flex-shrink:0}
+.hdr h1{font-size:24px;font-weight:900;letter-spacing:3px;text-shadow:0 2px 4px rgba(212,175,55,.4);margin-bottom:2px}
+.hdr p{font-size:9px;color:#f5e6c8;letter-spacing:2px;opacity:.9}
+.hdr .or{color:#d4af37;margin-top:4px;font-size:10px;letter-spacing:2px}
 
-.nav{display:flex;align-items:center;background:#fff;border-radius:14px;padding:6px;margin-bottom:10px;box-shadow:0 4px 15px rgba(0,0,0,.06);border:1px solid #d4af37}
-.nb{background:linear-gradient(135deg,#d4af37,#8b6914);color:#fff;border:none;width:38px;height:38px;border-radius:10px;font-size:18px;font-weight:700;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(212,175,55,.4)}
+.nav{display:flex;align-items:center;background:var(--card);border-radius:12px;padding:5px;margin-bottom:8px;box-shadow:0 4px 15px rgba(0,0,0,.06);border:1px solid var(--gold);flex-shrink:0}
+.nb{background:linear-gradient(135deg,#d4af37,#8b6914);color:#fff;border:none;width:36px;height:36px;border-radius:9px;font-size:16px;font-weight:700;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(212,175,55,.4)}
 .nb:active{transform:scale(.9)}
 .di{flex:1;text-align:center;padding:0 8px;min-width:0}
-.dn1{font-size:9px;color:#8b6914;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-.dn2{font-size:17px;font-weight:800;color:#0d1b2a;margin:2px 0;letter-spacing:.3px}
-.dn3{font-size:9px;color:#2e4035;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.dn1{font-size:8px;color:var(--gold2);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.dn2{font-size:16px;font-weight:800;color:var(--ink);margin:1px 0;letter-spacing:.3px}
+.dn3{font-size:9px;color:var(--green2);font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+[data-theme="dark"] .dn3{color:#22c55e}
 
-.crd{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.1);margin-bottom:10px;border:1px solid rgba(212,175,55,.2);transition:transform .3s ease,opacity .3s ease;position:relative}
+.prog{height:4px;background:rgba(212,175,55,.15);border-radius:2px;margin-bottom:8px;overflow:hidden;flex-shrink:0}
+.progF{height:100%;background:linear-gradient(to right,var(--gold),var(--gold2));border-radius:2px;transition:width .5s ease;box-shadow:0 0 8px rgba(212,175,55,.5)}
+
+.crd{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.1);margin-bottom:8px;border:1px solid var(--line);transition:transform .3s ease,opacity .3s ease;position:relative;flex:1;display:flex;flex-direction:column;min-height:0}
 .crd.sw{transition:none}
 .crd.sl{transform:translateX(-110%);opacity:0}
 .crd.sr{transform:translateX(110%);opacity:0}
 
-.ch{padding:20px;color:#fff;text-align:center;border-bottom:3px solid #d4af37;position:relative;overflow:hidden}
+.ch{padding:18px;color:#fff;text-align:center;border-bottom:3px solid #d4af37;position:relative;overflow:hidden;flex-shrink:0}
 .ch::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at top,rgba(255,255,255,.15) 0%,transparent 60%);pointer-events:none}
 .ch.g{background:linear-gradient(135deg,#c2410c 0%,#f59e0b 100%)}
 .ch.r{background:linear-gradient(135deg,#6d28d9 0%,#a855f7 100%)}
 .ch.rec{background:linear-gradient(135deg,#166534 0%,#22c55e 100%)}
 .ch.p{background:linear-gradient(135deg,#991b1b 0%,#dc2626 100%)}
-.ch .ic{font-size:36px;margin-bottom:4px;position:relative;z-index:1}
-.ch .dn{font-size:24px;font-weight:800;letter-spacing:.5px;position:relative;z-index:1}
-.ch .dt{display:inline-block;background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:4px 14px;border-radius:14px;font-size:10px;font-weight:700;letter-spacing:1.5px;margin-top:6px;position:relative;z-index:1;text-transform:uppercase}
+.ch .ic{font-size:32px;margin-bottom:2px;position:relative;z-index:1}
+.ch .dn{font-size:22px;font-weight:800;letter-spacing:.5px;position:relative;z-index:1}
+.ch .dt{display:inline-block;background:rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:3px 12px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:1.5px;margin-top:5px;position:relative;z-index:1;text-transform:uppercase}
+.ch .ct{margin-top:8px;font-size:10px;opacity:.95;position:relative;z-index:1;font-weight:600}
 
-.tbs{display:flex;background:linear-gradient(to bottom,#faf6ed 0%,#fff 100%);border-bottom:1px solid rgba(212,175,55,.2)}
-.tb{flex:1;padding:14px 8px;background:transparent;border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;color:#999;position:relative;transition:color .3s}
-.tb.a{color:#0d1b2a}
-.tb.a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,#d4af37,#8b6914)}
-.tb .ti{margin-left:4px;font-size:16px}
-.tb .tc{background:rgba(212,175,55,.2);color:#8b6914;padding:1px 7px;border-radius:6px;font-size:9px;font-weight:700;margin-right:4px}
-.tb.a .tc{background:#d4af37;color:#fff}
+.tbs{display:flex;background:linear-gradient(to bottom,var(--bg) 0%,var(--card) 100%);border-bottom:1px solid var(--line);flex-shrink:0}
+.tb{flex:1;padding:12px 6px;background:transparent;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;color:var(--muted);position:relative;transition:color .3s}
+.tb.a{color:var(--ink)}
+.tb.a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--gold2))}
+.tb .ti{margin-left:3px;font-size:14px}
+.tb .tc{background:rgba(212,175,55,.2);color:var(--gold2);padding:1px 6px;border-radius:6px;font-size:8px;font-weight:700;margin-right:3px}
+.tb.a .tc{background:var(--gold);color:#fff}
+.tb .td{background:var(--green);color:#fff;width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9px;margin-right:3px;vertical-align:middle;animation:pop .4s}
+@keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
 
-.tc2{display:none;padding:14px}
+.tc2{display:none;padding:12px;overflow-y:auto;flex:1;min-height:0;-webkit-overflow-scrolling:touch}
 .tc2.a{display:block;animation:fi .4s ease}
+.tc2::-webkit-scrollbar{width:4px}
+.tc2::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-.gd{display:flex;align-items:center;margin:10px 0}
-.gd::before,.gd::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent)}
-.gd span{margin:0 6px;color:#d4af37;font-size:11px}
+.gd{display:flex;align-items:center;margin:8px 0}
+.gd::before,.gd::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.gd span{margin:0 5px;color:var(--gold);font-size:10px}
 
 .st{list-style:none;counter-reset:st}
-.st li{padding:10px 12px;margin-bottom:8px;background:linear-gradient(135deg,#faf6ed 0%,#fffbf0 100%);border-radius:10px;font-size:12px;line-height:1.5;border-right:3px solid #d4af37;box-shadow:0 2px 6px rgba(0,0,0,.04);position:relative;counter-increment:st;padding-left:30px}
-.st li::before{content:counter(st);position:absolute;left:8px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,#d4af37,#8b6914);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;box-shadow:0 2px 4px rgba(212,175,55,.3)}
-.sp{font-weight:800;color:#0d1b2a;font-size:13px;display:block;margin-bottom:2px}
-.su{font-size:11px;color:#555;display:block;line-height:1.5}
-.su b{color:#8b6914;font-weight:800}
-.sm{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap}
-.mt{padding:2px 6px;border-radius:5px;font-size:9px;font-weight:700;display:inline-block}
+.st li{padding:8px 10px 8px 36px;margin-bottom:6px;background:linear-gradient(135deg,var(--bg) 0%,var(--bg2) 100%);border-radius:10px;font-size:11px;line-height:1.4;border-right:3px solid var(--gold);box-shadow:0 2px 6px rgba(0,0,0,.04);position:relative;counter-increment:st;transition:all .3s;cursor:pointer}
+.st li.done{opacity:.55;text-decoration:line-through;background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(34,197,94,.05));border-right-color:var(--green)}
+.st li.done::before{background:linear-gradient(135deg,var(--green),var(--green2))}
+.st li:not(.done)::before{content:counter(st);position:absolute;left:8px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;box-shadow:0 2px 4px rgba(212,175,55,.3);transition:background .3s}
+.st li::after{content:'☐';position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;font-size:14px;color:var(--gold);text-align:center;line-height:18px;display:none}
+.st li:not(.done)::after{display:block}
+.st li.done::after{display:none}
+.st li.done::before{content:'✓';position:absolute;left:8px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;box-shadow:0 2px 4px rgba(34,197,94,.4)}
+.st li:active{transform:scale(.98)}
+.sp{font-weight:800;color:var(--ink);font-size:12px;display:block;margin-bottom:2px}
+.su{font-size:10px;color:var(--text);display:block;line-height:1.4}
+.su b{color:var(--gold2);font-weight:800}
+[data-theme="dark"] .su b{color:var(--gold3)}
+.sm{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
+.mt{padding:2px 5px;border-radius:5px;font-size:8px;font-weight:700;display:inline-block}
 .mt.a{background:#fce7f3;color:#9f1239}
 .mt.t{background:#dbeafe;color:#1e40af}
 .mt.w{background:#d1fae5;color:#065f46}
 .mt.n{background:#fef3c7;color:#92400e}
 
-.wrn{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fecaca;border-right:3px solid #dc2626;padding:10px 12px;border-radius:10px;margin-top:10px;font-size:11px;color:#7f1d1d;line-height:1.6}
-.wrn b{color:#991b1b}
+.wrn{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fecaca;border-right:3px solid var(--red);padding:8px 10px;border-radius:8px;margin-top:8px;font-size:10px;color:#7f1d1d;line-height:1.5}
+.wrn b{color:var(--red2)}
 
-.ind{display:flex;justify-content:center;gap:5px;margin-top:12px}
-.ii{width:7px;height:7px;border-radius:50%;background:rgba(212,175,55,.3);cursor:pointer;transition:all .3s}
-.ii.a{background:#d4af37;width:24px;border-radius:4px;box-shadow:0 0 8px rgba(212,175,55,.5)}
+.ind{display:flex;justify-content:center;gap:4px;margin:8px 0;flex-shrink:0}
+.ii{width:6px;height:6px;border-radius:50%;background:rgba(212,175,55,.3);cursor:pointer;transition:all .3s}
+.ii.a{background:var(--gold);width:20px;border-radius:3px;box-shadow:0 0 6px rgba(212,175,55,.5)}
+.ii.done{background:var(--green)}
 
-.sh{text-align:center;margin-top:10px;font-size:9px;color:#8b6914;letter-spacing:1px;font-weight:600}
+.fab{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(212,175,55,.5);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center;transition:transform .3s}
+.fab:active{transform:scale(.9)}
+.fab2{position:fixed;bottom:calc(76px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1b263b,#0d1b2a);color:var(--gold3);border:2px solid var(--gold);box-shadow:0 6px 18px rgba(0,0,0,.3);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center;transition:transform .3s}
+.fab2:active{transform:scale(.9)}
+.fab3{position:fixed;bottom:calc(132px + env(safe-area-inset-bottom));left:20px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#166534);color:#fff;border:2px solid #fff;box-shadow:0 6px 18px rgba(34,197,94,.5);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center;transition:transform .3s}
+.fab3:active{transform:scale(.9)}
 
-.ft{text-align:center;margin-top:14px;padding:12px;background:linear-gradient(135deg,#0d1b2a 0%,#1b263b 100%);color:#f5e6c8;border-radius:14px;font-size:9px;line-height:1.6;border:1px solid #d4af37}
-.ft .fb{color:#f4cf57;font-weight:700;letter-spacing:2px;margin-top:4px;font-size:11px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;animation:fi2 .3s}
+.modal.show{display:flex}
+@keyframes fi2{from{opacity:0}to{opacity:1}}
+.mbox{background:var(--card);border-radius:18px;padding:20px;max-width:400px;width:100%;max-height:80vh;overflow-y:auto;border:2px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.5);animation:pop2 .4s}
+@keyframes pop2{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.mbox h3{color:var(--ink);font-size:18px;margin-bottom:12px;text-align:center;font-weight:800}
+.mbox p{font-size:12px;line-height:1.6;color:var(--text);margin-bottom:10px}
+.mbox .item{padding:10px;background:var(--bg);border-radius:8px;margin-bottom:6px;border-right:3px solid var(--gold)}
+.mbox .item b{color:var(--ink);font-size:12px;display:block;margin-bottom:2px}
+.mbox .item span{font-size:10px;color:var(--text);line-height:1.4;display:block}
+.mbtn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:none;border-radius:10px;font-family:inherit;font-size:13px;font-weight:700;margin-top:8px;cursor:pointer;box-shadow:0 4px 12px rgba(212,175,55,.4)}
+.mbtn:active{transform:scale(.97)}
+.mbtn.s{border:1px solid var(--line);background:var(--card);color:var(--ink)}
+
+.celeb{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);pointer-events:none}
+.celeb.show{display:flex;animation:fi2 .3s}
+.celeb .cb{text-align:center;color:#fff;animation:pop2 .5s}
+.celeb .emo{font-size:80px;margin-bottom:10px;animation:beat 1s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.celeb .tx{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.celeb .sx{font-size:13px;opacity:.9}
+
+.conf{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(100px);background:linear-gradient(135deg,var(--ink),var(--ink2));color:var(--gold3);padding:10px 18px;border-radius:22px;font-size:12px;font-weight:700;box-shadow:0 8px 25px rgba(0,0,0,.3);z-index:150;transition:transform .4s cubic-bezier(.34,1.56,.64,1);border:1px solid var(--gold);pointer-events:none}
+.conf.show{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:380px){.hdr h1{font-size:20px}.ch .dn{font-size:18px}.st li{padding:7px 9px 7px 32px;font-size:10px}}
 </style>
 </head>
 <body>
@@ -88,19 +178,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 <div class="or">✦ ✦ ✦</div>
 </div>
 <div class="nav">
-<button class="nb" id="pb" onclick="prev()">→</button>
+<button class="nb" onclick="prev()">→</button>
 <div class="di">
 <div class="dn1" id="d1">اليوم 1 من 7</div>
 <div class="dn2" id="d2">السبت</div>
 <div class="dn3" id="d3">GLYCOLIC</div>
 </div>
-<button class="nb" id="nb" onclick="next()">←</button>
+<button class="nb" onclick="next()">←</button>
 </div>
+<div class="prog"><div class="progF" id="progF"></div></div>
 <div class="crd" id="crd">
 <div class="ch g" id="ch">
 <div class="ic" id="ic">🍊</div>
 <div class="dn" id="dn">السبت</div>
 <div class="dt" id="dt">GLYCOLIC</div>
+<div class="ct" id="ct"></div>
 </div>
 <div class="tbs">
 <button class="tb a" data-t="am" onclick="tab('am')"><span class="ti">☀️</span>صباحاً<span class="tc" id="ac">4</span></button>
@@ -117,15 +209,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-s
 </div>
 </div>
 <div class="ind" id="ind"></div>
-<div class="sh">← اسحبي يميناً أو يساراً · اضغطي على التابات →</div>
-<div class="ft">
-<div>المصادر الرسمية 2026</div>
-<div class="fb">CRAFTED IN MOROCCO</div>
 </div>
-</div>
+<button class="fab" onclick="openWhy()" title="لماذا هذه المنتجات؟">💡</button>
+<button class="fab2" onclick="openInstall()" id="iFab" style="display:none" title="ثبت التطبيق">📲</button>
+<button class="fab3" onclick="toggleTheme()" title="تبديل الوضع">🌙</button>
+<div class="conf" id="conf">✓ تم الحفظ</div>
+<div class="modal" id="whyM"><div class="mbox" id="whyB"></div></div>
+<div class="modal" id="instM"><div class="mbox" id="instB"></div></div>
+<div class="celeb" id="celeb"><div class="cb"><div class="emo">✨</div><div class="tx" id="ctx"></div><div class="sx" id="csx"></div></div></div>
 <script>
 var D=[
-{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",
+{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",why:"Glycolic Acid يقشّر الطبقة العليا ويفتح البشرة. مرتين أسبوعياً كافية لنتائج واضحة دون تهييج.",
 am:[
 {p:"CeraVe Hydrating Cleanser",u:"بللي وجهك · دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["مرة/يوم","n"]]},
 {p:"Aurelia Vitamin C 15% Serum",u:"<b>1 بخة</b> على جلد رطب · ربتي · انتظري 30-60 ث",m:[["1 بخة","a"],["صباحاً","n"],["pH 2.5-3.5","t"]]},
@@ -137,7 +231,7 @@ pm:[
 {p:"The Ordinary Glycolic 7%",u:"قطنة · <b>15-20 د</b> · جلد جاف · اشطري",m:[["قطنة","a"],["15-20 د","t"],["تجنبي العينين","w"]]},
 {p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
 ]},
-{n:"الأحد",t:"RETINOL",c:"r",i:"✨",
+{n:"الأحد",t:"RETINOL",c:"r",i:"✨",why:"Retinol يعزز تجدد الخلايا ويقلل التجاعيد. مرتين أسبوعياً بداية آمنة.",
 am:[
 {p:"CeraVe Cleanser",u:"دلكي 30-60 ث · اشطري · جففي",m:[["حبة البازلاء","a"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · ربتي · 30-60 ث",m:[["1 بخة","a"],["صباحاً","n"]]},
@@ -150,7 +244,7 @@ pm:[
 {p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
 ],
 w:"Retinol (0.1%) على عظمة الحجاج <b>فقط</b>. ابتعدي عن خط الرموش. مساءً فقط."},
-{n:"الإثنين",t:"RECOVERY",c:"rec",i:"🌿",
+{n:"الإثنين",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة للسماح للبشرة بإصلاح نفسها بعد Glycolic.",
 am:[
 {p:"Bioderma Pigmentbio",u:"دلكي <b>30 ث</b> على جلد مبلل · اشطري",m:[["حبة البازلاء","a"],["30 ث","t"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"]]},
@@ -161,7 +255,7 @@ pm:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"]]},
 {p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · استعادة الحاجز",m:[["سميكة","a"]]}
 ]},
-{n:"الثلاثاء",t:"GLYCOLIC #2",c:"g",i:"🍊",
+{n:"الثلاثاء",t:"GLYCOLIC #2",c:"g",i:"🍊",why:"الجلسة الثانية من Glycolic. البشرة أصبحت متحملة الآن.",
 am:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · ربتي",m:[["1 بخة","a"]]},
@@ -173,7 +267,7 @@ pm:[
 {p:"The Ordinary Glycolic 7%",u:"قطنة · <b>15-20 د</b> · اشطري",m:[["قطنة","a"],["15-20 د","t"]]},
 {p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
 ]},
-{n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",
+{n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة بين جلستي Glycolic والثانية Retinol.",
 am:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · ربتي",m:[["1 بخة","a"]]},
@@ -184,7 +278,7 @@ pm:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"]]},
 {p:"CeraVe Cream",u:"<b>طبقة سميكة</b> · إصلاح",m:[["سميكة","a"]]}
 ]},
-{n:"الخميس",t:"RETINOL #2",c:"r",i:"✨",
+{n:"الخميس",t:"RETINOL #2",c:"r",i:"✨",why:"الجلسة الثانية من Retinol. نلاحظ فرقاً في النعومة.",
 am:[
 {p:"Bioderma Pigmentbio",u:"دلكي 30 ث · اشطري",m:[["حبة البازلاء","a"],["30 ث","t"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"]]},
@@ -196,7 +290,7 @@ pm:[
 {p:"Some By Mi Retinol",u:"<b>نصف حبة أرز</b> · عظمة الحجاج",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"]]},
 {p:"CeraVe Cream",u:"طبقة متوسطة",m:[["متوسطة","a"]]}
 ]},
-{n:"الجمعة",t:"PANOXYL 10%",c:"p",i:"🔥",
+{n:"الجمعة",t:"PANOXYL 10%",c:"p",i:"🔥",why:"Benzoyl Peroxide 10% يحارب البكتيريا بعمق. مرة أسبوعياً للوجه كحد أقصى.",
 am:[
 {p:"CeraVe Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"]]},
 {p:"Aurelia Vitamin C",u:"1 بخة · صباحاً",m:[["1 بخة","a"]]},
@@ -210,13 +304,82 @@ pm:[
 ],
 w:"PanOxyl 10% عالي التركيز. <b>آخر يوم في الأسبوع</b>."}
 ];
-var c=0,ct='am';
+var c=0,ct='am',prog={},deferredPrompt=null,isOnline=true;
+function getKey(d,s,i){return d+'-'+s+'-'+i}
+function loadProg(){
+try{var p=localStorage.getItem('jouryvel-prog');prog=p?JSON.parse(p):{};}catch(e){prog={}}
+}
+function saveProg(){try{localStorage.setItem('jouryvel-prog',JSON.stringify(prog));}catch(e){}}
+function totalSteps(){var t=0;for(var i=0;i<D.length;i++){t+=D[i].am.length+D[i].pm.length}return t}
+function doneSteps(){var t=0;for(var k in prog){if(prog[k])t++}return t}
+function isDayDone(d){var day=D[d];for(var i=0;i<day.am.length;i++){if(!prog[getKey(d,'am',i)])return false}for(var i=0;i<day.pm.length;i++){if(!prog[getKey(d,'pm',i)])return false}return true}
 function tab(t){
 ct=t;
 var bs=document.querySelectorAll('.tb');
-for(var i=0;i<bs.length;i++){if(bs[i].dataset.t===t){bs[i].className='tb a';}else{bs[i].className='tb';}}
+for(var i=0;i<bs.length;i++){bs[i].className=bs[i].dataset.t===t?'tb a':'tb'}
 document.getElementById('am').className=t==='am'?'tc2 a':'tc2';
 document.getElementById('pm').className=t==='pm'?'tc2 a':'tc2';
+}
+function makeLi(d,s,i,st){
+var k=getKey(d,s,i);
+var isDone=!!prog[k];
+var html='<li class="'+(isDone?'done':'')+'" data-k="'+k+'" onclick="toggleStep(this)">';
+html+='<span class="sp">'+st.p+'</span>';
+html+='<span class="su">'+st.u+'</span>';
+html+='<div class="sm">'+st.m.map(function(m){return '<span class="mt '+m[1]+'">'+m[0]+'</span>'}).join('')+'</div>';
+html+='</li>';
+return html;
+}
+function toggleStep(el){
+var k=el.dataset.k;
+if(prog[k]){delete prog[k];el.classList.remove('done')}
+else{prog[k]=1;el.classList.add('done');showConf('✓ '+(el.querySelector('.sp').textContent).substring(0,20));checkDayComplete()}
+saveProg();
+updateProg();
+updateIndicators();
+updateTabCounts();
+}
+function showConf(t){
+var c=document.getElementById('conf');
+c.textContent=t;
+c.classList.add('show');
+setTimeout(function(){c.classList.remove('show')},1500);
+}
+function checkDayComplete(){
+if(isDayDone(c)){celebrate()}
+}
+function celebrate(){
+var d=D[c];
+var c2=document.getElementById('celeb');
+document.getElementById('ctx').textContent='أحسنتِ! 🎉';
+document.getElementById('csx').textContent='أكملتِ روتين '+d.n;
+c2.classList.add('show');
+setTimeout(function(){c2.classList.remove('show')},3000);
+}
+function updateProg(){
+var done=doneSteps(),total=totalSteps();
+var pct=total>0?Math.round((done/total)*100):0;
+document.getElementById('progF').style.width=pct+'%';
+}
+function updateIndicators(){
+var ih='';
+for(var i=0;i<D.length;i++){
+var cls='ii';
+if(i===c)cls+=' a';
+else if(isDayDone(i))cls+=' done';
+ih+='<div class="'+cls+'" onclick="go('+i+')"></div>';
+}
+document.getElementById('ind').innerHTML=ih;
+}
+function updateTabCounts(){
+var d=D[c];
+var amDone=0,pmDone=0;
+for(var i=0;i<d.am.length;i++){if(prog[getKey(c,'am',i)])amDone++}
+for(var i=0;i<d.pm.length;i++){if(prog[getKey(c,'pm',i)])pmDone++}
+var ac=document.getElementById('ac'),pc=document.getElementById('pc');
+ac.textContent=amDone+'/'+d.am.length;
+pc.textContent=pmDone+'/'+d.pm.length;
+if(amDone===d.am.length)ac.insertAdjacentHTML('afterend','<span class="td">✓</span>');
 }
 function render(){
 var d=D[c];
@@ -227,42 +390,88 @@ document.getElementById('dt').textContent=d.t;
 document.getElementById('d1').textContent='اليوم '+(c+1)+' من 7';
 document.getElementById('d2').textContent=d.n;
 document.getElementById('d3').textContent=d.t;
-document.getElementById('ac').textContent=d.am.length;
-document.getElementById('pc').textContent=d.pm.length;
-document.getElementById('als').innerHTML=d.am.map(function(s){
-return '<li><span class="sp">'+s.p+'</span><span class="su">'+s.u+'</span><div class="sm">'+s.m.map(function(m){return '<span class="mt '+m[1]+'">'+m[0]+'</span>';}).join('')+'</div></li>';
-}).join('');
-document.getElementById('pls').innerHTML=d.pm.map(function(s){
-return '<li><span class="sp">'+s.p+'</span><span class="su">'+s.u+'</span><div class="sm">'+s.m.map(function(m){return '<span class="mt '+m[1]+'">'+m[0]+'</span>';}).join('')+'</div></li>';
-}).join('');
+document.getElementById('ct').textContent=d.why||'';
+document.getElementById('als').innerHTML=d.am.map(function(s,i){return makeLi(c,'am',i,s)}).join('');
+document.getElementById('pls').innerHTML=d.pm.map(function(s,i){return makeLi(c,'pm',i,s)}).join('');
 var pw=document.getElementById('pw');
-if(d.w){pw.innerHTML='⚠️ '+d.w;pw.style.display='block';}else{pw.style.display='none';}
-var ih='';
-for(var i=0;i<D.length;i++){ih+='<div class="ii '+(i===c?'a':'')+'" onclick="go('+i+')"></div>';}
-document.getElementById('ind').innerHTML=ih;
+if(d.w){pw.innerHTML='⚠️ '+d.w;pw.style.display='block'}else{pw.style.display='none'}
+updateTabCounts();
+updateProg();
+updateIndicators();
 }
-function prev(){
-var c2=document.getElementById('crd');c2.className='crd sw sr';
-setTimeout(function(){c=(c-1+D.length)%D.length;render();tab('am');c2.className='crd';},280);
-}
-function next(){
-var c2=document.getElementById('crd');c2.className='crd sw sl';
-setTimeout(function(){c=(c+1)%D.length;render();tab('am');c2.className='crd';},280);
-}
-function go(i){
-var dir=i>c?'l':'r';
-var c2=document.getElementById('crd');c2.className='crd sw '+(dir==='l'?'sl':'sr');
-setTimeout(function(){c=i;render();tab('am');c2.className='crd';},280);
-}
-var sx=0;
-var cc=document.getElementById('crd');
-cc.addEventListener('touchstart',function(e){sx=e.changedTouches[0].screenX;},{passive:true});
-cc.addEventListener('touchend',function(e){var d=e.changedTouches[0].screenX-sx;if(Math.abs(d)>50){d>0?prev():next();}},{passive:true});
+function prev(){var c2=document.getElementById('crd');c2.className='crd sw sr';setTimeout(function(){c=(c-1+D.length)%D.length;render();tab('am');c2.className='crd'},280)}
+function next(){var c2=document.getElementById('crd');c2.className='crd sw sl';setTimeout(function(){c=(c+1)%D.length;render();tab('am');c2.className='crd'},280)}
+function go(i){var dir=i>c?'l':'r';var c2=document.getElementById('crd');c2.className='crd sw '+(dir==='l'?'sl':'sr');setTimeout(function(){c=i;render();tab('am');c2.className='crd'},280)}
+var sx=0,cc=document.getElementById('crd');
+cc.addEventListener('touchstart',function(e){sx=e.changedTouches[0].screenX},{passive:true});
+cc.addEventListener('touchend',function(e){var d=e.changedTouches[0].screenX-sx;if(Math.abs(d)>50){d>0?prev():next()}},{passive:true});
 var mx=0,dr=false;
-cc.addEventListener('mousedown',function(e){mx=e.clientX;dr=true;});
-cc.addEventListener('mouseup',function(e){if(!dr)return;dr=false;var d=e.clientX-mx;if(Math.abs(d)>50){d>0?prev():next();}});
-document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')prev();if(e.key==='ArrowLeft')next();});
+cc.addEventListener('mousedown',function(e){mx=e.clientX;dr=true});
+cc.addEventListener('mouseup',function(e){if(!dr)return;dr=false;var d=e.clientX-mx;if(Math.abs(d)>50){d>0?prev():next()}});
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')prev();if(e.key==='ArrowLeft')next()});
+function toggleTheme(){
+var b=document.body;
+if(b.dataset.theme==='dark'){b.dataset.theme='';try{localStorage.setItem('jouryvel-theme','light')}catch(e){}}
+else{b.dataset.theme='dark';try{localStorage.setItem('jouryvel-theme','dark')}catch(e){}}
+}
+function openWhy(){
+var d=D[c];
+var h='<h3>💡 لماذا '+d.t+'؟</h3>';
+h+='<p>'+d.why+'</p>';
+h+='<div class="item"><b>🧴 المنتجات المستخدمة</b><span>'+[].concat(d.am.map(function(s){return s.p}),d.pm.map(function(s){return s.p})).filter(function(v,i,a){return a.indexOf(v)===i}).join(' · ')+'</span></div>';
+h+='<div class="item"><b>⏰ التوقيت</b><span>'+(d.c==='rec'?'صباحاً ومساءً':d.c==='p'?'صباحاً (PM حرج)':'صباحاً Vitamin C · مساءً Active')+'</span></div>';
+h+='<div class="item"><b>🎯 الهدف</b><span>'+(d.c==='g'?'تقشير + تفتيح':d.c==='r'?'تجديد خلوي + Anti-aging':d.c==='rec'?'إصلاح حاجز البشرة':'مكافحة حبوب عميقة')+'</span></div>';
+h+='<button class="mbtn" onclick="closeM(\'whyM\')">إغلاق</button>';
+document.getElementById('whyB').innerHTML=h;
+document.getElementById('whyM').classList.add('show');
+}
+function closeM(id){document.getElementById(id).classList.remove('show')}
+document.querySelectorAll('.modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('show')})});
+function openInstall(){
+if(deferredPrompt){
+deferredPrompt.prompt();
+deferredPrompt.userChoice.then(function(r){if(r.outcome==='accepted')showConf('✓ تم التثبيت!');deferredPrompt=null;document.getElementById('iFab').style.display='none'});
+}else{
+var h='<h3>📲 ثبتي التطبيق</h3>';
+h+='<p><b>على iPhone (Safari):</b><br>1. اضغطي زر المشاركة <span style="color:#22c55e">⬆</span><br>2. اختاري "إضافة إلى الشاشة الرئيسية"</p>';
+h+='<p><b>على Android (Chrome):</b><br>1. اضغطي القائمة <span style="color:#22c55e">⋮</span><br>2. اختاري "إضافة إلى الشاشة الرئيسية"</p>';
+h+='<button class="mbtn" onclick="closeM(\'instM\')">فهمت</button>';
+document.getElementById('instB').innerHTML=h;
+document.getElementById('instM').classList.add('show');
+}
+}
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPrompt=e;document.getElementById('iFab').style.display='flex'});
+if('serviceWorker' in navigator){
+var swCode="self.addEventListener('install',function(e){self.skipWaiting()});self.addEventListener('fetch',function(e){e.respondWith(fetch(e.request).catch(function(){return new Response('Offline')}))})";
+var swBlob=new Blob([swCode],{type:'application/javascript'});
+var swUrl=URL.createObjectURL(swBlob);
+navigator.serviceWorker.register(swUrl).catch(function(){});
+}
+(function(){
+var m=document.createElement('link');
+m.rel='manifest';
+m.href='data:application/manifest+json;charset=utf-8,'+encodeURIComponent(JSON.stringify({name:'JOURYVEL Skincare',short_name:'JOURYVEL',start_url:'/',display:'standalone',background_color:'#faf6ed',theme_color:'#0d1b2a',orientation:'portrait',icons:[{src:'data:image/svg+xml;base64,'+btoa('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" fill="#0d1b2a"/><text x="96" y="115" font-size="80" text-anchor="middle" fill="#d4af37" font-family="serif" font-weight="900">J</text></svg>'),sizes:'192x192',type:'image/svg+xml'}]}));
+document.head.appendChild(m);
+})();
+(function(){try{var t=localStorage.getItem('jouryvel-theme');if(t==='dark')document.body.dataset.theme='dark'}catch(e){}})();
+function checkTime(){
+var h=new Date().getHours();
+var banner=document.getElementById('ct');
+var d=D[c];
+if(h>=5&&h<12){
+if(ct==='am')banner.textContent='🌅 الآن وقت الصباح — طبقي روتين AM';
+}else if(h>=12&&h<18){
+banner.textContent='☀️ بعد الظهر — حافظي على SPF 50+';
+}else if(h>=18&&h<22){
+if(ct==='pm')banner.textContent='🌙 الآن وقت المساء — طبقي روتين PM';
+}else{
+banner.textContent='😴 وقت النوم — روتين PM مثالي الآن';
+}
+}
+loadProg();
 render();
+checkTime();
+setInterval(checkTime,60000);
 </script>
 </body>
 </html>
