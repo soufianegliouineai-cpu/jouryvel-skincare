@@ -743,32 +743,59 @@ if(m&&m[1])return m[1].trim().substring(0,150);
 return t.substring(0,150);
 }
 async function callFreeAI(prompt){
-// PRIMARY: OpenRouter via Vercel Serverless proxy (best models, your API key)
+// Strategy: 3-tier cascade
+// Tier 1: OpenRouter free models (anonymous, browser-side)
+// Tier 2: LLM7.io free models
+// Tier 3: Pollinations fallback (text-only)
+
+// TIER 1: OpenRouter with smart cascade
+var orModels=[
+'openai/gpt-oss-120b:free',
+'meta-llama/llama-3.3-70b-instruct:free',
+'google/gemma-2-9b-it:free',
+'mistralai/mistral-7b-instruct:free',
+'qwen/qwen-2.5-72b-instruct:free',
+'google/gemini-2.0-flash-exp:free',
+'meta-llama/llama-3.2-3b-instruct:free',
+'nvidia/nemotron-nano-9b-v2:free',
+'mistralai/mistral-small-3.1-24b-instruct:free',
+'microsoft/phi-3-mini-128k-instruct:free',
+'huggingfaceh4/zephyr-7b-beta:free',
+'gryphe/mythomist-7b:free'
+];
+for(var i=0;i<orModels.length;i++){
 try{
 var ctrl=new AbortController();
-var t=setTimeout(function(){ctrl.abort()},30000);
-var resp=await fetch('/api/ai',{
+var t=setTimeout(function(){ctrl.abort()},20000);
+var resp=await fetch('https://openrouter.ai/api/v1/chat/completions',{
 method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({prompt:prompt}),
+headers:{
+'Content-Type':'application/json',
+'HTTP-Referer':'https://jouryvel-skincare.vercel.app',
+'X-Title':'JOURYVEL Skincare'
+},
+body:JSON.stringify({
+model:orModels[i],
+messages:[{role:'user',content:prompt}],
+max_tokens:500,
+temperature:0.7
+}),
 signal:ctrl.signal
 });
 clearTimeout(t);
-if(resp.ok){
+if(!resp.ok)continue;
 var data=await resp.json();
-if(data.success&&data.content){
-return data.content+' <small style="opacity:0.6;font-size:9px">['+data.model+']</small>';
+if(data.error)continue;
+if(data.choices&&data.choices[0]&&data.choices[0].message){
+var modelName=orModels[i].split('/')[1].split(':')[0];
+return data.choices[0].message.content+' <small style="opacity:0.5;font-size:9px;display:block;margin-top:4px">⚡ '+modelName+'</small>';
 }
+}catch(e){continue}
 }
-}catch(e){console.log('OpenRouter proxy error:',e)}
 
-// FALLBACK 1: LLM7.io free models
-var models=[
-{name:'GPT-OSS (OpenAI)',model:'gpt-oss'},
-{name:'Mistral Nemo',model:'mistral-Nemo-Instruct-2407'},
-{name:'Codestral',model:'codestral-latest'}
-];
-for(var i=0;i<models.length;i++){
+// TIER 2: LLM7.io fallback
+var llm7Models=['gpt-oss','mistral-Nemo-Instruct-2407','codestral-latest'];
+for(var i=0;i<llm7Models.length;i++){
 try{
 var ctrl=new AbortController();
 var t=setTimeout(function(){ctrl.abort()},15000);
@@ -776,7 +803,7 @@ var resp=await fetch('https://api.llm7.io/v1/chat/completions',{
 method:'POST',
 headers:{'Content-Type':'application/json'},
 body:JSON.stringify({
-model:models[i].model,
+model:llm7Models[i],
 messages:[{role:'user',content:prompt}],
 max_tokens:300,
 temperature:0.7
@@ -792,7 +819,8 @@ return data.choices[0].message.content;
 }
 }catch(e){continue}
 }
-throw new Error('لا يوجد اتصال. حاولي لاحقاً');
+
+throw new Error('كل الموديلات غير متاحة. حاولي بعد قليل.');
 }
 function openLang(){
 var h='<h3>🌍 اختر اللغة</h3>';
