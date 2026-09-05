@@ -743,11 +743,30 @@ if(m&&m[1])return m[1].trim().substring(0,150);
 return t.substring(0,150);
 }
 async function callFreeAI(prompt){
+// PRIMARY: OpenRouter via Vercel Serverless proxy (best models, your API key)
+try{
+var ctrl=new AbortController();
+var t=setTimeout(function(){ctrl.abort()},30000);
+var resp=await fetch('/api/ai',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({prompt:prompt}),
+signal:ctrl.signal
+});
+clearTimeout(t);
+if(resp.ok){
+var data=await resp.json();
+if(data.success&&data.content){
+return data.content+' <small style="opacity:0.6;font-size:9px">['+data.model+']</small>';
+}
+}
+}catch(e){console.log('OpenRouter proxy error:',e)}
+
+// FALLBACK 1: LLM7.io free models
 var models=[
 {name:'GPT-OSS (OpenAI)',model:'gpt-oss'},
 {name:'Mistral Nemo',model:'mistral-Nemo-Instruct-2407'},
-{name:'Codestral',model:'codestral-latest'},
-{name:'Minimax M2.7',model:'minimax-m2.7'}
+{name:'Codestral',model:'codestral-latest'}
 ];
 for(var i=0;i<models.length;i++){
 try{
@@ -773,15 +792,7 @@ return data.choices[0].message.content;
 }
 }catch(e){continue}
 }
-try{
-var safePrompt=prompt.replace(/skincare|skin|cream|acne|beauty|cosmetic/gi,'care');
-var resp=await fetch('https://text.pollinations.ai/'+encodeURIComponent(safePrompt.substring(0,200)));
-if(resp.ok){
-var text=await resp.text();
-if(text&&text.length>10&&!text.includes('error'))return text;
-}
-}catch(e){}
-throw new Error('جاري المحاولة مرة أخرى...');
+throw new Error('لا يوجد اتصال. حاولي لاحقاً');
 }
 function openLang(){
 var h='<h3>🌍 اختر اللغة</h3>';
