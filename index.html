@@ -367,7 +367,7 @@ him:{id:'him',name:'الزوج',av:'👨',theme:'him'}
 };
 var PROGRAMS={
 her:[
-{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",why:"Glycolic Acid يقشّر الطبقة العليا. Niacinamide + Vitamin C صباحاً فقط.",
+{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",why:"Glycolic Acid يقشّر الطبقة العليا. Niacinamide + Vitamin C صباحاً ومساءً.",
 am:[
 {p:"CeraVe Hydrating Cleanser",u:"بللي وجهك · دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"Aurelia London Vitamin C 15%",u:"<b>1 بخة</b> على بشرة جافة · ربتي بلطف · انتظري 60 ث",m:[["1 بخة","a"],["بشرة جافة","t"],["▶ 60s","t"]]},
@@ -378,9 +378,10 @@ am:[
 pm:[
 {p:"CeraVe Hydrating Cleanser",u:"دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"The Ordinary Glycolic Acid 7%",u:"<b>قطنة</b> على الوجه والرقبة · <b>15-20 د</b> · لا تلمسي العينين",m:[["قطنة","a"],["15-20 د","t"],["تجنبي العينين","w"],["⏱ مؤقت","c"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة بعد Glycolic",m:[["متوسطة","a"],["▶ 30s","t"]]}
+{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> مساءً على الوجه بعد Glycolic",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
+{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة بعد Niacinamide",m:[["متوسطة","a"],["▶ 30s","t"]]}
 ]},
-{n:"الأحد",t:"RETINOL",c:"r",i:"✨",why:"Retinol مساءً فقط. صباحاً: Vitamin C + Niacinamide.",
+{n:"الأحد",t:"RETINOL",c:"r",i:"✨",why:"Retinol مساءً. صباحاً: Vitamin C + Niacinamide. مساءً: Niacinamide بعد 30 د.",
 am:[
 {p:"CeraVe Hydrating Cleanser",u:"دلكي 30-60 ث · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"Aurelia London Vitamin C 15%",u:"1 بخة على بشرة جافة · انتظري 60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
@@ -391,6 +392,7 @@ am:[
 pm:[
 {p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b> تماماً",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
 {p:"Some By Mi Retinol Intense Eye",u:"<b>نصف حبة أرز</b> على عظمة الحجاج فقط · ابتعدي 1 سم عن العين",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
+{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد 30 د من Retinol · يهدّئ البشرة",m:[["3-4 قطرات","a"],["بعد 30 د","t"],["▶ 30s","t"]]},
 {p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
 ],
 w:"⚠️ Retinol على عظمة الحجاج <b>فقط</b>. ابتعدي عن خط الرموش. مساءً فقط."},
@@ -419,6 +421,7 @@ am:[
 pm:[
 {p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
 {p:"The Ordinary Glycolic Acid 7%",u:"قطنة · <b>15-20 د</b> · اشطري",m:[["قطنة","a"],["15-20 د","t"],["⏱ مؤقت","c"]]},
+{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> مساءً بعد Glycolic",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
 {p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
 ]},
 {n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة. Niacinamide صباحاً + مساءً. Mela B3 للجسم.",
@@ -446,10 +449,11 @@ am:[
 pm:[
 {p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
 {p:"Some By Mi Retinol Intense Eye",u:"نصف حبة أرز على عظمة الحجاج",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
+{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد 30 د من Retinol",m:[["3-4 قطرات","a"],["بعد 30 د","t"],["▶ 30s","t"]]},
 {p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
 ],
 w:"⚠️ Retinol على عظمة الحجاج <b>فقط</b>."},
-{n:"الجمعة",t:"PANOXYL 10%",c:"p",i:"🔥",why:"Benzoyl Peroxide 10% يحارب البكتيريا. مرة أسبوعياً للوجه. صباحاً: Vitamin C + Niacinamide.",
+{n:"الجمعة",t:"PANOXYL 10%",c:"p",i:"🔥",why:"Benzoyl Peroxide 10% يحارب البكتيريا. مرة أسبوعياً. صباحاً: Vitamin C + Niacinamide.",
 am:[
 {p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
 {p:"Aurelia London Vitamin C 15%",u:"1 بخة صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
@@ -460,6 +464,7 @@ am:[
 pm:[
 {p:"⚠️ اختبار الرقبة",u:"جرّبي على رقبتك أولاً · انتظري 30 د",m:[["اختبار حساسية","t"]]},
 {p:"PanOxyl 10% Foaming Wash",u:"بللي الوجه · <b>دلكي 1-2 د</b> فقط · اشطري فوراً",m:[["حبة البازلاء","a"],["1-2 د","t"],["1× أسبوع","n"],["⏱ مؤقت","c"]]},
+{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد 30 د من PanOxyl · يهدّئ الاحمرار",m:[["3-4 قطرات","a"],["بعد 30 د","t"],["▶ 30s","t"]]},
 {p:"CeraVe Moisturizing Cream",u:"<b>طبقة سميكة جداً</b> · لإصلاح الجفاف",m:[["سميكة جداً","a"],["▶ 30s","t"]]}
 ],
 w:"⚠️ PanOxyl 10% <b>عالي التركيز</b>. آخر يوم في الأسبوع. رطبي كثيراً."}
