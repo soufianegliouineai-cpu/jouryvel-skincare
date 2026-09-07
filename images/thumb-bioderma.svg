@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+<defs>
+<linearGradient id="bgT10" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#f0fdf4;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#dcfce7;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="b10" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#f0fdf4;stop-opacity:1"/>
+<stop offset="50%" style="stop-color:#ffffff;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#bbf7d0;stop-opacity:1"/>
+</linearGradient>
+</defs>
+<rect width="80" height="80" fill="url(#bgT10)" rx="8"/>
+<path d="M 22 20 L 22 70 Q 22 75 27 75 L 53 75 Q 58 75 58 70 L 58 20 Q 58 16 54 16 L 26 16 Q 22 16 22 20 Z" fill="url(#b10)" stroke="#86efac" stroke-width="0.5"/>
+<rect x="24" y="2" width="32" height="16" rx="2" fill="#0c4a6e"/>
+<rect x="24" y="30" width="32" height="42" fill="white"/>
+<text x="40" y="40" text-anchor="middle" font-family="Arial" font-size="5" font-weight="bold" fill="#166534">BIODERMA</text>
+<text x="40" y="50" text-anchor="middle" font-family="Arial" font-size="5" fill="#15803d">Pigmentbio</text>
+<text x="40" y="60" text-anchor="middle" font-family="Arial" font-size="4" fill="#16a34a">Cleanser</text>
+<text x="40" y="68" text-anchor="middle" font-family="Arial" font-size="3" fill="#16a34a">500ml</text>
+</svg>

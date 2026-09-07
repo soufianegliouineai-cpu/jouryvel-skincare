@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+<defs>
+<linearGradient id="bg1" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="bottle1" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#1e40af;stop-opacity:1"/>
+<stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="cap1" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#0f172a;stop-opacity:1"/>
+</linearGradient>
+</defs>
+<rect width="200" height="240" fill="url(#bg1)"/>
+<!-- Bottle -->
+<rect x="60" y="80" width="80" height="140" rx="8" fill="url(#bottle1)" stroke="#1e3a8a" stroke-width="1"/>
+<!-- Cap -->
+<rect x="68" y="40" width="64" height="45" rx="4" fill="url(#cap1)"/>
+<rect x="68" y="35" width="64" height="8" rx="2" fill="#0f172a"/>
+<!-- Label -->
+<rect x="65" y="120" width="70" height="60" fill="white" rx="2"/>
+<text x="100" y="138" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#1e40af">CeraVe</text>
+<text x="100" y="150" text-anchor="middle" font-family="Arial" font-size="7" fill="#475569">Hydrating</text>
+<text x="100" y="160" text-anchor="middle" font-family="Arial" font-size="7" fill="#475569">Cleanser</text>
+<text x="100" y="172" text-anchor="middle" font-family="Arial" font-size="6" fill="#94a3b8">236 ml / 8 fl oz</text>
+<!-- M logo dots -->
+<circle cx="100" cy="100" r="3" fill="white"/>
+<circle cx="108" cy="100" r="3" fill="white"/>
+<circle cx="116" cy="100" r="3" fill="white"/>
+<!-- Highlight -->
+<rect x="65" y="85" width="8" height="130" fill="white" opacity="0.3" rx="3"/>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+<defs>
+<linearGradient id="bgT1" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="b1" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#1e40af;stop-opacity:1"/>
+<stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="c1" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#0f172a;stop-opacity:1"/>
+</linearGradient>
+</defs>
+<rect width="80" height="80" fill="url(#bgT1)" rx="8"/>
+<rect x="24" y="20" width="32" height="56" rx="3" fill="url(#b1)"/>
+<rect x="28" y="8" width="24" height="14" rx="2" fill="url(#c1)"/>
+<rect x="26" y="38" width="28" height="22" fill="white"/>
+<text x="40" y="49" text-anchor="middle" font-family="Arial" font-size="6" font-weight="bold" fill="#1e40af">CeraVe</text>
+<text x="40" y="57" text-anchor="middle" font-family="Arial" font-size="4" fill="#475569">Cleanser</text>
+</svg>

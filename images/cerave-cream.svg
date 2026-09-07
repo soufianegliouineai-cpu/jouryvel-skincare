@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+<defs>
+<linearGradient id="bg2" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="jar2" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#1e40af;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#0c1e3a;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="lid2" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#0f172a;stop-opacity:1"/>
+</linearGradient>
+</defs>
+<rect width="200" height="240" fill="url(#bg2)"/>
+<!-- Jar body -->
+<rect x="35" y="95" width="130" height="125" rx="8" fill="url(#jar2)"/>
+<!-- Lid -->
+<rect x="30" y="50" width="140" height="50" rx="4" fill="url(#lid2)"/>
+<rect x="30" y="50" width="140" height="8" fill="#0f172a"/>
+<!-- Label -->
+<rect x="45" y="130" width="110" height="80" fill="white" rx="2"/>
+<text x="100" y="155" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#1e40af">CeraVe</text>
+<text x="100" y="172" text-anchor="middle" font-family="Arial" font-size="9" fill="#475569">Moisturizing</text>
+<text x="100" y="184" text-anchor="middle" font-family="Arial" font-size="9" fill="#475569">Cream</text>
+<text x="100" y="200" text-anchor="middle" font-family="Arial" font-size="7" fill="#94a3b8">453 g / 16 oz</text>
+<!-- Highlight -->
+<rect x="38" y="98" width="10" height="120" fill="white" opacity="0.3" rx="3"/>
+<rect x="35" y="55" width="8" height="42" fill="white" opacity="0.3" rx="2"/>
+</svg>

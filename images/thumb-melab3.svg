@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+<defs>
+<linearGradient id="bgT9" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#fdf2f8;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#fce7f3;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="b9" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#f1f5f9;stop-opacity:1"/>
+<stop offset="50%" style="stop-color:#ffffff;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#cbd5e1;stop-opacity:1"/>
+</linearGradient>
+</defs>
+<rect width="80" height="80" fill="url(#bgT9)" rx="8"/>
+<rect x="22" y="16" width="36" height="60" rx="2" fill="url(#b9)" stroke="#94a3b8" stroke-width="0.5"/>
+<rect x="24" y="2" width="32" height="16" rx="2" fill="#0c0a09"/>
+<rect x="24" y="28" width="32" height="46" fill="white"/>
+<text x="40" y="36" text-anchor="middle" font-family="Arial" font-size="4" font-weight="bold" fill="#831843">LA ROCHE</text>
+<text x="40" y="44" text-anchor="middle" font-family="Arial" font-size="6" font-weight="bold" fill="#be185d">MELA B3</text>
+<text x="40" y="52" text-anchor="middle" font-family="Arial" font-size="4" fill="#831843">SOIN CORPS</text>
+<text x="40" y="62" text-anchor="middle" font-family="Arial" font-size="4" fill="#9d174d">BODY</text>
+<text x="40" y="70" text-anchor="middle" font-family="Arial" font-size="3" fill="#9d174d">400ml</text>
+</svg>

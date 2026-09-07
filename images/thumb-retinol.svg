@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+<defs>
+<linearGradient id="bgT6" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#fff7ed;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#fed7aa;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="t6" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#fb923c;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#ea580c;stop-opacity:1"/>
+</linearGradient>
+</defs>
+<rect width="80" height="80" fill="url(#bgT6)" rx="8"/>
+<path d="M 24 18 L 24 70 Q 24 75 29 75 L 51 75 Q 56 75 56 70 L 56 18 Q 56 14 52 14 L 28 14 Q 24 14 24 18 Z" fill="url(#t6)"/>
+<rect x="26" y="4" width="28" height="12" rx="1" fill="#0c0a09"/>
+<rect x="26" y="28" width="28" height="38" fill="white"/>
+<text x="40" y="36" text-anchor="middle" font-family="Arial" font-size="4" font-weight="bold" fill="#7c2d12">SOME BY MI</text>
+<text x="40" y="46" text-anchor="middle" font-family="Arial" font-size="5" font-weight="bold" fill="#ea580c">Retinol</text>
+<text x="40" y="54" text-anchor="middle" font-family="Arial" font-size="4" font-weight="bold" fill="#ea580c">Eye</text>
+<text x="40" y="62" text-anchor="middle" font-family="Arial" font-size="3" fill="#9a3412">Cream</text>
+</svg>

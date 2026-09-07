@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+<defs>
+<linearGradient id="bg10" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#f0fdf4;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#dcfce7;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="bottle10" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#f0fdf4;stop-opacity:1"/>
+<stop offset="50%" style="stop-color:#ffffff;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#bbf7d0;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="cap10" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#0c4a6e;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#0c0a09;stop-opacity:1"/>
+</linearGradient>
+</defs>
+<rect width="200" height="240" fill="url(#bg10)"/>
+<!-- Tube -->
+<path d="M 55 70 L 55 200 Q 55 215 70 215 L 130 215 Q 145 215 145 200 L 145 70 Q 145 60 135 60 L 65 60 Q 55 60 55 70 Z" fill="url(#bottle10)" stroke="#86efac" stroke-width="1"/>
+<!-- Flip cap -->
+<rect x="63" y="22" width="74" height="42" rx="3" fill="url(#cap10)"/>
+<rect x="63" y="22" width="74" height="5" fill="#082f49"/>
+<!-- Crimp -->
+<rect x="55" y="200" width="90" height="5" fill="#16a34a"/>
+<!-- Label -->
+<rect x="63" y="90" width="74" height="105" fill="white" rx="2" stroke="#bbf7d0" stroke-width="0.5"/>
+<text x="100" y="108" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#166534">BIODERMA</text>
+<line x1="68" y1="114" x2="132" y2="114" stroke="#86efac" stroke-width="0.5"/>
+<text x="100" y="130" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#166534">Pigmentbio</text>
+<text x="100" y="148" text-anchor="middle" font-family="Arial" font-size="7" fill="#15803d">Daily Care</text>
+<text x="100" y="160" text-anchor="middle" font-family="Arial" font-size="7" fill="#15803d">Cleanser</text>
+<text x="100" y="178" text-anchor="middle" font-family="Arial" font-size="6" fill="#16a34a">Brightening</text>
+<text x="100" y="190" text-anchor="middle" font-family="Arial" font-size="6" fill="#16a34a">500 ml / 16.9 fl oz</text>
+</svg>

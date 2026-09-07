@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+<defs>
+<linearGradient id="bg4" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:#fafafa;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#e5e5e5;stop-opacity:1"/>
+</linearGradient>
+<linearGradient id="bottle4" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#f5f5f5;stop-opacity:1"/>
+<stop offset="50%" style="stop-color:#ffffff;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#d4d4d4;stop-opacity:1"/>
+</linearGradient>
+</defs>
+<rect width="200" height="240" fill="url(#bg4)"/>
+<!-- Glass dropper bottle -->
+<rect x="65" y="80" width="70" height="140" rx="3" fill="url(#bottle4)" stroke="#a3a3a3" stroke-width="1"/>
+<!-- Black dropper cap -->
+<rect x="73" y="30" width="54" height="55" rx="2" fill="#171717"/>
+<rect x="75" y="40" width="50" height="40" fill="#262626"/>
+<!-- Dropper inside -->
+<rect x="96" y="85" width="8" height="35" fill="#404040" opacity="0.5"/>
+<!-- Label -->
+<rect x="68" y="115" width="64" height="95" fill="white" stroke="#e5e5e5" stroke-width="0.5"/>
+<text x="100" y="130" text-anchor="middle" font-family="Arial" font-size="8" font-weight="bold" fill="#171717">THE</text>
+<text x="100" y="142" text-anchor="middle" font-family="Arial" font-size="8" font-weight="bold" fill="#171717">ORDINARY</text>
+<line x1="73" y1="148" x2="127" y2="148" stroke="#d4d4d4" stroke-width="0.5"/>
+<text x="100" y="162" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#171717">Niacinamide</text>
+<text x="100" y="176" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#171717">10%</text>
+<text x="100" y="190" text-anchor="middle" font-family="Arial" font-size="8" fill="#525252">+ Zinc 1%</text>
+<text x="100" y="204" text-anchor="middle" font-family="Arial" font-size="6" fill="#737373">30 ml / 1 fl oz</text>
+<!-- Highlight -->
+<rect x="68" y="85" width="4" height="130" fill="white" opacity="0.7" rx="1"/>
+</svg>
