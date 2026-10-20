@@ -284,6 +284,18 @@ textarea:focus{outline:none;border-color:var(--accent)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:380px){.hdr h1{font-size:20px}.ch .dn{font-size:18px}.st li{padding:7px 9px 7px 32px;font-size:10px}}
+
+/* Evidence-informed regimen options */
+.planbox{margin:10px 12px 15px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;color:var(--ink);box-shadow:0 4px 18px rgba(0,0,0,.04)}
+.planbox .ptitle{font-size:14px;font-weight:800;margin-bottom:5px}
+.planbox p{font-size:11px;line-height:1.7;color:var(--text);margin:4px 0 12px}
+.planopts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.planopt{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:space-between;gap:7px;padding:9px 5px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:10px;line-height:1.35;cursor:pointer;min-height:78px}
+.planopt input{accent-color:var(--accent);width:17px;height:17px}
+.planbox .alert{background:#fff6e5;border:1px solid #edd5a0;border-radius:10px;padding:9px 10px;color:#7a4b08;font-size:11px;line-height:1.6;margin-top:11px}
+.planbox .sources{margin-top:9px;font-size:10px;line-height:1.8}
+.planbox a{color:var(--accent2);text-decoration:underline}
+[data-theme="dark"] .planbox .alert{background:#342a19;color:#ffe3aa;border-color:#756135}
 </style>
 </head>
 <body>
@@ -296,6 +308,18 @@ textarea:focus{outline:none;border-color:var(--accent)}
 </div>
 <button class="prof-sw" onclick="openProfile()">👥 تبديل</button>
 </div>
+<section class="planbox" aria-label="إعداد خطة العناية بالبشرة">
+ <div class="ptitle">🧴 برنامج آمن ومتدرج — الإصدار الطبي 2</div>
+ <p>الأسبوع 1–4: روتين لطيف أولاً. فعّلي فقط المنتجات التي تم وصفها لك أو سبق أن تحملتها بشرتك. الجدول لا يشخّص الجلد.</p>
+ <div class="planopts">
+  <label class="planopt"><span>🌙 Acretin بوصفة طبية</span><input type="checkbox" id="optTret" onchange="changePlan('tret',this.checked)"></label>
+  <label class="planopt"><span>💧 Salicylic ≤2% بعد 4 أسابيع</span><input type="checkbox" id="optSa" onchange="changePlan('sa',this.checked)"></label>
+  <label class="planopt"><span>✨ Retinol للعين بدل Acretin</span><input type="checkbox" id="optEye" onchange="changePlan('eye',this.checked)"></label>
+ </div>
+ <div class="alert" id="planAlert">⚠️ لا تستخدمي تريتينوين إذا كنت حاملاً أو تخططين للحمل. تجنبي Acretin + Retinol eye + Glycolic + Salicylic + PanOxyl في نفس الروتين. عند التهيج اكتفي بالغسول والترطيب والواقي.</div>
+ <p style="margin-top:10px;margin-bottom:0"><b>منتجات غير مدرجة عمداً في الأسابيع الأولى:</b> Glycolic Acid 7%، PanOxyl 10%، وBioderma Pigmentbio المقشّر. لا تحاولي إدخال كل المنتجات مرة واحدة.</p>
+ <div class="sources">المصادر: <a href="https://www.aad.org/public/diseases/acne/derm-treat/treat" target="_blank" rel="noopener">AAD</a> · <a href="https://www.medlineplus.gov/druginfo/meds/a682437.html" target="_blank" rel="noopener">Tretinoin</a> · <a href="https://theordinary.com/en-us/glycolic-acid-7-exfoliating-toner-100418.html" target="_blank" rel="noopener">The Ordinary</a> · <a href="https://panoxyl.com/acne-products/acne-foaming-wash-benzoyl-peroxide/" target="_blank" rel="noopener">PanOxyl</a></div>
+ </section>
 <div class="hdr">
 <div class="streak">🔥 <span id="streakN">0</span></div>
 <div class="lvl" id="lvl">⭐ Lv.<span id="lvlN">1</span></div>
@@ -369,206 +393,80 @@ var PROFILES={
 her:{id:'her',name:'الزوجة',av:'👩',theme:'her'},
 him:{id:'him',name:'الزوج',av:'👨',theme:'him'}
 };
-var PROGRAMS={
-her:[
-{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",why:"Glycolic Acid مساءً فقط. صباحاً: Vitamin C + SPF بدون Niacinamide (The Ordinary rule).",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"بللي وجهك · دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"<b>1 بخة</b> على بشرة جافة · ربتي بلطف · انتظري 60 ث",m:[["1 بخة","a"],["بشرة جافة","t"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة على الوجه والرقبة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"<b>إصبعين</b> للوجه + إصبع للرقبة · قبل الخروج 5-10 د",m:[["إصبعين","a"],["SPF 50+","t"],["▶ 5-10د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي <b>30-60 ث</b> · اشطري · جففي 5 د",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
-{p:"The Ordinary Glycolic Acid 7%",u:"<b>قطنة</b> على الوجه والرقبة · <b>15-20 د</b> · لا تلمسي العينين",m:[["قطنة","a"],["15-20 د","t"],["تجنبي العينين","w"],["⏱ مؤقت","c"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Glycolic · يهدّئ البشرة (The Ordinary + INKEY safe)",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة بعد Niacinamide",m:[["متوسطة","a"],["▶ 30s","t"]]}
-]},
-{n:"الأحد",t:"RETINOL",c:"r",i:"✨",why:"Retinol مساءً. صباحاً Vitamin C + SPF. Niacinamide PM آمن مع Retinol (AAD).",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي 30-60 ث · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة على بشرة جافة · انتظري 60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين · قبل الخروج 5 د",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b> تماماً",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
-{p:"Some By Mi Retinol Intense Eye",u:"<b>نصف حبة أرز</b> على عظمة الحجاج فقط · ابتعدي 1 سم عن العين",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Retinol · يهدّئ الاحمرار (Dermatica verified)",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
-],
-w:"⚠️ Retinol على عظمة الحجاج <b>فقط</b>. ابتعدي عن خط الرموش. مساءً فقط."},
-{n:"الإثنين",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة. Vit C AM + Niacinamide PM + Mela B3 للجسم.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي 30-60 ث · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة صباحاً · انتظري 60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> مساءً",m:[["3-4 قطرات","a"],["▶ 30s","t"]]},
-{p:"La Roche-Posay Mela B3 Soin Corps",u:"<b>حبة بندق</b> على المرفقين والركبتين · دلكي بلطف",m:[["حبة بندق","a"],["الجسم فقط","w"],["▶ 1د","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"<b>طبقة سميكة</b> · استعادة الحاجز",m:[["سميكة","a"],["▶ 30s","t"]]}
-]},
-{n:"الثلاثاء",t:"GLYCOLIC #2",c:"g",i:"🍊",why:"الجلسة الثانية من Glycolic. نفس قواعد السبت.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة · انتظري 60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
-{p:"The Ordinary Glycolic Acid 7%",u:"قطنة · <b>15-20 د</b> · اشطري",m:[["قطنة","a"],["15-20 د","t"],["⏱ مؤقت","c"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Glycolic",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
-]},
-{n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة. Bioderma PM فقط (acidic) + Niacinamide PM + Mela B3.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"Bioderma Pigmentbio Cleanser",u:"دلكي <b>30 ث</b> على جلد مبلل · اشطري",m:[["حبة البازلاء","a"],["30 ث","t"],["PM فقط","w"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Bioderma (PM only, لا Vit C)",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
-{p:"La Roche-Posay Mela B3 Soin Corps",u:"حبة بندق على المرفقين والركبتين",m:[["حبة بندق","a"],["الجسم فقط","w"],["▶ 1د","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"<b>طبقة سميكة</b> · إصلاح",m:[["سميكة","a"],["▶ 30s","t"]]}
-]},
-{n:"الخميس",t:"RETINOL #2",c:"r",i:"✨",why:"الجلسة الثانية من Retinol. نفس قواعد الأحد.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
-{p:"Some By Mi Retinol Intense Eye",u:"نصف حبة أرز على عظمة الحجاج",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Retinol",m:[["3-4 قطرات","a"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
-],
-w:"⚠️ Retinol على عظمة الحجاج <b>فقط</b>."},
-{n:"الجمعة",t:"PANOXYL 10%",c:"p",i:"🔥",why:"PanOxyl مساءً فقط 1× أسبوع (PanOxyl + Glycolic = NEVER). صباحاً Vitamin C + SPF. PM Niacinamide بعد 30 د.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"⚠️ اختبار الرقبة",u:"جرّبي على رقبتك أولاً · انتظري 30 د",m:[["اختبار حساسية","t"]]},
-{p:"PanOxyl 10% Foaming Wash",u:"بللي الوجه · <b>دلكي 1-2 د</b> فقط · اشطري فوراً",m:[["حبة البازلاء","a"],["1-2 د","t"],["1× أسبوع","n"],["⏱ مؤقت","c"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد PanOxyl · يهدّئ الاحمرار (JCAD verified)",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"<b>طبقة سميكة جداً</b> · لإصلاح الجفاف",m:[["سميكة جداً","a"],["▶ 30s","t"]]}
-],
-w:"⚠️ PanOxyl 10% <b>عالي التركيز</b>. آخر يوم في الأسبوع. رطبي كثيراً."}
-],
-him:[
-{n:"السبت",t:"GLYCOLIC",c:"g",i:"🍊",why:"Glycolic Acid للرجال مساءً. صباحاً Vitamin C + SPF فقط.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"بللي وجهك · دلكي <b>30-60 ث</b> · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"<b>1 بخة</b> على بشرة جافة · انتظري 60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين للوجه",m:[["إصبعين","a"],["SPF 50+","t"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"The Ordinary Glycolic Acid 7%",u:"قطنة على الوجه والرقبة · <b>15-20 د</b> · بعيداً عن اللحية",m:[["قطنة","a"],["15-20 د","t"],["بعيداً عن اللحية","w"],["⏱ مؤقت","c"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Glycolic",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
-]},
-{n:"الأحد",t:"RETINOL",c:"r",i:"✨",why:"Retinol مساءً. صباحاً Vitamin C + SPF. Niacinamide PM آمن.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة · انتظري 60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
-{p:"Some By Mi Retinol Intense Eye",u:"<b>نصف حبة أرز</b> على عظمة الحجاج · ابتعد 1 سم عن العين",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Retinol",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
-],
-w:"⚠️ Retinol على عظمة الحجاج <b>فقط</b>."},
-{n:"الإثنين",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة. Vit C AM + Niacinamide PM.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> مساءً",m:[["3-4 قطرات","a"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"<b>طبقة سميكة</b> · استعادة الحاجز",m:[["سميكة","a"],["▶ 30s","t"]]}
-]},
-{n:"الثلاثاء",t:"GLYCOLIC #2",c:"g",i:"🍊",why:"الجلسة الثانية من Glycolic.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة · انتظري 60 ث",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
-{p:"The Ordinary Glycolic Acid 7%",u:"قطنة · <b>15-20 د</b> · بعيداً عن اللحية",m:[["قطنة","a"],["15-20 د","t"],["⏱ مؤقت","c"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Glycolic",m:[["3-4 قطرات","a"],["Niacinamide PM","t"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
-]},
-{n:"الأربعاء",t:"RECOVERY",c:"rec",i:"🌿",why:"يوم راحة. Niacinamide مساءً فقط.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> مساءً",m:[["3-4 قطرات","a"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"<b>طبقة سميكة</b>",m:[["سميكة","a"],["▶ 30s","t"]]}
-]},
-{n:"الخميس",t:"RETINOL #2",c:"r",i:"✨",why:"الجلسة الثانية من Retinol.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · <b>جففي 5 د</b>",m:[["حبة البازلاء","a"],["▶ 60s","t"],["جففي 5 د","t"]]},
-{p:"Some By Mi Retinol Intense Eye",u:"نصف حبة أرز على عظمة الحجاج",m:[["نصف حبة أرز","a"],["عظمة الحجاج","w"],["▶ 1د","t"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد Retinol",m:[["3-4 قطرات","a"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة متوسطة",m:[["متوسطة","a"],["▶ 30s","t"]]}
-],
-w:"⚠️ Retinol على عظمة الحجاج <b>فقط</b>."},
-{n:"الجمعة",t:"PANOXYL 10%",c:"b",i:"🔥",why:"PanOxyl مساءً فقط 1× أسبوع. صباحاً Vitamin C + SPF. Niacinamide PM.",
-am:[
-{p:"CeraVe Hydrating Cleanser",u:"دلكي · اشطري · جففي",m:[["حبة البازلاء","a"],["▶ 60s","t"]]},
-{p:"Aurelia London Vitamin C 15%",u:"1 بخة صباحاً",m:[["1 بخة","a"],["▶ 60s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"طبقة رقيقة",m:[["رقيقة","a"],["▶ 30s","t"]]},
-{p:"Eucerin Sun Fluid SPF 50+",u:"إصبعين",m:[["إصبعين","a"],["▶ 5د","t"]]}
-],
-pm:[
-{p:"⚠️ اختبار الرقبة",u:"جرّب أولاً · انتظري 30 د",m:[["اختبار حساسية","t"]]},
-{p:"PanOxyl 10% Foaming Wash",u:"بللي الوجه · <b>دلكي 1-2 د</b> · اشطري فوراً",m:[["حبة البازلاء","a"],["1-2 د","t"],["1× أسبوع","n"],["⏱ مؤقت","c"]]},
-{p:"The Ordinary Niacinamide 10% + Zinc",u:"<b>3-4 قطرات</b> بعد PanOxyl",m:[["3-4 قطرات","a"],["▶ 30s","t"]]},
-{p:"CeraVe Moisturizing Cream",u:"<b>طبقة سميكة جداً</b> · لإصلاح الجفاف",m:[["سميكة جداً","a"],["▶ 30s","t"]]}
-],
-w:"⚠️ PanOxyl 10% مثالي بعد الحلاقة. <b>آخر يوم في الأسبوع</b>."}
-]
-};
+/* Evidence-informed starter schedule — conservative by default.
+   An active is never enabled automatically because ownership != suitability. */
+var planChoices={};
+try{planChoices=JSON.parse(localStorage.getItem('jouryvel-safe-choices-v2')||'{}')||{}}catch(e){}
+function planOpt(profile,key){return !!(planChoices[profile]&&planChoices[profile][key])}
+function step(p,u,m){return {p:p,u:u,m:m||[]}}
+function buildWeek(profile){
+ var names=['السبت','الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
+ var options=planChoices[profile]||{},tret=!!options.tret,sa=!!options.sa,eye=!!options.eye&&!tret;
+ return names.map(function(n,d){
+  var am=[
+   step('CeraVe Hydrating Foaming Oil Cleanser','تنظيف لطيف بماء فاتر، 30 ثانية؛ أو ماء فقط إن كانت البشرة جافة.',[['30 ثانية','t'],['غسول لطيف','a']])
+  ];
+  if(d===1||d===4){
+   am.push(step('Arencia Vitamin C Booster Shot','كمية صغيرة على بشرة نظيفة، في الصباح مرتين أسبوعياً كبداية؛ أوقفيه إذا سبب لسعاً. يحتوي أيضاً على نياسيناميد.',[['صباحاً','t'],['اختياري إذا تحملته البشرة','w']]));
+  }else if(d===2||d===5){
+   am.push(step('The Ordinary Niacinamide 10% + Zinc','2-3 قطرات اختيارياً، فقط إذا كان مناسباً لبشرتك. قد يسبب تركيز 10% تهيجاً؛ لا يلزم استخدامه يومياً.',[['2-3 قطرات','a'],['اختياري','t']]));
+  }
+  am.push(step('CeraVe Moisturizing Cream','طبقة مناسبة بعد السيروم. إن كانت البشرة دهنية، استخدمي كمية خفيفة.',[['ترطيب','a']]));
+  am.push(step('Eucerin Kids Sensitive Protect SPF 50+','واقي شمس واسع الطيف بكمية كافية على الوجه والرقبة، قبل التعرض للشمس؛ جدديه كل ساعتين بالخارج وبعد السباحة أو التعرق.',[['SPF 50+','t'],['يومياً','a']]));
+  var pm=[step('CeraVe Hydrating Foaming Oil Cleanser','اغسلي الوجه بلطف بالماء الفاتر ثم جففي بدون فرك.',[['غسول لطيف','a']])];
+  var t='RECOVERY',col='rec',ico='🌿',why='راحة وترطيب؛ تجنبي التقشير على الجلد المتهيج.',w='';
+  if(tret&&(d===1||d===4)){
+   t='ACRETIN';col='r';ico='🌙';why='ليلة تريتينوين إذا وصفه الطبيب فقط. المرة الأولى: مرتين أسبوعياً بدلاً من الاستخدام اليومي، ما لم يحدد الطبيب غير ذلك.';
+   pm.push(step('Acretin (tretinoin) — وصفة فقط','بعد جفاف الوجه تماماً (غالباً 20–30 دقيقة)، كمية بحجم حبة بازلاء للوجه بالكامل، بعيداً عن الجفون والشفاه وثنايا الأنف. الالتزام بتركيز ووصفة طبيب الجلدية.',[['حبة بازلاء للوجه','a'],['بشرة جافة تماماً','t'],['تجنبي محيط العين','w']]));
+   w='لا AHA أو BHA أو PanOxyl أو كريم الريتينول للعين في نفس الليلة. يمنع استعمال التريتينوين أثناء الحمل أو عند التخطيط للحمل.';
+  }else if(sa&&d===6){
+   t='SALICYLIC';col='g';ico='💧';why='جلسة ساليسيليك اختيارية واحدة بعد 4 أسابيع من تحمل الروتين، وليست إلزامية. إذا يوجد احمرار/جفاف استبدليها بليلة راحة.';
+   pm.push(step('Salicylic Acid 0.5–2% — تأكدي من التركيز','طبقة رقيقة حسب تعليمات المنتج، بعيداً عن العينين والجلد المتشقق. لا تستخدميه مع أحماض التقشير أو البنزويل بيروكسيد أو تريتينوين في الليلة نفسها.',[['مرة أسبوعياً كحد مبدئي','t'],['بعد تحمل الروتين','w']]));
+   w='إذا كنت تستخدمين تريتينوين، استشيري الطبيب قبل إضافة الساليسيليك، خاصة لو كانت البشرة حساسة. تجنبي الجمع مع Glycolic 7%.';
+  }else if(eye&&d===3){
+   t='EYE RETINOL';col='r';ico='✨';why='ليلة منفصلة للريتينول المخصص لمحيط العين، مرة أسبوعياً في البداية؛ لا تستعمليه إذا لديك تهيج أو تستخدمين Acretin.';
+   pm.push(step('Some By Mi Retinol Intense Eye Cream','نقطة صغيرة جداً على العظمة المحيطة بالعين حسب تعليمات العبوة، بعيداً عن خط الرموش والجفن المتحرك والعين نفسها.',[['كمية قليلة جداً','a'],['لمنطقة العين فقط','w']]));
+   w='هذا أيضاً ريتينويد: لا يُجمع مع Acretin. أوقفيه عند الاحمرار أو الحرقان. تجنبي الريتينويدات عند الحمل أو التخطيط للحمل.';
+  }else if(d===2){
+   pm.push(step('The Ordinary Niacinamide 10% + Zinc','قطرتان أو ثلاث اختيارياً بعد التنظيف، إذا كانت البشرة تتحمله.',[['اختياري','t']]));
+  }
+  pm.push(step('CeraVe Moisturizing Cream',t==='ACRETIN'?'مرطب بعد التريتينوين أو قبله وبعده (sandwich) إذا كنت تتعرض للتهيج، وفق تعليمات الطبيب.':'طبقة مرطبة للحفاظ على حاجز البشرة.',[['ترطيب الحاجز','a']]));
+  if(d===3)pm.push(step('La Roche-Posay Mela B3 Soin Corps','للجسم فقط (البقع في الذراعين أو الركبتين مثلاً) على جلد سليم وجاف؛ ليس مخصصاً للوجه. منتج اختياري.',[['الجسم فقط','w'],['اختياري','t']]));
+  return {n:n,t:t,c:col,i:ico,why:why,am:am,pm:pm,w:w}
+ });
+}
+var PROGRAMS={her:buildWeek('her'),him:buildWeek('him')};
 var currentProfile='her',c=0,ct='am',prog={},ach={},streak=0,lastDay=-1,deferredPrompt=null,timerInt=null,bookmarks={},notes={},photos={},reminderTime='';
+
+function updatePlanPanel(){
+ var o=planChoices[currentProfile]||{};
+ var a=document.getElementById('optTret'),b=document.getElementById('optSa'),d=document.getElementById('optEye');
+ if(a)a.checked=!!o.tret;if(b)b.checked=!!o.sa;if(d){d.checked=!!o.eye&&!o.tret;d.disabled=!!o.tret}
+ var msg=document.getElementById('planAlert');
+ if(msg)msg.textContent=o.tret?'⚠️ Acretin مفعّل لهذا الملف: استخدميه فقط حسب وصف الطبيب، لا يُستخدم خلال الحمل أو التخطيط للحمل. ابدئي ببطء وأوقفي المواد المقشرة عند التهيج.':(o.sa?'⚠️ الساليسيليك مفعّل: مناسب فقط إذا كان تركيزه 0.5–2% وقد تحملتِ الأسابيع السابقة؛ يوم منفصل عن أي ريتينويد.':'⚠️ البداية آمنة: لا يلزم استعمال كل الأحماض والريتينويدات. استخدمي واقي الشمس يومياً.');
+}
+function changePlan(key,enabled){
+ if(enabled&&key==='tret'&&!confirm('Acretin دواء موصوف. هل وصفه الطبيب لهذا الشخص، وهل هو/هي غير حامل ولا يخطط للحمل؟')){updatePlanPanel();return}
+ if(enabled&&key==='sa'&&!confirm('الساليسيليك قد يهيّج الجلد مع Acretin. فعّليه فقط إذا كان التركيز 0.5–2% وبعد 4 أسابيع على الأقل من تحمل الروتين، وبموافقة الطبيب إن كنت تستعمل التريتينوين. متابعة؟')){updatePlanPanel();return}
+ var o=planChoices[currentProfile]||{};
+ o[key]=enabled;
+ if(key==='tret'&&enabled)o.eye=false;
+ if(key==='eye'&&enabled)o.tret=false;
+ planChoices[currentProfile]=o;
+ try{localStorage.setItem('jouryvel-safe-choices-v2',JSON.stringify(planChoices))}catch(e){}
+ PROGRAMS[currentProfile]=buildWeek(currentProfile);
+ prog={};bookmarks={};
+ save();updatePlanPanel();render();updateAll();
+ showConf('✓ تم تحديث الجدول؛ يبدأ سجل التقدم من جديد');
+}
 function D(){return PROGRAMS[currentProfile]}
 function getKey(d,s,i){return d+'-'+s+'-'+i}
 function load(){
 try{
 var p=localStorage.getItem('jouryvel-cur')||'her';
+ if(!PROFILES[p])p='her';
 currentProfile=p;
-var all=JSON.parse(localStorage.getItem('jouryvel-all')||'{}');
+var all=JSON.parse(localStorage.getItem('jouryvel-safe-v2')||'{}');
 prog=all[p]&&all[p].prog?all[p].prog:{};
 ach=all[p]&&all[p].ach?all[p].ach:{};
 streak=all[p]&&all[p].streak?all[p].streak:0;
@@ -580,9 +478,9 @@ reminderTime=all[p]&&all[p].reminder?all[p].reminder:'';
 }
 function save(){
 try{
-var all=JSON.parse(localStorage.getItem('jouryvel-all')||'{}');
+var all=JSON.parse(localStorage.getItem('jouryvel-safe-v2')||'{}');
 all[currentProfile]={prog:prog,ach:ach,streak:streak,bm:bookmarks,notes:notes,photos:photos,reminder:reminderTime};
-localStorage.setItem('jouryvel-all',JSON.stringify(all));
+localStorage.setItem('jouryvel-safe-v2',JSON.stringify(all));
 localStorage.setItem('jouryvel-cur',currentProfile);
 }catch(e){}
 }
@@ -596,6 +494,7 @@ var p=PROFILES[currentProfile];
 document.getElementById('pAv').textContent=p.av;
 document.getElementById('pName').textContent=p.name;
 document.body.dataset.profile=p.theme;
+ updatePlanPanel();
 }
 function tab(t){
 ct=t;
@@ -610,10 +509,12 @@ var isDone=!!prog[k];
 var isBm=bookmarks[k];
 var html='<li class="'+(isDone?'done':'')+(isBm?' bm-step':'')+'" data-k="'+k+'" onclick="toggleStep(this,event)">';
 var productImages={
-'CeraVe Hydrating Cleanser':'url(images/thumb-cleanser.svg)',
+'CeraVe Hydrating Foaming Oil Cleanser':'url(images/thumb-cleanser.svg)',
+ 'Acretin (tretinoin) — وصفة فقط':'url(images/thumb-retinol.svg)',
+ 'Salicylic Acid 0.5–2% — تأكدي من التركيز':'url(images/thumb-glycolic.svg)',
 'CeraVe Moisturizing Cream':'url(images/thumb-cream.svg)',
 'Bioderma Pigmentbio Cleanser':'url(images/thumb-bioderma.svg)',
-'Aurelia London Vitamin C 15%':'url(images/thumb-vitc.svg)',
+'Arencia Vitamin C Booster Shot':'url(images/thumb-vitc.svg)',
 'The Ordinary Niacinamide 10% + Zinc':'url(images/thumb-niacinamide.svg)',
 'The Ordinary Glycolic Acid 7%':'url(images/thumb-glycolic.svg)',
 'Some By Mi Retinol Intense Eye':'url(images/thumb-retinol.svg)',
@@ -770,7 +671,8 @@ var loadId='aiLoading'+Date.now();
 msgs.innerHTML+='<div class="msg b" id="'+loadId+'"><span style="display:flex;align-items:center;gap:6px"><span style="animation:spin 1s linear infinite">⟳</span> '+I18N[currentLang].loading+'</span></div>';
 msgs.scrollTop=msgs.scrollHeight;
 try{
-var ctx='You are a skincare expert for JOURYVEL brand. User is on a 7-day program with Glycolic, Retinol, PanOxyl, Vitamin C, SPF. Answer in Arabic with clear formatting: use • for bullets, **text** for bold, keep it short and practical.';
+var ctx='You offer general skincare information, not medical diagnosis, in Arabic. This conservative 7-day plan includes daily cleanser, moisturizer, SPF; tretinoin only if physician-prescribed and confirmed, salicylic acid only after tolerance and clinician advice, eye retinol never with tretinoin. Do not recommend routine glycolic 7%, PanOxyl 10%, or Bioderma exfoliant when starting tretinoin. If pregnant or planning pregnancy avoid retinoids. Explain when dermatologist is needed. Answer briefly with practical steps: ';
+
 var ans=await callFreeAI(ctx+q+' Answer briefly in Arabic.');
 var cleanAns=formatAIResponse(ans);
 var load=document.getElementById(loadId);
@@ -867,15 +769,16 @@ return text+'<small style="opacity:0.5;font-size:9px;display:block;margin-top:4p
 
 // TIER 4: Smart local tips (always works)
 var tips=[
-'رطبي بشرتك صباحاً ومساءً بـ CeraVe Cream. SPF 50+ يومياً حتى في الأيام الغائمة.',
-'Glycolic Acid مرتين أسبوعياً (السبت والثلاثاء) كحد أقصى. رطبي جيداً بعده.',
-'Retinol Eye Cream على عظمة الحجاج فقط، بعيداً عن العين. استخدميه مساءً فقط.',
-'PanOxyl 10% يوم الجمعة فقط - اتركيه دقيقة أو دقيقتين ثم اشطري فوراً.',
-'Vitamin C صباحاً على بشرة جافة/رطبة لتعزيز امتصاصه. انتظري 60 ثانية قبل المرطب.',
-'Bioderma Pigmentbio كـ cleanser يومي. دلكي 30 ثانية ثم اشطري.',
-'لا تستخدمي Retinol و Glycolic في نفس الليلة - خط أحمر!',
-' SPF 50+ ضروري يومياً. كميتان للوجه + واحدة للرقبة.',
-' Mela B3 Soin Corps Double Action للمناطق الجسدية فقط (المرفقين، الركبتين، تحت الإبط).'
+'روتين البداية: غسول CeraVe اللطيف، مرطب، وواقي شمس SPF 50+ كل صباح. ابدئي بأقل عدد من المنتجات.',
+'إذا وصف الطبيب Acretin: طبقة رقيقة جداً بحجم حبة بازلاء للوجه على جلد جاف، ليلتين متباعدتين كبداية إذا وافق طبيبك.',
+'لا تستخدمي Retinol Eye Cream مع Acretin في روتين واحد؛ وقد يفضّل طبيبك الاكتفاء بأحدهما.',
+'PanOxyl 10% قوي وقد يسبب جفافاً؛ لا تضيفيه تلقائياً إلى جدول تريتينوين جديد.',
+'The Ordinary Glycolic Acid 7% يترك على الجلد ولا يُشطف عادةً، لكنه غير ضروري في خطة البداية.',
+'Bioderma Pigmentbio يحتوي AHA وحبيبات مقشرة؛ ليس الغسول اللطيف الافتراضي مع التريتينوين.',
+'Arencia Vitamin C يحتوي أيضاً على نياسيناميد؛ لا تحتاجين فوقه إلى سيروم Niacinamide 10% في نفس الجلسة.',
+'لا يبدأ الساليسيليك مع التريتينوين في نفس الليلة. إذا استمرت الحساسية اكتفي بالترطيب وتواصلي مع طبيب جلدية.',
+'La Roche-Posay Mela B3 Soin Corps يستخدم على الجسم فقط، وليس كريم الوجه.',
+'لا تستخدم الحامل أو من تخطط للحمل أي ريتينويد بما فيه Acretin أو Retinol Eye.'
 ];
 var tip=tips[Math.floor(Math.random()*tips.length)];
 return '<div style="padding:10px;background:var(--bg);border-radius:8px;border-right:3px solid var(--gold);margin:5px 0"><b>💡 نصيحة:</b><br>'+tip+'</div><small style="opacity:0.5;font-size:9px;display:block;margin-top:4px">⚡ نصيحة محلية (AI غير متاح)</small>';
@@ -1086,7 +989,7 @@ showConf('✓ مرحباً '+PROFILES[currentProfile].name);
 }
 function openCompare(){
 function statsFor(id){
-var data=JSON.parse(localStorage.getItem('jouryvel-all')||'{}');
+var data=JSON.parse(localStorage.getItem('jouryvel-safe-v2')||'{}');
 var p=data[id]||{prog:{},streak:0};
 var d=PROGRAMS[id];
 var total=0;var done=0;
