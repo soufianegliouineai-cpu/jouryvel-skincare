@@ -7,6 +7,14 @@
       "use": "@vercel/static"
     },
     {
+      "src": "body.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "images/*.svg",
+      "use": "@vercel/static"
+    },
+    {
       "src": "api/*.js",
       "use": "@vercel/node"
     }
