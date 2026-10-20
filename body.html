@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#172932">
+<title>JOURYVEL BODY — برنامج الجسم الكامل</title>
+<style>
+:root{--bg:#f5f2eb;--paper:#fffdf8;--ink:#17303a;--muted:#5d7076;--accent:#577d72;--gold:#c69d57;--stroke:#dcded6;--soft:#e8eee9;--red:#8c4d36}
+*,*:before,*:after{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}body{margin:0;min-height:100dvh;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.6}
+button,select,input{font:inherit}button{cursor:pointer}a{color:var(--accent)}
+nav{position:sticky;top:0;z-index:10;background:rgba(250,248,242,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--stroke);padding:12px max(17px,calc((100vw - 800px)/2));display:flex;align-items:center;justify-content:space-between;gap:8px}
+nav a{text-decoration:none;color:var(--ink);font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:4px}
+.brand{letter-spacing:3px;font-weight:850;color:var(--ink);font-size:14px}
+main{max-width:800px;margin:0 auto;padding:20px 16px 100px}
+.hero{background:linear-gradient(140deg,#19323b,#36594e);border-radius:24px;padding:27px 23px;color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"✦";position:absolute;left:-5px;bottom:-64px;font-size:220px;opacity:.1}
+.eyebrow{font-size:11px;letter-spacing:1.7px;font-weight:700;color:#dbbe83}
+h1{font-size:clamp(28px,6vw,42px);margin:8px 0 8px;line-height:1.26;font-weight:850}
+.hero p{font-size:13px;line-height:1.85;max-width:580px;margin:0;color:#dfebe7}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;background:#e5eee7;border:1px solid #bdcbbf;color:#335b4d;border-radius:100px;padding:7px 10px;font-size:11px;font-weight:800}
+.hero .pill{background:#ffffff18;border-color:#ffffff40;color:#fff;margin-top:20px}
+section{margin-top:24px}
+.section-head{font-weight:900;font-size:19px;margin:0 0 5px}.desc{color:var(--muted);font-size:12px;margin:0 0 14px}
+.goals{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.goal{background:var(--paper);border:1px solid var(--stroke);border-radius:16px;text-align:right;padding:17px 15px;min-height:112px;color:var(--ink);transition:box-shadow .18s,border-color .18s}
+.goal .ico{display:block;font-size:23px;margin-bottom:7px}.goal strong{display:block;font-size:13px}.goal small{color:var(--muted);font-size:11px;display:block;line-height:1.5}
+.goal.active{background:var(--soft);border:2px solid var(--accent);padding:16px 14px;box-shadow:0 3px 20px #133b2420}
+.panel{background:var(--paper);border:1px solid var(--stroke);border-radius:18px;padding:18px;margin-top:12px}
+.panel h3{font-size:15px;margin:0 0 8px}
+.panel p{font-size:12px;line-height:1.85;color:var(--muted);margin:4px 0 9px}
+.checkbox{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px;color:var(--ink);font-weight:700}
+.checkbox input{width:19px;height:19px;accent-color:var(--accent);flex:none}
+.notice{padding:12px 14px;border-radius:12px;background:#fff2dd;border:1px solid #edcf99;color:#754a19;font-size:12px;line-height:1.85;margin:13px 0}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:14px 0}
+.selectwrap{display:flex;gap:9px;align-items:center;font-size:11px;font-weight:800}
+select{border:1px solid var(--stroke);border-radius:10px;padding:9px;color:var(--ink);background:var(--paper)}
+.phase{display:inline-flex;border:1px solid var(--stroke);border-radius:12px;overflow:hidden;background:var(--paper)}
+.phase button{border:0;border-inline-end:1px solid var(--stroke);padding:9px 10px;background:transparent;color:var(--muted);font-size:11px;font-weight:750}
+.phase button.active{background:var(--ink);color:white}
+.progress{height:9px;background:#d9e1dc;border-radius:50px;overflow:hidden;margin:13px 0 7px}
+.fill{height:100%;width:0%;background:linear-gradient(90deg,#97b9a6,#567f70);border-radius:50px;transition:width .25s}
+.score{font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+.days{display:grid;gap:10px;margin-top:15px}
+details{background:var(--paper);border:1px solid var(--stroke);border-radius:16px;overflow:hidden}
+details[open]{border-color:#b5c6b9;box-shadow:0 6px 18px #122f2210}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px;font-weight:800}
+summary::-webkit-details-marker{display:none}
+summary .meta{font-size:11px;color:var(--muted);font-weight:600}
+summary:after{content:"⌄";color:var(--accent);font-size:21px}
+.daycontent{padding:0 16px 17px;border-top:1px solid var(--stroke)}
+.slot{font-size:12px;font-weight:850;color:#35665b;margin:13px 0 7px}
+.step{font-size:12px;line-height:1.85;color:var(--ink);border-radius:10px;background:#f1f3ee;padding:11px 12px;margin:6px 0}
+.step b{color:#315a4f}
+.complete{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:750;color:var(--ink);margin:10px 2px}
+.complete input{width:18px;height:18px;accent-color:var(--accent)}
+.productgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.product{background:var(--paper);padding:14px;border-radius:14px;border:1px solid var(--stroke)}
+.product strong{display:block;font-size:12px;margin-bottom:4px}.product p{font-size:11px;color:var(--muted);line-height:1.7;margin:0}
+.foot{font-size:11px;color:var(--muted);line-height:1.8;margin-top:22px}
+.foot a{word-break:break-word}
+.linkbutton{background:var(--ink);border-radius:12px;padding:12px 16px;color:#fff!important;display:inline-block;text-decoration:none;font-weight:800;font-size:12px}
+.reset{border:1px solid var(--stroke);border-radius:10px;padding:8px 12px;color:var(--muted);background:var(--paper);font-size:11px}
+@media(min-width:650px){.goals{grid-template-columns:repeat(4,1fr)}.productgrid{grid-template-columns:repeat(3,1fr)}.days{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}}
+@media(max-width:359px){nav{padding:12px 10px}.brand{font-size:12px}main{padding:14px 10px 80px}.goals{gap:7px}.goal{padding:12px 10px}.hero{padding:20px}}
+</style>
+</head><body>
+<nav><a href="/" aria-label="الرجوع إلى برنامج الوجه">→ الوجه</a><span class="brand">JOURYVEL <span style="color:var(--gold)">✦</span> BODY</span><a href="#weekly">الأسبوع ↓</a></nav>
+<main>
+<header class="hero">
+<div class="eyebrow">JOURYVEL · COMPLETE BODY CARE</div>
+<h1>بشرة جسم ناعمة<br>وصحية، خطوة بخطوة.</h1>
+<p>خطة للجسم مبنية على العناية بحاجز البشرة وعلاج السبب: الحبوب أو الخشونة أو البقع. هدفنا لون طبيعي متجانس وبشرة مريحة، وليس تفتيحاً غير طبيعي.</p>
+<div class="row"><span class="pill">✓ 7 أيام</span><span class="pill">✓ صباح + مساء</span><span class="pill">✓ بدون تكديس أحماض</span></div>
+</header>
+<section aria-labelledby="goalTitle">
+<h2 class="section-head" id="goalTitle">ما هدف الجسم الأساسي؟</h2>
+<p class="desc">اختَر مشكلة واحدة أولاً. يمكنك تغيير الهدف لاحقاً دون خلط علاجات قوية على المكان نفسه.</p>
+<div class="goals" id="goalButtons">
+<button type="button" class="goal" data-goal="smooth"><span class="ico">✨</span><strong>نعومة وترطيب</strong><small>ترطيب الجسم والقدمين والمرفقين</small></button>
+<button type="button" class="goal" data-goal="acne"><span class="ico">🔴</span><strong>حبوب الجسم</strong><small>الصدر والظهر والكتفين</small></button>
+<button type="button" class="goal" data-goal="bumps"><span class="ico">🫧</span><strong>جلد خشن ومنقّط</strong><small>الذراعان والفخذان</small></button>
+<button type="button" class="goal" data-goal="spots"><span class="ico">🌙</span><strong>بقع وآثار غامقة</strong><small>آثار الحبوب والاحتكاك</small></button>
+</div>
+<div class="panel">
+<h3 id="activeTitle">ترطيب أولاً</h3><p id="activeDesc"></p>
+<label class="checkbox" id="activeRow"><input type="checkbox" id="enableActive"> <span id="activeLabel"></span></label>
+<div class="notice" id="caution"></div>
+</div>
+</section>
+<section id="weekly" aria-labelledby="weeklyTitle">
+<h2 class="section-head" id="weeklyTitle">الجدول الأسبوعي</h2>
+<p class="desc">المهم هو الاستمرار وتحمّل البشرة، وليس أكبر عدد من المستحضرات.</p>
+<div class="controls"><label class="selectwrap">الملف: <select id="profile"><option value="him">👨 الزوج</option><option value="her">👩 الزوجة</option></select></label>
+<div class="phase"><button id="phase1" data-phase="start" type="button">الأسبوعان 1–2</button><button id="phase2" data-phase="later" type="button">بعد التحمّل</button></div></div>
+<div class="progress"><div class="fill" id="fill"></div></div><div class="score"><span id="score">0 / 14 خطوة</span><span>☀️ و 🌙 لكل يوم</span></div>
+<div class="days" id="days"></div>
+<div class="row" style="justify-content:space-between;margin-top:16px"><button class="reset" type="button" id="reset">إعادة تعيين علامات الإنجاز</button><a class="linkbutton" href="/">← برنامج الوجه</a></div>
+</section>
+<section aria-labelledby="productsTitle">
+<h2 class="section-head" id="productsTitle">دليل المنتجات الموجودة في الصور</h2>
+<p class="desc">ليست كل المنتجات مناسبة لكل الأشخاص أو أجزاء الجسم. فعّل فقط ما تملكه وتتحمله.</p>
+<div class="productgrid">
+<div class="product"><strong>🧴 CeraVe Moisturizing Cream</strong><p>مرطب أساسي للجسم يومياً بعد الاستحمام، خاصة المناطق الجافة.</p></div>
+<div class="product"><strong>🤍 Cicaplast Baume B5+</strong><p>لمناطق جافة أو متهيجة من الجسم/الوجه. لا يوضع على العينين.</p></div>
+<div class="product"><strong>☀️ Eucerin SPF 50+</strong><p>على المناطق المكشوفة، كل صباح قبل الخروج وتجديده بالخارج.</p></div>
+<div class="product"><strong>🔴 PanOxyl 10%</strong><p>غسول بنزويل بيروكسيد لحبوب الظهر والصدر. قوي؛ يُشطف جيداً وقد يبهت الأقمشة.</p></div>
+<div class="product"><strong>✨ Glycolic Acid 7%</strong><p>مقشر يترك على الجلد في منطقة خشنة صغيرة غير متضررة؛ ليس بعد الحلاقة أو على الثنيات.</p></div>
+<div class="product"><strong>🌙 Mela B3 Soin Corps</strong><p>للبقع والتفاوت اللوني في الجسم. يحتوي LHA مقشّراً؛ تجنب تكديسه مع الأحماض الأخرى.</p></div>
+<div class="product"><strong>🌿 Skinoren 20%</strong><p>دواء حمض الأزيليك لحب الشباب؛ قد يستخدم للصدر والظهر بوصفة الطبيب. ليس لدهان الجسم كله.</p></div>
+<div class="product"><strong>🌙 Acretin 0.05%</strong><p>التركيز الظاهر على عبوة الفيديو؛ ليس تلقائياً تركيزك. لا يُستخدم على الجسم دون وصف واضح.</p></div>
+<div class="product"><strong>🫧 Bioderma Pigmentbio</strong><p>غسول مقشر يحتوي AHA وحبيبات. لا تجمعه على المنطقة نفسها مع مقشّر قوي.</p></div>
+</div>
+</section>
+<div class="foot">
+<strong>تنبيه صحي:</strong> لا تستخدم المقشرات والأدوية على الأعضاء التناسلية أو الأغشية المخاطية أو الجلد المصاب بعدوى/جروح. مع الحمل أو التخطيط للحمل تُتجنّب الرتينويدات مثل Acretin ويُراجع الطبيب قبل الأدوية الأخرى. إذا كانت الحبوب عميقة أو تترك ندبات، أو البقع تتزايد بسرعة، اطلب تقييم طبيب الجلدية. منتجات الصور قد تكون أمثلة وليست تأكيداً لما تملكه.
+<p><strong>مراجع موثوقة:</strong> <a href="https://www.aad.org/public/diseases/a-z/keratosis-pilaris-treatment" target="_blank" rel="noopener">AAD: خشونة الجسم</a> · <a href="https://www.aad.org/public/diseases/acne/DIY/back-acne" target="_blank" rel="noopener">AAD: حبوب الظهر</a> · <a href="https://www.aad.org/public/everyday-care/skin-care-secrets/routine/fade-dark-spots" target="_blank" rel="noopener">AAD: التصبغات</a> · <a href="https://www.medicines.org.uk/emc/product/285/smpc" target="_blank" rel="noopener">Skinoren 20% SmPC</a> · <a href="https://www.laroche-posay-me.com/en/cicaplast/cicaplast-baume-b5-plus" target="_blank" rel="noopener">Cicaplast</a> · <a href="https://theordinary.com/en-us/glycolic-acid-7-exfoliating-toner-100418.html" target="_blank" rel="noopener">Glycolic</a> · <a href="https://www.laroche-posay.us/our-products/body/body-treatment/mela-b3-dual-body-discoloration-treatment-with-melasyl-3337875941396.html" target="_blank" rel="noopener">Mela B3</a>.</p>
+<small>معلومات عامة لا تحل محل التشخيص. كل بيانات الإنجاز محفوظة محلياً في هذا المتصفح، لا تحتاج حساباً.</small>
+</div>
+</main>
+<script>
+(function(){
+'use strict';
+const DAYS=['السبت','الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'],GOALS=['smooth','acne','bumps','spots'];
+const texts={
+smooth:{title:'ترطيب الجسم وإصلاح الجفاف',desc:'خلال أول أسبوعين: استحمام فاتر قصير، مرطب CeraVe يومياً، وCicaplast موضعياً عند الحاجة. لا حاجة لمقشر قوي.',label:'',caution:'الجلد الصحي لا يحتاج إلى تقشير يومي. تجنب الفرك القاسي والليفة الخشنة.'},
+acne:{title:'علاج حبوب الظهر والصدر',desc:'ابدأ بالعناية اللطيفة والملابس القطنية النظيفة بعد التعرق. علاج PanOxyl 10% اختياري فقط إذا كان هناك حب شباب حقيقي.',label:'تفعيل PanOxyl 10% لحبوب الجسم على مساحة محدودة',caution:'PanOxyl 10% قوي. قد يكون تركيز 4–5% ألطف كبداية إذا توفر. التزم بالتعليمات واشطف جيداً، وتجنب العين والفم. قد يبيّض المناشف.'},
+bumps:{title:'تنعيم الجلد الخشن والمنقّط',desc:'الجفاف وKeratosis Pilaris قد يسبّبان نتوءات صغيرة؛ المرطب أولاً، ثم مقشر خفيف موضعي عند الحاجة. اليوريا/حمض اللاكتيك خياران آخران.',label:'تفعيل Glycolic 7% على منطقة صغيرة خشنة فقط',caution:'Glycolic 7% منتج يترك على الجلد. لا تضفه إلى مناطق متهيجة أو بعد الحلاقة أو على الثنيات؛ لا تستخدمه مع مقشرات أخرى في المكان نفسه.'},
+spots:{title:'عناية ببقع وآثار الجسم',desc:'ابدأ بمعالجة مصدر الاحتكاك أو الحبوب واستعمال الواقي. Mela B3 مخصص للجسم ويحتوي على LHA، لذلك لا يُجمع مع مقشرات أخرى على نفس الموضع.',label:'تفعيل Mela B3 Soin Corps على بقع الجسم',caution:'التصبغات تحتاج أسابيع إلى أشهر. استشر طبيباً إذا كانت جديدة أو سريعة التغير، خاصة على الرقبة أو الإبطين حيث قد توجد أسباب أخرى.'}
+};
+const storageKey='jouryvel-body-schedule-v1';
+let state={};
+try{state=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch(e){}
+let profile=localStorage.getItem('jouryvel-cur')==='her'?'her':'him';
+const $=id=>document.getElementById(id);
+function s(){if(!state[profile])state[profile]={goal:'smooth',active:false,phase:'start',done:{}};return state[profile]}
+function save(){try{localStorage.setItem(storageKey,JSON.stringify(state))}catch(e){}}
+function stepData(day){
+const c=s(),g=c.goal,active=c.active,late=c.phase==='later';
+const am=[
+'🚿 <b>الاستحمام:</b> ماء فاتر 5–10 دقائق عند الحاجة، وغسول لطيف بيديك بدل الفرك القاسي.',
+'🧴 <b>CeraVe Moisturizing Cream:</b> بعد تجفيف الجسم بالتربيت، ضعه خلال 5 دقائق على الجلد الذي ما زال رطباً قليلاً.',
+'☀️ <b>Eucerin SPF 50+:</b> على الذراعين والرقبة والساقين المكشوفة؛ جدده كل ساعتين أثناء البقاء بالخارج.'
+];
+const pm=['💧 إذا تعرقتَ، اغسل الجلد بلطف وغيّر الملابس المبللة.'];
+let special='الراحة + الترطيب';
+if(active&&g==='acne'&&(day===2||(late&&day===5))){
+special='PanOxyl 10% — حبوب الجسم';
+pm.unshift('🔴 <b>PanOxyl 10%:</b> على الظهر/الصدر المصاب فقط، دلّك بلطف لمدة 1–2 دقيقة ثم اشطف جيداً وجفف. لا تستخدمه على الجلد المتهيج أو المقشر في الموضع نفسه؛ قد يبهت الملابس.');
+}
+if(active&&g==='bumps'&&(day===2||(late&&day===5))){
+special='Glycolic 7% — منطقة خشنة صغيرة';
+pm.push('✨ <b>Glycolic Acid 7%:</b> على بشرة جافة وسليمة في منطقة خشنة صغيرة من الذراع أو الفخذ، طبقة خفيفة، يُترك ولا يُشطف. تجنب مناطق الاحتكاك والحلاقة والأجزاء الحساسة.');
+}
+if(active&&g==='spots'&&(day===1||day===4||(late&&day===6))){
+special='Mela B3 Body — البقع';
+pm.push('🌙 <b>Mela B3 Soin Corps:</b> على المناطق المتصبغة من الجسم فقط وفق تعليمات العبوة. يحتوي LHA؛ لا تكدسه مع غليكوليك أو مقشر آخر على البقعة نفسها.');
+}
+pm.push('🧴 <b>الترطيب:</b> استعمل CeraVe. أضف Cicaplast Baume B5+ للبقع الجافة أو المتشققة السطحية عند الحاجة، بعيداً عن الأغشية المخاطية والعينين.');
+return {am,pm,special};
+}
+function render(){
+const c=s(),t=texts[c.goal];
+document.querySelectorAll('[data-goal]').forEach(el=>{el.classList.toggle('active',el.dataset.goal===c.goal);el.setAttribute('aria-pressed',String(el.dataset.goal===c.goal))});
+$('activeTitle').textContent=t.title;$('activeDesc').textContent=t.desc;$('activeLabel').textContent=t.label;$('enableActive').checked=c.active;$('activeRow').hidden=c.goal==='smooth';$('caution').textContent='⚠️ '+t.caution;
+$('phase1').classList.toggle('active',c.phase==='start');$('phase2').classList.toggle('active',c.phase==='later');
+$('profile').value=profile;
+const done=Object.keys(c.done).filter(k=>c.done[k]&&k.startsWith(c.goal+'-'+c.phase+'-')).length,ratio=Math.min(100,Math.round(done/14*100));
+$('fill').style.width=ratio+'%';$('score').textContent=done+' / 14 خطوة مكتملة · '+ratio+'%';
+const html=DAYS.map((name,i)=>{
+ const d=stepData(i),key=c.goal+'-'+c.phase+'-'+i;
+ const checkedAm=c.done[key+'-am']?'checked':'',checkedPm=c.done[key+'-pm']?'checked':'';
+ const isDone=!!(checkedAm&&checkedPm);
+ return '<details '+(i===0?'open':'')+'><summary><span>📅 '+name+' '+(isDone?'✅':'')+'</span><span class="meta">'+d.special+'</span></summary><div class="daycontent">'+
+ '<div class="slot">☀️ صباحاً</div>'+d.am.map(x=>'<div class="step">'+x+'</div>').join('')+
+ '<label class="complete"><input aria-label="إنجاز صباح '+name+'" type="checkbox" data-day="'+i+'" data-slot="am" '+checkedAm+'> أتممت خطوات الصباح</label>'+
+ '<div class="slot">🌙 مساءً</div>'+d.pm.map(x=>'<div class="step">'+x+'</div>').join('')+
+ '<label class="complete"><input aria-label="إنجاز مساء '+name+'" type="checkbox" data-day="'+i+'" data-slot="pm" '+checkedPm+'> أتممت خطوات المساء</label></div></details>';
+}).join('');
+$('days').innerHTML=html;
+}
+document.querySelectorAll('[data-goal]').forEach(b=>b.addEventListener('click',()=>{const g=b.dataset.goal;if(!GOALS.includes(g))return;const c=s();c.goal=g;c.active=false;save();render()}));
+$('enableActive').addEventListener('change',e=>{
+if(e.target.checked){const name=s().goal==='acne'?'PanOxyl 10%':s().goal==='bumps'?'Glycolic 7%':'Mela B3 Body';if(!confirm('هل أنت متأكد أن جلدك يتحمل '+name+'؟ ابدأ بمساحة صغيرة، وتجنب الجمع مع مقشر آخر في المكان نفسه.')){e.target.checked=false;return;}}
+s().active=e.target.checked;save();render();
+});
+$('profile').addEventListener('change',e=>{profile=e.target.value==='her'?'her':'him';localStorage.setItem('jouryvel-cur',profile);render()});
+document.querySelectorAll('[data-phase]').forEach(b=>b.addEventListener('click',()=>{s().phase=b.dataset.phase==='later'?'later':'start';save();render()}));
+$('days').addEventListener('change',e=>{if(!e.target.matches('input[data-day][data-slot]'))return;
+const el=e.target,c=s(),key=c.goal+'-'+c.phase+'-'+el.dataset.day+'-'+el.dataset.slot;
+if(el.checked)c.done[key]=true;else delete c.done[key];save();
+const openDays=Array.from($('days').querySelectorAll('details')).map((d,i)=>d.open?i:null).filter(i=>i!==null);
+render();openDays.forEach(i=>{const el=$('days').children[i];if(el)el.open=true});
+});
+$('reset').addEventListener('click',()=>{if(confirm('هل تريد إزالة علامات إنجاز هذا الهدف دون تغيير إعداداتك؟')){s().done={};save();render()}});
+render();
+})();
+</script>
+</body></html>
