@@ -585,9 +585,9 @@ var productImages={
 };
 var img=productImages[st.p]||'url(images/thumb-cleanser.svg)';
 var stepId='step-'+k.replace(/[^a-z0-9]/gi,'-');
-var src=(img.match(/url\(([^)]+)\)/)||[])[1]||'images/thumb-cleanser.svg';
- src=EMBEDDED_PRODUCT_IMAGES[src.split('/').pop()]||('/'+src);
- var productKey=src.split('/').pop();
+var rawSrc=(img.match(/url\(([^)]+)\)/)||[])[1]||'images/thumb-cleanser.svg';
+ var productKey=rawSrc.split('/').pop();
+ var src=EMBEDDED_PRODUCT_IMAGES[productKey]||('/'+rawSrc);
  var photoSrc=REAL_PRODUCT_IMAGES[productKey]||src;
  html+='<span class="sp" id="'+stepId+'"><img class="real-product-img" data-photo-attempted="yes" referrerpolicy="no-referrer" src="'+photoSrc+'" alt="'+st.p.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=EMBEDDED_PRODUCT_IMAGES[\''+productKey+'\']||EMBEDDED_PRODUCT_IMAGES[\'thumb-cleanser.svg\']"><span class="nm">'+st.p+(isBm?' 🔖':'')+'</span></span>';
 html+='<span class="su">'+st.u+'</span>';
