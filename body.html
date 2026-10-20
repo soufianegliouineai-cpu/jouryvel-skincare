@@ -195,7 +195,7 @@ function imageForText(t){
 function productStep(t){
  const asset=imageForText(t);
  const uri=REAL_PRODUCT_IMAGES[asset]||EMBEDDED_PRODUCT_IMAGES[asset]||('/images/'+asset);
- return '<div class="step"><img class="step-product-img" src="'+uri+'" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src=EMBEDDED_PRODUCT_IMAGES['+JSON.stringify(asset)+']||EMBEDDED_PRODUCT_IMAGES[\'thumb-cleanser.svg\']"><div class="step-copy">'+t+'</div></div>';
+ return '<div class="step"><img class="step-product-img" src="'+uri+'" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src=EMBEDDED_PRODUCT_IMAGES[\''+asset+'\']||EMBEDDED_PRODUCT_IMAGES[\'thumb-cleanser.svg\']"><div class="step-copy">'+t+'</div></div>';
 }
 function render(){
 const c=s(),t=texts[c.goal];
