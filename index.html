@@ -323,9 +323,10 @@ textarea:focus{outline:none;border-color:var(--accent)}
   <label class="planopt"><span>🌙 Acretin بوصفة طبية</span><input type="checkbox" id="optTret" onchange="changePlan('tret',this.checked)"></label>
   <label class="planopt"><span>💧 Salicylic ≤2% بعد 4 أسابيع</span><input type="checkbox" id="optSa" onchange="changePlan('sa',this.checked)"></label>
   <label class="planopt"><span>✨ Retinol للعين بدل Acretin</span><input type="checkbox" id="optEye" onchange="changePlan('eye',this.checked)"></label>
+  <label class="planopt"><span>🌿 Skinoren 20% بديل لدواء Acretin</span><input type="checkbox" id="optSkin" onchange="changePlan('skin',this.checked)"></label>
  </div>
  <div class="alert" id="planAlert">⚠️ لا تستخدمي تريتينوين إذا كنت حاملاً أو تخططين للحمل. تجنبي Acretin + Retinol eye + Glycolic + Salicylic + PanOxyl في نفس الروتين. عند التهيج اكتفي بالغسول والترطيب والواقي.</div>
- <p style="margin-top:10px;margin-bottom:0"><b>منتجات غير مدرجة عمداً في الأسابيع الأولى:</b> Glycolic Acid 7%، PanOxyl 10%، وBioderma Pigmentbio المقشّر. لا تحاولي إدخال كل المنتجات مرة واحدة.</p>
+ <p style="margin-top:10px;margin-bottom:0"><b>منتجات مؤجلة من برنامج الوجه:</b> Glycolic Acid 7%، PanOxyl 10%، وBioderma Pigmentbio المقشّر. للجسم جدول مستقل عبر الرابط أسفل الأسبوع. لا تحاولي إدخال كل المنتجات مرة واحدة.</p>
  <div class="sources">المصادر: <a href="https://www.aad.org/public/diseases/acne/derm-treat/treat" target="_blank" rel="noopener">AAD</a> · <a href="https://www.medlineplus.gov/druginfo/meds/a682437.html" target="_blank" rel="noopener">Tretinoin</a> · <a href="https://theordinary.com/en-us/glycolic-acid-7-exfoliating-toner-100418.html" target="_blank" rel="noopener">The Ordinary</a> · <a href="https://panoxyl.com/acne-products/acne-foaming-wash-benzoyl-peroxide/" target="_blank" rel="noopener">PanOxyl</a></div>
  </section>
 <div class="hdr">
@@ -410,12 +411,12 @@ function planOpt(profile,key){return !!(planChoices[profile]&&planChoices[profil
 function step(p,u,m){return {p:p,u:u,m:m||[]}}
 function buildWeek(profile){
  var names=['السبت','الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
- var options=planChoices[profile]||{},tret=!!options.tret,sa=!!options.sa,eye=!!options.eye&&!tret;
+ var options=planChoices[profile]||{},tret=!!options.tret,skin=!!options.skin&&!tret,sa=!!options.sa,eye=!!options.eye&&!tret&&!skin;
  return names.map(function(n,d){
   var am=[
    step('CeraVe Hydrating Foaming Oil Cleanser','تنظيف لطيف بماء فاتر، 30 ثانية؛ أو ماء فقط إن كانت البشرة جافة.',[['30 ثانية','t'],['غسول لطيف','a']])
   ];
-  if(d===0||d===3){
+  if((d===0||d===3)&&!skin){
    am.push(step('Arencia Vitamin C Booster Shot','كمية صغيرة على بشرة نظيفة، في الصباح مرتين أسبوعياً كبداية؛ أوقفيه إذا سبب لسعاً. يحتوي أيضاً على نياسيناميد.',[['صباحاً','t'],['اختياري إذا تحملته البشرة','w']]));
   }else if(d===2||d===5){
    am.push(step('The Ordinary Niacinamide 10% + Zinc','2-3 قطرات اختيارياً، فقط إذا كان مناسباً لبشرتك. قد يسبب تركيز 10% تهيجاً؛ لا يلزم استخدامه يومياً.',[['2-3 قطرات','a'],['اختياري','t']]));
@@ -428,7 +429,11 @@ function buildWeek(profile){
    t='ACRETIN';col='r';ico='🌙';why='ليلة تريتينوين إذا وصفه الطبيب فقط. المرة الأولى: مرتين أسبوعياً بدلاً من الاستخدام اليومي، ما لم يحدد الطبيب غير ذلك.';
    pm.push(step('Acretin (tretinoin) — وصفة فقط','بعد جفاف الوجه تماماً (غالباً 20–30 دقيقة)، كمية بحجم حبة بازلاء للوجه بالكامل، بعيداً عن الجفون والشفاه وثنايا الأنف. الالتزام بتركيز ووصفة طبيب الجلدية.',[['حبة بازلاء للوجه','a'],['بشرة جافة تماماً','t'],['تجنبي محيط العين','w']]));
    w='لا AHA أو BHA أو PanOxyl أو كريم الريتينول للعين في نفس الليلة. يمنع استعمال التريتينوين أثناء الحمل أو عند التخطيط للحمل.';
-  }else if(sa&&d===6){
+  }else if(skin&&(d===0||d===2||d===4)){
+   t='SKINOREN 20%';col='g';ico='🌿';why='حمض الأزيليك Skinoren 20% لعلاج حب الشباب. ابدئي تدريجياً على ليالٍ منفصلة، ثم اتبعي التكرار الذي يحدده الطبيب.';
+   pm.push(step('Skinoren 20% (Azelaic Acid)','إذا وصفه الطبيب، طبقة رقيقة على المنطقة المصابة فقط على بشرة نظيفة وجافة، بعيداً عن العينين والفم. قد يحدث لسع أو احمرار.',[['20% أزيليك','a'],['ليالٍ متفرقة كبداية','t']]));
+   w='لا تستخدمي Acretin أو ريتينول العين معه في هذا البرنامج. أثناء الحمل أو التخطيط للحمل استشيري الطبيب.';
+  }else if(sa&&!skin&&d===6){
    t='SALICYLIC';col='g';ico='💧';why='جلسة ساليسيليك اختيارية واحدة بعد 4 أسابيع من تحمل الروتين، وليست إلزامية. إذا يوجد احمرار/جفاف استبدليها بليلة راحة.';
    pm.push(step('Salicylic Acid 0.5–2% — تأكدي من التركيز','طبقة رقيقة حسب تعليمات المنتج، بعيداً عن العينين والجلد المتشقق. لا تستخدميه مع أحماض التقشير أو البنزويل بيروكسيد أو تريتينوين في الليلة نفسها.',[['مرة أسبوعياً كحد مبدئي','t'],['بعد تحمل الروتين','w']]));
    w='إذا كنت تستخدمين تريتينوين، استشيري الطبيب قبل إضافة الساليسيليك، خاصة لو كانت البشرة حساسة. تجنبي الجمع مع Glycolic 7%.';
@@ -438,6 +443,7 @@ function buildWeek(profile){
    w='هذا أيضاً ريتينويد: لا يُجمع مع Acretin. أوقفيه عند الاحمرار أو الحرقان. تجنبي الريتينويدات عند الحمل أو التخطيط للحمل.';
   }
   pm.push(step('CeraVe Moisturizing Cream',t==='ACRETIN'?'مرطب بعد التريتينوين أو قبله وبعده (sandwich) إذا كنت تتعرض للتهيج، وفق تعليمات الطبيب.':'طبقة مرطبة للحفاظ على حاجز البشرة.',[['ترطيب الحاجز','a']]));
+  if((d===0||d===3)&&t==='RECOVERY')pm.push(step('La Roche-Posay Cicaplast Baume B5+','طبقة موضعية على المناطق الجافة أو المتهيجة بالوجه أو الجسم عند الحاجة، بعيداً عن العينين.',[['حاجز البشرة','a']]));
   if(d===3)pm.push(step('La Roche-Posay Mela B3 Soin Corps','للجسم فقط (البقع في الذراعين أو الركبتين مثلاً) على جلد سليم وجاف؛ ليس مخصصاً للوجه. منتج اختياري.',[['الجسم فقط','w'],['اختياري','t']]));
   return {n:n,t:t,c:col,i:ico,why:why,am:am,pm:pm,w:w}
  });
@@ -447,18 +453,20 @@ var currentProfile='her',c=0,ct='am',prog={},ach={},streak=0,lastDay=-1,deferred
 
 function updatePlanPanel(){
  var o=planChoices[currentProfile]||{};
- var a=document.getElementById('optTret'),b=document.getElementById('optSa'),d=document.getElementById('optEye');
- if(a)a.checked=!!o.tret;if(b)b.checked=!!o.sa;if(d){d.checked=!!o.eye&&!o.tret;d.disabled=!!o.tret}
+ var a=document.getElementById('optTret'),b=document.getElementById('optSa'),d=document.getElementById('optEye'),q=document.getElementById('optSkin');
+ if(a)a.checked=!!o.tret;if(b){b.checked=!!o.sa;b.disabled=!!o.skin}if(d){d.checked=!!o.eye&&!o.tret&&!o.skin;d.disabled=!!o.tret||!!o.skin}if(q){q.checked=!!o.skin&&!o.tret;q.disabled=!!o.tret}
  var msg=document.getElementById('planAlert');
- if(msg)msg.textContent=o.tret?'⚠️ Acretin مفعّل لهذا الملف: استخدميه فقط حسب وصف الطبيب، لا يُستخدم خلال الحمل أو التخطيط للحمل. ابدئي ببطء وأوقفي المواد المقشرة عند التهيج.':(o.sa?'⚠️ الساليسيليك مفعّل: مناسب فقط إذا كان تركيزه 0.5–2% وقد تحملتِ الأسابيع السابقة؛ يوم منفصل عن أي ريتينويد.':'⚠️ البداية آمنة: لا يلزم استعمال كل الأحماض والريتينويدات. استخدمي واقي الشمس يومياً.');
+ if(msg)msg.textContent=o.skin?'⚠️ Skinoren 20% دواء لحب الشباب يحتوي حمض الأزيليك. لا تُضيفي مقشرات أو Acretin في هذا البرنامج؛ راقبي التهيج.':o.tret?'⚠️ Acretin مفعّل لهذا الملف: استخدميه فقط حسب وصف الطبيب، لا يُستخدم خلال الحمل أو التخطيط للحمل. ابدئي ببطء وأوقفي المواد المقشرة عند التهيج.':(o.sa?'⚠️ الساليسيليك مفعّل: مناسب فقط إذا كان تركيزه 0.5–2% وقد تحملتِ الأسابيع السابقة؛ يوم منفصل عن أي ريتينويد.':'⚠️ البداية آمنة: لا يلزم استعمال كل الأحماض والريتينويدات. استخدمي واقي الشمس يومياً.');
 }
 function changePlan(key,enabled){
  if(enabled&&key==='tret'&&!confirm('Acretin دواء موصوف. هل وصفه الطبيب لهذا الشخص، وهل هو/هي غير حامل ولا يخطط للحمل؟')){updatePlanPanel();return}
+ if(enabled&&key==='skin'&&!confirm('Skinoren 20% حمض أزيليك علاجي. هل أوصى الطبيب به؟ ستستبدل ليالي Acretin في هذا البرنامج المبدئي.')){updatePlanPanel();return}
  if(enabled&&key==='sa'&&!confirm('الساليسيليك قد يهيّج الجلد مع Acretin. فعّليه فقط إذا كان التركيز 0.5–2% وبعد 4 أسابيع على الأقل من تحمل الروتين، وبموافقة الطبيب إن كنت تستعمل التريتينوين. متابعة؟')){updatePlanPanel();return}
  var o=planChoices[currentProfile]||{};
  o[key]=enabled;
- if(key==='tret'&&enabled)o.eye=false;
- if(key==='eye'&&enabled)o.tret=false;
+ if(key==='tret'&&enabled){o.eye=false;o.skin=false}
+ if(key==='eye'&&enabled){o.tret=false;o.skin=false}
+ if(key==='skin'&&enabled){o.tret=false;o.eye=false;o.sa=false}
  planChoices[currentProfile]=o;
  try{localStorage.setItem('jouryvel-safe-choices-v2',JSON.stringify(planChoices))}catch(e){}
  PROGRAMS[currentProfile]=buildWeek(currentProfile);
@@ -517,7 +525,9 @@ var isBm=bookmarks[k];
 var html='<li class="'+(isDone?'done':'')+(isBm?' bm-step':'')+'" data-k="'+k+'" onclick="toggleStep(this,event)">';
 var productImages={
 'CeraVe Hydrating Foaming Oil Cleanser':'url(images/thumb-cleanser.svg)',
- 'Acretin (tretinoin) — وصفة فقط':'url(images/thumb-retinol.svg)',
+ 'Skinoren 20% (Azelaic Acid)':'url(images/thumb-skinoren.svg)',
+ 'La Roche-Posay Cicaplast Baume B5+':'url(images/thumb-cicaplast.svg)',
+ 'Acretin (tretinoin) — وصفة فقط':'url(images/thumb-acretin.svg)',
  'Salicylic Acid 0.5–2% — تأكدي من التركيز':'url(images/thumb-glycolic.svg)',
 'CeraVe Moisturizing Cream':'url(images/thumb-cream.svg)',
 'Bioderma Pigmentbio Cleanser':'url(images/thumb-bioderma.svg)',
@@ -678,7 +688,7 @@ var loadId='aiLoading'+Date.now();
 msgs.innerHTML+='<div class="msg b" id="'+loadId+'"><span style="display:flex;align-items:center;gap:6px"><span style="animation:spin 1s linear infinite">⟳</span> '+I18N[currentLang].loading+'</span></div>';
 msgs.scrollTop=msgs.scrollHeight;
 try{
-var ctx='You offer general skincare information, not medical diagnosis, in Arabic. This conservative 7-day plan includes daily cleanser, moisturizer, SPF; tretinoin only if physician-prescribed and confirmed, salicylic acid only after tolerance and clinician advice, eye retinol never with tretinoin. Do not recommend routine glycolic 7%, PanOxyl 10%, or Bioderma exfoliant when starting tretinoin. If pregnant or planning pregnancy avoid retinoids. Explain when dermatologist is needed. Answer briefly with practical steps: ';
+var ctx='You offer general skincare information, not medical diagnosis, in Arabic. Skinoren 20% azelaic acid and Cicaplast B5+ are options; a dedicated body care page exists at /body.html. Avoid stacking active treatments. This conservative 7-day plan includes daily cleanser, moisturizer, SPF; tretinoin only if physician-prescribed and confirmed, salicylic acid only after tolerance and clinician advice, eye retinol never with tretinoin. Do not recommend routine glycolic 7%, PanOxyl 10%, or Bioderma exfoliant when starting tretinoin. If pregnant or planning pregnancy avoid retinoids. Explain when dermatologist is needed. Answer briefly with practical steps: ';
 
 var ans=await callFreeAI(ctx+q+' Answer briefly in Arabic.');
 var cleanAns=formatAIResponse(ans);
@@ -785,6 +795,8 @@ var tips=[
 'Arencia Vitamin C يحتوي أيضاً على نياسيناميد؛ لا تحتاجين فوقه إلى سيروم Niacinamide 10% في نفس الجلسة.',
 'لا يبدأ الساليسيليك مع التريتينوين في نفس الليلة. إذا استمرت الحساسية اكتفي بالترطيب وتواصلي مع طبيب جلدية.',
 'La Roche-Posay Mela B3 Soin Corps يستخدم على الجسم فقط، وليس كريم الوجه.',
+ 'Skinoren 20% يحتوي حمض الأزيليك لعلاج الحبوب؛ يمكن اختياره كبديل تدريجي عن Acretin حسب الطبيب.',
+ 'Cicaplast B5+ للترطيب الموضعي والإصلاح عند التهيج، للوجه والجسم بعيداً عن العين.',
 'لا تستخدم الحامل أو من تخطط للحمل أي ريتينويد بما فيه Acretin أو Retinol Eye.'
 ];
 var tip=tips[Math.floor(Math.random()*tips.length)];
