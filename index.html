@@ -316,6 +316,7 @@ textarea:focus{outline:none;border-color:var(--accent)}
 </div>
 <button class="prof-sw" onclick="openProfile()">👥 تبديل</button>
 </div>
+<a class="body-link" href="/body.html" style="margin-top:10px;margin-bottom:12px"><b>🛁 فتح برنامج العناية بالجسم ←</b><small>برنامج 7 أيام متكامل للنعومة، الحبوب، الخشونة والبقع · اضغط هنا</small></a>
 <section class="planbox" aria-label="إعداد خطة العناية بالبشرة">
  <div class="ptitle">🧴 برنامج آمن ومتدرج — الإصدار الطبي 2</div>
  <p>الأسبوع 1–4: روتين لطيف أولاً. فعّلي فقط المنتجات التي تم وصفها لك أو سبق أن تحملتها بشرتك. الجدول لا يشخّص الجلد.</p>
@@ -444,7 +445,7 @@ function buildWeek(profile){
   }
   pm.push(step('CeraVe Moisturizing Cream',t==='ACRETIN'?'مرطب بعد التريتينوين أو قبله وبعده (sandwich) إذا كنت تتعرض للتهيج، وفق تعليمات الطبيب.':'طبقة مرطبة للحفاظ على حاجز البشرة.',[['ترطيب الحاجز','a']]));
   if((d===0||d===3)&&t==='RECOVERY')pm.push(step('La Roche-Posay Cicaplast Baume B5+','طبقة موضعية على المناطق الجافة أو المتهيجة بالوجه أو الجسم عند الحاجة، بعيداً عن العينين.',[['حاجز البشرة','a']]));
-  if(d===3)pm.push(step('La Roche-Posay Mela B3 Soin Corps','للجسم فقط (البقع في الذراعين أو الركبتين مثلاً) على جلد سليم وجاف؛ ليس مخصصاً للوجه. منتج اختياري.',[['الجسم فقط','w'],['اختياري','t']]));
+  // Mela B3 is a body product; use the dedicated body plan.
   return {n:n,t:t,c:col,i:ico,why:why,am:am,pm:pm,w:w}
  });
 }
