@@ -304,6 +304,18 @@ textarea:focus{outline:none;border-color:var(--accent)}
 .body-link{display:block;margin:12px 6px 16px;padding:17px;background:linear-gradient(125deg,#152b39,#355759);color:#fff;border-radius:16px;text-decoration:none;border:1px solid #d4af37;box-shadow:0 9px 24px #0002}
 .body-link b{font-size:15px;display:block}.body-link small{display:block;font-size:11px;line-height:1.65;margin-top:5px;color:#edeee7}
 @media(max-width:390px){.planbox{margin:10px 5px}}
+
+/* Consistent accessible product thumbnails. All are served from this site's images directory. */
+.sp::before{display:none!important}
+.sp .real-product-img{display:block;width:62px;height:68px;flex:0 0 62px;object-fit:contain;background:#ffffff;border:1px solid rgba(45,80,90,.13);border-radius:10px;padding:5px;box-shadow:0 2px 9px rgba(0,0,0,.08)}
+.st li:hover .real-product-img{transform:scale(1.03)}
+.products-shelf{margin:10px 6px 14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;overflow:hidden}
+.products-shelf h2{font-size:14px;margin:0 0 3px;color:var(--ink)}
+.products-shelf p{font-size:10px;color:var(--text);margin:0 0 11px;line-height:1.6}
+.shelf-track{display:flex;gap:9px;overflow-x:auto;padding:0 0 8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.shelf-product{flex:0 0 98px;min-width:98px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:9px;background:var(--bg);border:1px solid var(--line);border-radius:12px;scroll-snap-align:start;text-align:center}
+.shelf-product img{display:block;width:78px;height:85px;object-fit:contain;background:#fff;border-radius:10px;padding:3px}
+.shelf-product strong{color:var(--ink);font-size:10px;line-height:1.35;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -330,6 +342,7 @@ textarea:focus{outline:none;border-color:var(--accent)}
  <p style="margin-top:10px;margin-bottom:0"><b>منتجات مؤجلة من برنامج الوجه:</b> Glycolic Acid 7%، PanOxyl 10%، وBioderma Pigmentbio المقشّر. للجسم جدول مستقل عبر الرابط أسفل الأسبوع. لا تحاولي إدخال كل المنتجات مرة واحدة.</p>
  <div class="sources">المصادر: <a href="https://www.aad.org/public/diseases/acne/derm-treat/treat" target="_blank" rel="noopener">AAD</a> · <a href="https://www.medlineplus.gov/druginfo/meds/a682437.html" target="_blank" rel="noopener">Tretinoin</a> · <a href="https://theordinary.com/en-us/glycolic-acid-7-exfoliating-toner-100418.html" target="_blank" rel="noopener">The Ordinary</a> · <a href="https://panoxyl.com/acne-products/acne-foaming-wash-benzoyl-peroxide/" target="_blank" rel="noopener">PanOxyl</a></div>
  </section>
+<section class="products-shelf" aria-label="صور المنتجات"><h2>🧴 المنتجات في روتينك</h2><p>صور توضيحية للعبوات — راجعي العبوة الفعلية قبل الاستخدام</p><div class="shelf-track"><div class="shelf-product"><img src="/images/thumb-cleanser.svg" alt="CeraVe Cleanser" loading="lazy" decoding="async"><strong>CeraVe Cleanser</strong></div><div class="shelf-product"><img src="/images/thumb-spf.svg" alt="Eucerin SPF 50+" loading="lazy" decoding="async"><strong>Eucerin SPF 50+</strong></div><div class="shelf-product"><img src="/images/thumb-cream.svg" alt="CeraVe Cream" loading="lazy" decoding="async"><strong>CeraVe Cream</strong></div><div class="shelf-product"><img src="/images/thumb-skinoren.svg" alt="Skinoren 20%" loading="lazy" decoding="async"><strong>Skinoren 20%</strong></div><div class="shelf-product"><img src="/images/thumb-cicaplast.svg" alt="Cicaplast B5+" loading="lazy" decoding="async"><strong>Cicaplast B5+</strong></div><div class="shelf-product"><img src="/images/thumb-acretin.svg" alt="Acretin" loading="lazy" decoding="async"><strong>Acretin</strong></div><div class="shelf-product"><img src="/images/thumb-vitc.svg" alt="Arencia Vitamin C" loading="lazy" decoding="async"><strong>Arencia Vitamin C</strong></div><div class="shelf-product"><img src="/images/thumb-niacinamide.svg" alt="Niacinamide" loading="lazy" decoding="async"><strong>Niacinamide</strong></div><div class="shelf-product"><img src="/images/thumb-retinol.svg" alt="Eye Retinol" loading="lazy" decoding="async"><strong>Eye Retinol</strong></div><div class="shelf-product"><img src="/images/thumb-panoxyl.svg" alt="PanOxyl" loading="lazy" decoding="async"><strong>PanOxyl</strong></div><div class="shelf-product"><img src="/images/thumb-melab3.svg" alt="Mela B3 Body" loading="lazy" decoding="async"><strong>Mela B3 Body</strong></div><div class="shelf-product"><img src="/images/thumb-glycolic.svg" alt="Glycolic 7%" loading="lazy" decoding="async"><strong>Glycolic 7%</strong></div></div></section>
 <div class="hdr">
 <div class="streak">🔥 <span id="streakN">0</span></div>
 <div class="lvl" id="lvl">⭐ Lv.<span id="lvlN">1</span></div>
@@ -543,7 +556,8 @@ var productImages={
 };
 var img=productImages[st.p]||'url(images/thumb-cleanser.svg)';
 var stepId='step-'+k.replace(/[^a-z0-9]/gi,'-');
-html+='<span class="sp" data-thumb="'+img+'" id="'+stepId+'" style="--img:'+img+'"><span class="nm">'+st.p+(isBm?' 🔖':'')+'</span></span>';
+var src=(img.match(/url\(([^)]+)\)/)||[])[1]||'images/thumb-cleanser.svg';
+ html+='<span class="sp" id="'+stepId+'"><img class="real-product-img" src="/'+src+'" alt="'+st.p.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'/images/thumb-cleanser.svg\'"><span class="nm">'+st.p+(isBm?' 🔖':'')+'</span></span>';
 html+='<span class="su">'+st.u+'</span>';
 html+='<div class="sm">'+st.m.map(function(m){
 if(m[1]==='c')return '<span class="mt c" onclick="openTimer(event,\''+st.p.replace(/'/g,"\\'")+'\','+(m[0].indexOf('15')>=0?15:2)+')">'+m[0]+'</span>';
